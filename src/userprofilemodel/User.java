@@ -27,9 +27,11 @@ public class User
      * This is the method that authenticates the User
      * @param username This is the User's username to authenticate
      * @param password This is the User's password to authenticate
+     * @return authenticated This return whether or not User is authenticated
      */
     public boolean authenticate(String username, String password)
     {
-        return true;
+        boolean authenticated = true;
+        return authenticated;
     }
 }
