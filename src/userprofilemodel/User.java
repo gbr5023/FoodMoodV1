@@ -12,7 +12,7 @@ package userprofilemodel;
  */
 public class User 
 {
-    public String username;
+    public String username; 
     public String password;
     
     /**
