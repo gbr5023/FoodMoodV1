@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CrudIntakeView;
+package CrudMoodView;
 
 /**
  *
  * @author michaelcavallaro
  */
-public class CrudIntakeView {
-
-    public CrudIntakeView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class CrudMoodView {
     
 }

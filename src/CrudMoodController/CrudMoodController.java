@@ -5,6 +5,8 @@
  */
 package CrudMoodController;
 
+import CrudIntakeView.CrudIntakeView;
+import CrudMoodView.CrudMoodView;
 import DatabaseController.DatabaseController;
 import java.sql.Connection;
 
@@ -13,22 +15,50 @@ import java.sql.Connection;
  * @author michaelcavallaro
  */
 public class CrudMoodController implements DatabaseController {
-
+    private CrudMoodView view;
+    /**
+     * Constructs a new empty CrudIntakeController
+     */
+    public CrudMoodController() {
+        view = new CrudMoodView();
+    }
     
+    /**
+     * Constructs a new CrudIntakeView
+     * @param view 
+     */
+    public CrudMoodController(CrudMoodView view) {
+        this.view = view;
+    }
+    /**
+     * New connection to a database
+     * @return SQL Connection 
+     */
     @Override
     public Connection newConnection() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Execute query to read in information
+     * @param con Connection to database
+     * @param sql SQL Statement string
+     * @return 
+     */
     @Override
     public boolean executeNonUpdateQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Execute update statement to make changes, removals, etc.
+     * @param con Connection to database
+     * @param sql SQL Statement string
+     * @return 
+     */
     @Override
     public boolean executeQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
     
 }
