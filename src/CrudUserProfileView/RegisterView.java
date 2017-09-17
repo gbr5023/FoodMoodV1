@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package CrudUserProfileModel;
+package CrudUserProfileView;
 
 /**
  *
- * @author Gisward
+ * @author michaelcavallaro
  */
-public class GeneralUser 
-{
-
+public class RegisterView {
+    
 }

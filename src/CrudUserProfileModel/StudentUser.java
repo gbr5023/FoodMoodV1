@@ -10,7 +10,7 @@ package CrudUserProfileModel;
  *
  * @author Gisward
  */
-public class StudentUser 
+public class StudentUser extends GeneralUser
 {
     
 }
