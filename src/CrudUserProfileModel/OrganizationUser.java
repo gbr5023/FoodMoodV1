@@ -19,8 +19,8 @@ public class OrganizationUser implements UserInterface
      * This is the default constructor of the OrganizationUser class
      * It captures the new username and password
      * It creates a new OrganizationUser object
-     * @param organizationUserName
-     * @param organizationPassword 
+     * @param organizationUserName This is the organization username
+     * @param organizationPassword This is the organization password
      */
     public OrganizationUser(String organizationUserName, String organizationPassword)
     {

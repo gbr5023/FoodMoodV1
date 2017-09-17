@@ -19,8 +19,8 @@ public class StudentUser implements UserInterface
      * This is the default constructor of the StudentUser class
      * It captures the new username and password
      * It creates a new StudentUser object
-     * @param studentUserName
-     * @param studentPassword 
+     * @param studentUserName This is the student username
+     * @param studentPassword This is the student password
      */
     public StudentUser(String studentUserName, String studentPassword)
     {
