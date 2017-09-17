@@ -12,7 +12,7 @@ package CrudIntakeModel;
 public class Food {
     public String foodname;
     public double foodWeight;
-    public int timeSinceConsumed;
+    public int timeSinceLastConsumed;
     
     /**
      * This is the default constructor for the Food class
@@ -25,9 +25,9 @@ public class Food {
      * This is the method that captures food intake
      * @param foodname This is the Food's name to capture
      * @param foodWeight This is the Food's weight (in oz) to capture
-     * @param timeSinceConsumed This is the time since last consumed (in min) of the Food
+     * @param timeSinceLastConsumed This is the time since last consumed (in min) of the Food
      */
-    public void captureFood(String foodname, double foodWeight, int timeSinceConsumed) {
+    public void captureFood(String foodname, double foodWeight, int timeSinceLastConsumed) {
         
     }
 }
