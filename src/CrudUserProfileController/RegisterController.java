@@ -17,12 +17,18 @@ import java.sql.Connection;
 public class RegisterController implements DatabaseController {
     private RegisterView view;
     private GeneralUser model;
-    
+    /**
+     * This method is the default constructor method with no parameters
+     */
     public RegisterController() {
         view = new RegisterView();
         model = new GeneralUser();
     }
-    
+    /**
+     * This method is the constructor method with a given userModel and userView
+     * @param model the user model
+     * @param view  the registerUser view
+     */
     public RegisterController(GeneralUser model, RegisterView view) {
         this.model = model;
         this.view = view;
