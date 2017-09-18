@@ -12,5 +12,7 @@ package NotificationView;
  */
 public class NotificationView 
 {
-    
+    public NotificationView() {
+        
+    }
 }
