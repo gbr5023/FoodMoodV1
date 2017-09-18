@@ -10,5 +10,7 @@ package CrudMoodView;
  * @author michaelcavallaro
  */
 public class CrudMoodView {
+    public CrudMoodView() {
     
+    }
 }
