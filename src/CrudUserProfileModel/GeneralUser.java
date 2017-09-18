@@ -19,8 +19,6 @@ public class GeneralUser implements UserInterface
      * This is the default constructor of the GeneralUser class
      * It captures the new username and password
      * It creates a new GeneralUser object
-     * @param generalUserName
-     * @param generalPassword 
      */
     public GeneralUser()
     {

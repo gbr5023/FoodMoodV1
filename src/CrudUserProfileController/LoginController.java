@@ -27,8 +27,8 @@ public class LoginController implements DatabaseController {
     
     /**
      * Constructs a new LoginController given a User Model and a LoginView
-     * @param model
-     * @param view 
+     * @param model This is the GeneralUser local object
+     * @param view This is the LoginView local object
      */
     public LoginController(GeneralUser model, LoginView view) {
         this.model = model;

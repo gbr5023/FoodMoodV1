@@ -25,7 +25,7 @@ public class CrudIntakeController implements DatabaseController{
     
     /**
      * Constructs a new CrudIntakeView
-     * @param view 
+     * @param view This is the CrudIntakeView local object
      */
     public CrudIntakeController(CrudIntakeView view) {
         this.view = view;
@@ -44,7 +44,7 @@ public class CrudIntakeController implements DatabaseController{
      * Execute query to read in information
      * @param con Connection to database
      * @param sql SQL Statement string
-     * @return 
+     * @return Result will be true if statement executed without error
      */
     @Override
     public boolean executeNonUpdateQuery(Connection con, String sql) {
@@ -55,7 +55,7 @@ public class CrudIntakeController implements DatabaseController{
      * Execute update statement to make changes, removals, etc.
      * @param con Connection to database
      * @param sql SQL Statement string
-     * @return 
+     * @return Result will be true if statement executed without error
      */
     @Override
     public boolean executeQuery(Connection con, String sql) {

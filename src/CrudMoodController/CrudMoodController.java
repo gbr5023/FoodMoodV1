@@ -25,7 +25,7 @@ public class CrudMoodController implements DatabaseController {
     
     /**
      * Constructs a new CrudIntakeView
-     * @param view 
+     * @param view This is the CrudMoodView local object
      */
     public CrudMoodController(CrudMoodView view) {
         this.view = view;
@@ -43,7 +43,7 @@ public class CrudMoodController implements DatabaseController {
      * Execute query to read in information
      * @param con Connection to database
      * @param sql SQL Statement string
-     * @return 
+     * @return Result will be true if statement executed without error
      */
     @Override
     public boolean executeNonUpdateQuery(Connection con, String sql) {
@@ -54,7 +54,7 @@ public class CrudMoodController implements DatabaseController {
      * Execute update statement to make changes, removals, etc.
      * @param con Connection to database
      * @param sql SQL Statement string
-     * @return 
+     * @return Result will be true if statement executed without error
      */
     @Override
     public boolean executeQuery(Connection con, String sql) {
