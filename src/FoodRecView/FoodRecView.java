@@ -12,5 +12,7 @@ package FoodRecView;
  */
 public class FoodRecView 
 {
-    
+    public FoodRecView() {
+        
+    }
 }
