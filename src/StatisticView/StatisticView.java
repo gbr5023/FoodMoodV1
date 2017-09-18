@@ -12,5 +12,7 @@ package StatisticView;
  */
 public class StatisticView 
 {
+    public StatisticView() {
     
+    }
 }
