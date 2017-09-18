@@ -11,8 +11,11 @@ package CrudIntakeView;
  */
 public class CrudIntakeView {
 
+    /**
+     * New intake view given a user profile model
+     */
     public CrudIntakeView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

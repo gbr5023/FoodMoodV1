@@ -6,11 +6,29 @@
 
 package StatisticController;
 
+import DatabaseController.DatabaseController;
+import java.sql.Connection;
+
 /**
  *
  * @author Gisward
  */
-public class StatisticController 
+public class StatisticController  implements DatabaseController
 {
+
+    @Override
+    public Connection newConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean executeNonUpdateQuery(Connection con, String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean executeQuery(Connection con, String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

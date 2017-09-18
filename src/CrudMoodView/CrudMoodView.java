@@ -11,6 +11,9 @@ package CrudMoodView;
  */
 public class CrudMoodView {
 
+    /**
+     * New CrudMoodView given a user profile model
+     */
     public CrudMoodView() {
     
     }
