@@ -10,7 +10,7 @@ package CrudUserProfileModel;
  *
  * @author Gisward
  */
-public class OrganizationUser implements UserInterface
+public class OrganizationUser implements User
 {
     String organizationUserName;
     String organizationPassword;

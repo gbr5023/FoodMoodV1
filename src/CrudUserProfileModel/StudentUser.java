@@ -10,7 +10,7 @@ package CrudUserProfileModel;
  *
  * @author Gisward
  */
-public class StudentUser implements UserInterface
+public class StudentUser implements User
 {
     String studentUserName;
     String studentPassword;

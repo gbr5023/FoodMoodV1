@@ -10,7 +10,7 @@ package CrudUserProfileModel;
  *
  * @author Gisward
  */
-public interface UserInterface 
+public interface User 
 {
     /**
      * This is the method that returns the username

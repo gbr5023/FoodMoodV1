@@ -10,7 +10,7 @@ package CrudUserProfileModel;
  *
  * @author Gisward
  */
-public class GeneralUser implements UserInterface
+public class GeneralUser implements User
 {
     String username;
     String password;
