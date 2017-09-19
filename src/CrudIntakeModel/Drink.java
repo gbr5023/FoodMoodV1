@@ -10,7 +10,7 @@ package CrudIntakeModel;
  *
  * @author Gisward
  */
-public class Drink implements IntakeInterface
+public class Drink implements Intake
 {
     public String drinkName;
     public double drinkWeight;

@@ -10,7 +10,7 @@ package CrudIntakeModel;
  *
  * @author Gisward
  */
-public interface IntakeInterface 
+public interface Intake 
 {
     /**
      * This is the method that returns the intake name
