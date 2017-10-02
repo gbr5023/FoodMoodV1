@@ -5,6 +5,7 @@
  */
 package foodmoodv1;
 
+import NavigationController.NavigationController;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -38,10 +39,8 @@ public class FoodMoodV1Test {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] args = null;
-        FoodMoodV1.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        NavigationController theNavigationController = new NavigationController();
+        theNavigationController.requestNavigationView();
     }
     
 }
