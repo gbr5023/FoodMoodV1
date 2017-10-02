@@ -46,6 +46,10 @@ public class Mood
         this.mood = mood;
     }
     
+    public List<Mood> getMoodList() {
+        return moodList;
+    }
+    
     /**
      * This is the method that adds mood object to the moodList.
      * @param mood 
