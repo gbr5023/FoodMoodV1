@@ -9,6 +9,11 @@ import CrudUserProfileModel.GeneralUser;
 import CrudUserProfileView.RegisterView;
 import DatabaseController.DatabaseController;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +45,21 @@ public class RegisterController implements DatabaseController {
      */
     @Override
     public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:derby:localhost:1527/foodmooddb");
+                
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     /**
@@ -50,8 +69,8 @@ public class RegisterController implements DatabaseController {
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
+        return null;
     }
 
     /**
@@ -61,8 +80,8 @@ public class RegisterController implements DatabaseController {
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int executeQuery(Connection con, String sql) {
+        return 0;
     }
     
 }

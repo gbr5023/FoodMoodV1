@@ -6,6 +6,7 @@
 package DatabaseController;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 /**
  *
@@ -29,7 +30,7 @@ public interface DatabaseController {
      * @param sql Statement string to be executed
      * @return Result will be true if statement executed without error
      */
-    boolean executeNonUpdateQuery(Connection con, String sql);
+    ResultSet executeNonUpdateQuery(Connection con, String sql);
     
     /**
      * Executes a new update query
@@ -37,5 +38,5 @@ public interface DatabaseController {
      * @param sql Statement string to be executed
      * @return Result will be true if statement executed without error
      */
-    boolean executeQuery(Connection con, String sql);
+    int executeQuery(Connection con, String sql);
 }

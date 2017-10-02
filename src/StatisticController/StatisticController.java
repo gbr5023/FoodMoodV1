@@ -11,6 +11,7 @@ import NavigationController.NavigationController;
 import NotificationView.NotificationView;
 import StatisticView.StatisticView;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 
 /**
@@ -59,7 +60,7 @@ public class StatisticController  implements DatabaseController
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeNonUpdateQuery(Connection con, String sql) {
+    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -71,7 +72,7 @@ public class StatisticController  implements DatabaseController
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeQuery(Connection con, String sql) {
+    public int executeQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

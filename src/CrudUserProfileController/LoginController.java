@@ -4,11 +4,21 @@
  * and open the template in the editor.
  */
 package CrudUserProfileController;
+import CrudIntakeView.CrudIntakeView;
 import CrudUserProfileModel.*;
 import CrudUserProfileView.*;
 import DatabaseController.*;
 import NavigationController.NavigationController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +37,7 @@ public class LoginController implements DatabaseController {
     {
         this.theNavigationController = parentNavigationController;
         model = new GeneralUser();
-        view = new LoginView();
+        
     }
     
     /**
@@ -38,6 +48,42 @@ public class LoginController implements DatabaseController {
     public LoginController(GeneralUser model, LoginView view) {
         this.model = model;
         this.view = view;
+        
+        view.getLoginButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(authenticateUser()) {
+                    CrudIntakeView crudView = new CrudIntakeView();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid login");
+                }
+                   
+            }
+        });
+        
+        view.getForgotButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ForgotUserView forgotView = new ForgotUserView(model);
+                ForgotUserController forgotController = new ForgotUserController(forgotView);
+            }
+        });
+    }
+    
+    private boolean authenticateUser() {
+        Connection con = newConnection();
+        String sql = "SELECT * FROM USER WHERE USERNAME='"+view.getUsernameField().getText()+"' AND PASSWORD='"+view.getUsernameField().getText()+"'";
+                
+        ResultSet rs = executeNonUpdateQuery(con,sql);
+        try {
+            if(!rs.first())
+                return false;
+            else
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     /**
@@ -46,7 +92,21 @@ public class LoginController implements DatabaseController {
      */
     @Override
     public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:derby:localhost:1527/foodmooddb");
+                
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     /**
@@ -56,8 +116,16 @@ public class LoginController implements DatabaseController {
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
+        Statement st;
+        ResultSet rs = null;
+        try {
+            st= con.createStatement();
+            rs = st.executeQuery(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
     }
 
     /**
@@ -67,8 +135,9 @@ public class LoginController implements DatabaseController {
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int executeQuery(Connection con, String sql) {
+        return 0;
     }
 
+    
 }
