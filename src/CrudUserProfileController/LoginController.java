@@ -7,6 +7,7 @@ package CrudUserProfileController;
 import CrudUserProfileModel.*;
 import CrudUserProfileView.*;
 import DatabaseController.*;
+import NavigationController.NavigationController;
 import java.sql.Connection;
 
 /**
@@ -16,11 +17,15 @@ import java.sql.Connection;
 public class LoginController implements DatabaseController {
     private GeneralUser model;
     private LoginView view;
+    NavigationController theNavigationController;
     
     /**
      * Constructs an empty LoginController
+     * @param  parentNavigationController the original NavigationController object
      */
-    public LoginController() {
+    public LoginController(NavigationController parentNavigationController)
+    {
+        this.theNavigationController = parentNavigationController;
         model = new GeneralUser();
         view = new LoginView();
     }

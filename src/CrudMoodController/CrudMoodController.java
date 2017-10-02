@@ -5,22 +5,33 @@
  */
 package CrudMoodController;
 
-import CrudIntakeView.CrudIntakeView;
 import CrudMoodView.CrudMoodView;
 import DatabaseController.DatabaseController;
+import NavigationController.NavigationController;
 import java.sql.Connection;
+import javax.swing.JFrame;
 
 /**
  * 
  * @author michaelcavallaro
  */
-public class CrudMoodController implements DatabaseController {
+public class CrudMoodController implements DatabaseController 
+{
     private CrudMoodView view;
+    NavigationController theNavigationController;
+    
     /**
      * Constructs a new empty CrudIntakeController
+     * @param parentNavigationController This is the original NavigationController object
      */
-    public CrudMoodController() {
-        view = new CrudMoodView();
+    public CrudMoodController(NavigationController parentNavigationController)
+    {
+        this.theNavigationController = parentNavigationController;
+        view = new CrudMoodView(this);
+        view.setTitle("Input Mood");
+        view.setLocationRelativeTo(null);
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.setVisible(true);
     }
     
     /**
@@ -29,6 +40,14 @@ public class CrudMoodController implements DatabaseController {
      */
     public CrudMoodController(CrudMoodView view) {
         this.view = view;
+    }
+    
+    /**
+     * Calls the original NavigationView GUI
+     */
+    public void requestNavigationView()
+    {
+        this.theNavigationController.requestNavigationView();
     }
     /**
      * New connection to a database

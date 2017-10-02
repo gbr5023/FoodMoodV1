@@ -6,6 +6,8 @@
 
 package foodmoodv1;
 
+import NavigationController.NavigationController;
+
 /**
  *
  * @author gbr5023
@@ -14,11 +16,13 @@ public class FoodMoodV1
 {
 
     /**
+     * Main method
      * @param args the command line arguments
      */
     public static void main(String[] args) 
     {
         // TODO code application logic here
+        NavigationController theNavigationController = new NavigationController();
     }
 
 }

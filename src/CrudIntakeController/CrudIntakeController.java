@@ -7,7 +7,9 @@ package CrudIntakeController;
 
 import CrudIntakeView.CrudIntakeView;
 import DatabaseController.DatabaseController;
+import NavigationController.NavigationController;
 import java.sql.Connection;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,12 +17,20 @@ import java.sql.Connection;
  */
 public class CrudIntakeController implements DatabaseController{
     private CrudIntakeView view;
+    NavigationController theNavigationController;
     
     /**
      * Constructs a new empty CrudIntakeController
+     * @param parentNavigationController This is the original NavigationController object
      */
-    public CrudIntakeController() {
-        view = new CrudIntakeView();
+    public CrudIntakeController(NavigationController parentNavigationController)
+    {
+        this.theNavigationController = parentNavigationController;
+        view = new CrudIntakeView(this);
+        view.setTitle("Input Intake");
+        view.setLocationRelativeTo(null);
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.setVisible(true);
     }
     
     /**
@@ -29,6 +39,14 @@ public class CrudIntakeController implements DatabaseController{
      */
     public CrudIntakeController(CrudIntakeView view) {
         this.view = view;
+    }
+    
+    /**
+     * Calls the original NavigationView GUI
+     */
+    public void requestNavigationView()
+    {
+        this.theNavigationController.requestNavigationView();
     }
     
     /**

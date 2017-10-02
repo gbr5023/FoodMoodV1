@@ -7,7 +7,10 @@
 package NotificationController;
 
 import DatabaseController.DatabaseController;
+import NavigationController.NavigationController;
+import NotificationView.NotificationView;
 import java.sql.Connection;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,7 +18,30 @@ import java.sql.Connection;
  */
 public class NotificationController implements DatabaseController
 {
+    NavigationController theNavigationController;
+    
+    /**
+     * Constructs a new NotificationController
+     * @param parentNavigationController This is the original NavigationController object
+     */
+    public NotificationController(NavigationController parentNavigationController)
+    {
+        this.theNavigationController = parentNavigationController;
+        NotificationView theNotificationView = new NotificationView(this);
+        theNotificationView.setTitle("Notifications");
+        theNotificationView.setLocationRelativeTo(null);
+        theNotificationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        theNotificationView.setVisible(true);
+    }
 
+    /**
+     * Calls the original NavigationView GUI
+     */
+    public void requestNavigationView()
+    {
+        this.theNavigationController.requestNavigationView();
+    }
+    
     /**
      * Returns a new connection to the system's database
      * @return The connection to be used
