@@ -9,6 +9,7 @@ import CrudMoodView.CrudMoodView;
 import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 
 /**
@@ -65,7 +66,7 @@ public class CrudMoodController implements DatabaseController
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeNonUpdateQuery(Connection con, String sql) {
+    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -76,7 +77,7 @@ public class CrudMoodController implements DatabaseController
      * @return Result will be true if statement executed without error
      */
     @Override
-    public boolean executeQuery(Connection con, String sql) {
+    public int executeQuery(Connection con, String sql) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
