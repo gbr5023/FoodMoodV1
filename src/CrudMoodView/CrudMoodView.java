@@ -7,6 +7,7 @@
 package CrudMoodView;
 
 import CrudMoodController.CrudMoodController;
+import CrudMoodModel.Mood;
 
 /**
  *
@@ -15,6 +16,7 @@ import CrudMoodController.CrudMoodController;
 public class CrudMoodView extends javax.swing.JFrame 
 {
     CrudMoodController theCrudMoodController;
+    Mood theCrudMoodModel;
     
     /** 
      * Creates new form CrudMoodView 
@@ -36,8 +38,10 @@ public class CrudMoodView extends javax.swing.JFrame
     private void initComponents() {
 
         homeButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        moodAskingLabel = new javax.swing.JLabel();
+        moodField = new javax.swing.JTextField();
+        enterMoodPromptLabel = new javax.swing.JLabel();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,11 +52,14 @@ public class CrudMoodView extends javax.swing.JFrame
             }
         });
 
-        jLabel1.setText("Enter your mood");
+        moodAskingLabel.setText("How do you feel after eating");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        enterMoodPromptLabel.setText("Enter your mood:");
+
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                okButtonActionPerformed(evt);
             }
         });
 
@@ -60,26 +67,35 @@ public class CrudMoodView extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(moodAskingLabel)
+                .addGap(126, 126, 126))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(166, 166, 166)
+                        .addComponent(homeButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(homeButton)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addGap(76, 76, 76)
+                        .addComponent(enterMoodPromptLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(okButton)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(85, 85, 85)
+                .addComponent(moodAskingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                    .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterMoodPromptLabel)
+                    .addComponent(okButton))
+                .addGap(58, 58, 58)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -97,9 +113,9 @@ public class CrudMoodView extends javax.swing.JFrame
         this.theCrudMoodController.requestNavigationView();
     }//GEN-LAST:event_homeButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        this.theCrudMoodModel.addMood(new Mood(this.moodField.getText()));
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +156,11 @@ public class CrudMoodView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel enterMoodPromptLabel;
     private javax.swing.JButton homeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel moodAskingLabel;
+    private javax.swing.JTextField moodField;
+    private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
 
 }
