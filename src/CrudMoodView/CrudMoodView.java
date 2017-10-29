@@ -19,7 +19,7 @@ import CrudIntakeModel.Drink;
 public class CrudMoodView extends javax.swing.JFrame 
 {
     CrudMoodController theCrudMoodController;
-    Mood theCrudMoodModel;
+    Mood theMoodModel;
     CrudIntakeModel theCrudIntakeModel;
     Food theFoodModel;
     Drink theDrinkModel;
@@ -59,6 +59,12 @@ public class CrudMoodView extends javax.swing.JFrame
         });
 
         moodAskingLabel.setText("How do you feel after eating the food/drink?");
+
+        moodField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moodFieldActionPerformed(evt);
+            }
+        });
 
         enterMoodPromptLabel.setText("Enter your mood:");
 
@@ -120,8 +126,15 @@ public class CrudMoodView extends javax.swing.JFrame
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        this.theCrudMoodModel.addMood(new Mood(this.moodField.getText()));
+        String mood = moodField.getText();
+        theMoodModel = new Mood(mood);
+        moodField.setText("");
+        System.out.print(theMoodModel.getMood());
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void moodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_moodFieldActionPerformed
 
     /**
      * @param args the command line arguments
