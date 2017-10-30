@@ -128,8 +128,10 @@ public class CrudMoodView extends javax.swing.JFrame
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         String mood = moodField.getText();
         theMoodModel = new Mood(mood);
+        theMoodModel.addMood(new Mood(mood));
         moodField.setText("");
         System.out.print(theMoodModel.getMood());
+        System.out.print(theMoodModel.getMoodList().get(0).getMood());
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void moodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodFieldActionPerformed
