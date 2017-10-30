@@ -29,11 +29,16 @@ public class StatisticController  implements DatabaseController
     public StatisticController(NavigationController parentNavigationController)
     {
         this.theNavigationController = parentNavigationController;
-        StatisticView theStatisticView = new StatisticView(this);
+        StatisticView theStatisticView = new StatisticView(this, theNavigationController);
         theStatisticView.setTitle("Statistics");
         theStatisticView.setLocationRelativeTo(null);
         theStatisticView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         theStatisticView.setVisible(true);
+    }
+    
+    public NavigationController getNavigationController()
+    {
+        return this.theNavigationController;
     }
     
     /**
