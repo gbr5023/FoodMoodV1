@@ -93,7 +93,7 @@ public class CrudMoodView extends javax.swing.JFrame
                         .addComponent(okButton)))
                 .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(164, 164, 164)
                 .addComponent(homeButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -107,9 +107,9 @@ public class CrudMoodView extends javax.swing.JFrame
                     .addComponent(enterMoodPromptLabel)
                     .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(okButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
