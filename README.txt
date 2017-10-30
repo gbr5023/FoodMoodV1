@@ -1,4 +1,4 @@
-Hyunsook - Home link/button (view classes) and Observer (view classes - ActionListener)
+Hyunsook - Home link/button (view classes) and Observer (view classes - ActionEvent handler)
 Giselle - 
 Nick - 
 Mike - 
