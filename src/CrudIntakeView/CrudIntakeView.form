@@ -28,12 +28,51 @@
               <Component id="homeButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="165" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="intakeName" min="-2" max="-2" attributes="0"/>
+                  <Component id="intakeWeight" min="-2" max="-2" attributes="0"/>
+                  <Component id="intakeTSC" min="-2" max="-2" attributes="0"/>
+                  <Component id="foodButton" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="intakeTSCTF" pref="59" max="32767" attributes="0"/>
+                      <Component id="intakeWeightTF" alignment="1" max="32767" attributes="0"/>
+                      <Component id="intakeNameTF" alignment="1" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="drinkButton" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="255" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="intakeNameTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="intakeName" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="intakeWeightTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="intakeWeight" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="intakeTSCTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="intakeTSC" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="foodButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="drinkButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="homeButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -47,6 +86,43 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="intakeNameTF">
+    </Component>
+    <Component class="javax.swing.JTextField" name="intakeWeightTF">
+    </Component>
+    <Component class="javax.swing.JTextField" name="intakeTSCTF">
+    </Component>
+    <Component class="javax.swing.JLabel" name="intakeName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Intake Name"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="intakeWeight">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Intake Weight"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="intakeTSC">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time Since Consumption"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="foodButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Food"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="foodButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="drinkButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Drink"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="drinkButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

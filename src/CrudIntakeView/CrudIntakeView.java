@@ -7,6 +7,9 @@
 package CrudIntakeView;
 
 import CrudIntakeController.CrudIntakeController;
+import CrudIntakeModel.CrudIntakeModel;
+import CrudIntakeModel.Food;
+import CrudIntakeModel.Drink;
 
 /**
  *
@@ -15,6 +18,9 @@ import CrudIntakeController.CrudIntakeController;
 public class CrudIntakeView extends javax.swing.JFrame 
 {
     CrudIntakeController theCrudIntakeController;
+    Food f;
+    Drink d;
+    CrudIntakeModel cim;
     
     /** 
      * Creates new form CrudIntakeView 
@@ -40,6 +46,14 @@ public class CrudIntakeView extends javax.swing.JFrame
     private void initComponents() {
 
         homeButton = new javax.swing.JButton();
+        intakeNameTF = new javax.swing.JTextField();
+        intakeWeightTF = new javax.swing.JTextField();
+        intakeTSCTF = new javax.swing.JTextField();
+        intakeName = new javax.swing.JLabel();
+        intakeWeight = new javax.swing.JLabel();
+        intakeTSC = new javax.swing.JLabel();
+        foodButton = new javax.swing.JButton();
+        drinkButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +61,26 @@ public class CrudIntakeView extends javax.swing.JFrame
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
+            }
+        });
+
+        intakeName.setText("Intake Name");
+
+        intakeWeight.setText("Intake Weight");
+
+        intakeTSC.setText("Time Since Consumption");
+
+        foodButton.setText("Food");
+        foodButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodButtonActionPerformed(evt);
+            }
+        });
+
+        drinkButton.setText("Drink");
+        drinkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drinkButtonActionPerformed(evt);
             }
         });
 
@@ -58,11 +92,42 @@ public class CrudIntakeView extends javax.swing.JFrame
                 .addGap(166, 166, 166)
                 .addComponent(homeButton)
                 .addContainerGap(165, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intakeName)
+                    .addComponent(intakeWeight)
+                    .addComponent(intakeTSC)
+                    .addComponent(foodButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(intakeTSCTF, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                        .addComponent(intakeWeightTF)
+                        .addComponent(intakeNameTF))
+                    .addComponent(drinkButton))
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intakeNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intakeName))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intakeWeightTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intakeWeight))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intakeTSCTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intakeTSC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(foodButton)
+                    .addComponent(drinkButton))
+                .addGap(15, 15, 15)
                 .addComponent(homeButton)
                 .addContainerGap())
         );
@@ -79,6 +144,30 @@ public class CrudIntakeView extends javax.swing.JFrame
         this.setVisible(false);
         this.theCrudIntakeController.requestNavigationView();
     }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void foodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodButtonActionPerformed
+        // TODO add your handling code here:
+        String nameField = intakeNameTF.getText();
+        Double weightField = Double.parseDouble(intakeWeightTF.getText());
+        Integer tscField = Integer.parseInt(intakeTSCTF.getText());
+        f = new Food(nameField, weightField, tscField);
+        cim.addFood(f);
+        intakeNameTF.setText("");
+        intakeWeightTF.setText("");
+        intakeTSCTF.setText("");
+    }//GEN-LAST:event_foodButtonActionPerformed
+
+    private void drinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drinkButtonActionPerformed
+        // TODO add your handling code here:
+        String nameField = intakeNameTF.getText();
+        Double weightField = Double.parseDouble(intakeWeightTF.getText());
+        Integer tscField = Integer.parseInt(intakeTSCTF.getText());
+        d = new Drink(nameField, weightField, tscField);
+        cim.addDrink(d);
+        intakeNameTF.setText("");
+        intakeWeightTF.setText("");
+        intakeTSCTF.setText("");
+    }//GEN-LAST:event_drinkButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,7 +208,15 @@ public class CrudIntakeView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton drinkButton;
+    private javax.swing.JButton foodButton;
     private javax.swing.JButton homeButton;
+    private javax.swing.JLabel intakeName;
+    private javax.swing.JTextField intakeNameTF;
+    private javax.swing.JLabel intakeTSC;
+    private javax.swing.JTextField intakeTSCTF;
+    private javax.swing.JLabel intakeWeight;
+    private javax.swing.JTextField intakeWeightTF;
     // End of variables declaration//GEN-END:variables
 
 }
