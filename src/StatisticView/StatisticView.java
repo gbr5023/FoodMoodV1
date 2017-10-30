@@ -7,6 +7,7 @@
 package StatisticView;
 
 import StatisticController.StatisticController;
+import NavigationController.NavigationController;
 
 /**
  *
@@ -15,14 +16,16 @@ import StatisticController.StatisticController;
 public class StatisticView extends javax.swing.JFrame 
 {
     StatisticController theStatisticController;
+    NavigationController theNavigationController;
     
     /** 
      * Creates new form StatisticView 
      * @param  parentStatisticController the original StatisticController object
      */
-    public StatisticView(StatisticController parentStatisticController) 
+    public StatisticView(StatisticController parentStatisticController, NavigationController parentNavigationController) 
     {
         this.theStatisticController = parentStatisticController;
+        this.theNavigationController = parentNavigationController;
         initComponents();
     }
 
@@ -35,14 +38,38 @@ public class StatisticView extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        homeButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        foodRecFooter = new javax.swing.JButton();
+        crudMoodFooter = new javax.swing.JButton();
+        crudIntakeFooter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        homeButton.setText("Home");
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("<-");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        foodRecFooter.setText("Food Recommendations");
+        foodRecFooter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodRecFooterActionPerformed(evt);
+            }
+        });
+
+        crudMoodFooter.setText("Input Mood");
+        crudMoodFooter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudMoodFooterActionPerformed(evt);
+            }
+        });
+
+        crudIntakeFooter.setText("Input Intake");
+        crudIntakeFooter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crudIntakeFooterActionPerformed(evt);
             }
         });
 
@@ -51,15 +78,27 @@ public class StatisticView extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(homeButton)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(crudIntakeFooter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(crudMoodFooter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(foodRecFooter))
+                    .addComponent(backButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
-                .addComponent(homeButton)
+                .addContainerGap()
+                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crudMoodFooter)
+                    .addComponent(crudIntakeFooter)
+                    .addComponent(foodRecFooter))
                 .addContainerGap())
         );
 
@@ -70,11 +109,29 @@ public class StatisticView extends javax.swing.JFrame
      * Navigates user to the original NavigationView
      * @param evt 
      */
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         this.theStatisticController.requestNavigationView();
-    }//GEN-LAST:event_homeButtonActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void foodRecFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodRecFooterActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.theNavigationController.getFoodRecController();
+    }//GEN-LAST:event_foodRecFooterActionPerformed
+
+    private void crudMoodFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudMoodFooterActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.theNavigationController.getCrudMoodController();
+    }//GEN-LAST:event_crudMoodFooterActionPerformed
+
+    private void crudIntakeFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudIntakeFooterActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.theNavigationController.getCrudIntakeController();
+    }//GEN-LAST:event_crudIntakeFooterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,7 +172,10 @@ public class StatisticView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton homeButton;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton crudIntakeFooter;
+    private javax.swing.JButton crudMoodFooter;
+    private javax.swing.JButton foodRecFooter;
     // End of variables declaration//GEN-END:variables
 
 }
