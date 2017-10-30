@@ -6,6 +6,7 @@
 
 package foodmoodv1;
 
+import CrudUserProfileController.LoginController;
 import NavigationController.NavigationController;
 
 /**
@@ -22,7 +23,8 @@ public class FoodMoodV1
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        NavigationController theNavigationController = new NavigationController();
+        //NavigationController theNavigationController = new NavigationController();
+        LoginController theLoginController = new LoginController();
     }
 
 }

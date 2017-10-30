@@ -67,8 +67,6 @@ public class NavigationController
      */
     public void getLoginController()
     {
-        theNavigationView.setVisible(false);
-        LoginController theLoginController = new LoginController(this);
     }
     
     /**
