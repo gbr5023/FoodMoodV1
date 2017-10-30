@@ -1,4 +1,5 @@
-Hyunsook - Home link/button (view classes) and Observer (view classes - ActionEvent handler)
-Giselle - Mediator (FoodRecommendationController, StatisticController), & Sitemap Footers (StatisticView)
-Nick - 
-Mike - 
+Nick: Chain of responsibility, Fill in the blank
+Amy: Observer, Home link
+Giselle: Mediator, Autocomplete
+     Classes - FoodRecommendationController, StatisticController, NotificationController
+Michael: Adapter, Dashboard
