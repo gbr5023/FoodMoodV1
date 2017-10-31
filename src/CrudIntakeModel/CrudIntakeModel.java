@@ -52,11 +52,11 @@ public class CrudIntakeModel
     
     /**
      * Add drink to the Drink ArrayList
-     * @param f Drink to add
+     * @param d Drink to add
      */
-    public void addDrink(Drink f){
-        getDrinkList().add(f);
-        saveToFile(f);
+    public void addDrink(Drink d){
+        getDrinkList().add(d);
+        saveToFile(d);
     }
 
     /**

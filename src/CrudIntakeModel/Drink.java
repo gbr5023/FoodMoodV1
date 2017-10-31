@@ -6,15 +6,19 @@
 
 package CrudIntakeModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Gisward
  */
-public class Drink implements Intake
+public class Drink 
 {
-    public String drinkName;
-    public double drinkWeight;
-    public int timeSinceLastConsumed;
+    private String drinkName;
+    private double drinkWeight;
+    private int timeSinceLastConsumed;
+    private List<Drink> dList;
     
     /**
      * This is the default constructor for the Drink class
@@ -27,67 +31,85 @@ public class Drink implements Intake
      */
     public Drink(String drinkName, double drinkWeight, int timeSinceLastConsumed)
     {
-        
+        this.drinkName = drinkName;
+        this.drinkWeight = drinkWeight;
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+        dList = new ArrayList();
+    }
+
+    public Drink getDrink(){
+        return new Drink (this.drinkName, this.drinkWeight, this.timeSinceLastConsumed);
+    }
+    
+    public void setDrink(Drink d){
+        setDrinkName(d.getDrinkName());
+        setDrinkWeight(d.getDrinkWeight());
+        setTimeSinceLastConsumed(d.getTimeSinceLastConsumed());
+    }
+    /**
+     * @return the drinkName
+     */
+    public String getDrinkName() {
+        return drinkName;
     }
 
     /**
-     * This is the method that returns the drink name
-     * @return drinkName This is the Drink's name
+     * @param drinkName the drinkName to set
      */
-    @Override
-    public String getName() 
-    {
-        return this.drinkName;
+    public void setDrinkName(String drinkName) {
+        this.drinkName = drinkName;
     }
 
     /**
-     * This is the method that sets user-entered drink name to drinkName
-     * @param name This is the user entered drink name
+     * @return the drinkWeight
      */
-    @Override
-    public void setName(String name) 
-    {
-        
+    public double getDrinkWeight() {
+        return drinkWeight;
     }
 
     /**
-     * This is the method that returns the drink weight
-     * @return drinkWeight This is the Drink's weight
+     * @param drinkWeight the drinkWeight to set
      */
-    @Override
-    public double getWeight() 
-    {
-        return this.drinkWeight;
+    public void setDrinkWeight(double drinkWeight) {
+        this.drinkWeight = drinkWeight;
     }
 
     /**
-     * This is the method that sets user-entered drink weight to drinkWeight
-     * @param weight This is the user-entered drink weight (in oz)
+     * @return the dList
      */
-    @Override
-    public void setWeight(double weight) 
-    {
-        
+    public List<Drink> getdList() {
+        return dList;
     }
 
     /**
-     * This is the method that returns the time since drink was last consumed
-     * @return timeSinceLastConsumed This is the time (in sec) since Drink was last consumed
+     * @param dList the dList to set
      */
-    @Override
-    public int getTimeSinceLastConsumed() 
-    {
-        return this.timeSinceLastConsumed;
+    public void setdList(List<Drink> dList) {
+        this.dList = dList;
     }
 
     /**
-     * This is the method that sets user-entered time since drink was last consumed 
-     * to timeSinceLastConsumed
-     * @param timeSinceLastConsumed This is the user-entered time (in sec) since drink was last consumed
+     * @return the timeSinceLastConsumed
      */
-    @Override
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) 
-    {
-        
+    public int getTimeSinceLastConsumed() {
+        return timeSinceLastConsumed;
+    }
+
+    /**
+     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
+     */
+    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+    }
+    
+    public void addDrink(Drink d){
+        dList.add(d);
+    }
+    
+    public void updateDrink(int index, Drink d){
+        dList.get(index).setDrink(d);
+    }
+    public void removeDrink(int index){
+        dList.remove(index);
     }
 }

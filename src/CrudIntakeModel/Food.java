@@ -5,15 +5,18 @@
  */
 package CrudIntakeModel;
 
+import java.util.*;
+
 /**
  *
- * @author hmk5180
+ * @author nja5128
  */
-public class Food implements Intake
+public class Food 
 {
-    public String foodName;
-    public double foodWeight;
-    public int timeSinceLastConsumed;
+    private String foodName;
+    private double foodWeight;
+    private int timeSinceLastConsumed;
+    private List<Food> fList;
     
     /**
      * This is the default constructor for the Food class
@@ -26,67 +29,109 @@ public class Food implements Intake
      */
     public Food(String foodname, double foodWeight, int timeSinceLastConsumed) 
     {
-        
+        this.foodName = foodname;
+        this.foodWeight = foodWeight;
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+        fList = new ArrayList();
+    }
+    /**
+     * 
+     * @return the food
+     */
+    
+      public Food getFood(){
+        return new Food (this.foodName, this.foodWeight, this.timeSinceLastConsumed);
+    }
+      /**
+       * 
+       * @param f This is the food that will be set
+       */
+    
+    public void setFood(Food f){
+        setFoodName(f.getFoodName());
+        setFoodWeight(f.getFoodWeight());
+        setTimeSinceLastConsumed(f.getTimeSinceLastConsumed());
     }
 
     /**
-     * This is the method that returns the food name
-     * @return foodName This is the Food's name
+     * @return the foodName
      */
-    @Override
-    public String getName() 
-    {
-        return this.foodName;
+    public String getFoodName() {
+        return foodName;
     }
 
     /**
-     * This is the method that sets user-entered food name to foodName
-     * @param name This is the user entered food name
+     * @param foodName the foodName to set
      */
-    @Override
-    public void setName(String name) 
-    {
-        
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
     }
 
     /**
-     * This is the method that returns the food weight
-     * @return foodWeight This is the Food's weight (in oz)
+     * @return the foodWeight
      */
-    @Override
-    public double getWeight() 
-    {
-        return this.foodWeight;
+    public double getFoodWeight() {
+        return foodWeight;
     }
 
     /**
-     * This is the method that sets user-entered food weight to foodWeight
-     * @param weight This is the user-entered food weight (in oz)
+     * @param foodWeight the foodWeight to set
      */
-    @Override
-    public void setWeight(double weight) 
-    {
-        
+    public void setFoodWeight(double foodWeight) {
+        this.foodWeight = foodWeight;
     }
 
     /**
-     * This is the method that returns the time since the food was last consumed
-     * @return timeSinceLastConsumed This is the time (in sec) since Food was last consumed
+     * @return the timeSinceLastConsumed
      */
-    @Override
-    public int getTimeSinceLastConsumed() 
-    {
-        return this.timeSinceLastConsumed;
+    public int getTimeSinceLastConsumed() {
+        return timeSinceLastConsumed;
+    }
+
+    /**
+     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
+     */
+    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+    }
+
+    /**
+     * @return the fList
+     */
+    public List<Food> getfList() {
+        return fList;
+    }
+
+    /**
+     * @param fList the fList to set
+     */
+    public void setfList(List<Food> fList) {
+        this.fList = fList;
+    }
+    /**
+     * 
+     * @param f This food will be added
+     */
+    public void addFood(Food f){
+        fList.add(f);
     }
     
     /**
-     * This is the method that sets the user-entered time since food was last consumed 
-     * to timeSinceLastConsumed
-     * @param timeSinceLastConsumed This is the user-entered time (in sec) since food was last consumed
+     * 
+     * @param index Where the food is in the list
+     * @param f What the food is
      */
-    @Override
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) 
-    {
-        
+    
+    public void updateFood(int index, Food f){
+        fList.get(index).setFood(f);
     }
+    /**
+     * 
+     * @param index Remove food from this index
+     */
+    public void removeFood(int index){
+        fList.remove(index);
+    }
+
+   
 }
