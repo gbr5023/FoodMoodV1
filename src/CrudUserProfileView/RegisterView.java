@@ -6,6 +6,8 @@
 package CrudUserProfileView;
 
 import CrudUserProfileController.RegisterController;
+import CrudUserProfileModel.User;
+import java.awt.Color;
 
 /**
  *
@@ -134,7 +136,17 @@ public class RegisterView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
+        if(firstNameField.getText().isEmpty() 
+                || lastNameField.getText().isEmpty()
+                || emailField.getText().isEmpty()
+                || (new String(passwordField.getPassword()).isEmpty())
+                || (new String(confirmField.getPassword()).isEmpty())) {
+            outputLabel.setForeground(Color.red);
+            outputLabel.setText("Please fill in all fields.");
+        } else {
+            User user = new User(firstNameField.getText(),lastNameField.getText(),emailField.getText(),passwordField.getPassword(),confirmField.getPassword());
+        }
+        
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

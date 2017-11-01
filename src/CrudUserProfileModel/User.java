@@ -16,9 +16,22 @@ public class User
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    private String confirmPassword;
+    private char[] password;
+    private char[] confirmPassword;
     private String timeStamp;
+
+    public User() {
+        firstName = "";
+        lastName = "";
+        email = "";
+    }
+    public User(String first, String last, String email, char[] pass, char[] confirmPass) {
+        firstName = first;
+        lastName = last;
+        this.email = email;
+        password = pass;
+        confirmPassword = confirmPass;
+    }
 
     public int getID() {
         return ID;
@@ -36,11 +49,11 @@ public class User
         return email;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public String getConfirmPassword() {
+    public char[] getConfirmPassword() {
         return confirmPassword;
     }
 
@@ -64,11 +77,11 @@ public class User
         this.email = email;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
+    public void setConfirmPassword(char[] confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
 
