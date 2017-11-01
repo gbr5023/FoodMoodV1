@@ -75,7 +75,7 @@ public class NavigationControllerTest {
     public void testGetLoginController() {
         System.out.println("getLoginController");
         NavigationController instance = new NavigationController();
-        instance.getLoginController();
+        //instance.getLoginController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
