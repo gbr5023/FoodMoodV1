@@ -6,6 +6,8 @@
 
 package CrudUserProfileModel;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Gisward
@@ -18,13 +20,22 @@ public class User
     private String email;
     private char[] password;
     private char[] confirmPassword;
-    private String timeStamp;
+    private Timestamp timeStamp;
 
     public User() {
         firstName = "";
         lastName = "";
         email = "";
     }
+    
+    public User(String first, String last, String email, char[] pass, Timestamp time) {
+        firstName = first;
+        lastName = last;
+        this.email = email;
+        password = pass;
+        timeStamp = time;
+    }
+    
     public User(String first, String last, String email, char[] pass, char[] confirmPass) {
         firstName = first;
         lastName = last;
@@ -57,7 +68,7 @@ public class User
         return confirmPassword;
     }
 
-    public String getTimeStamp() {
+    public Timestamp getTimeStamp() {
         return timeStamp;
     }
 
@@ -85,7 +96,7 @@ public class User
         this.confirmPassword = confirmPassword;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
     }
     

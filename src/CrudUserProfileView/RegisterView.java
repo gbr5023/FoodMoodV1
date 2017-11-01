@@ -7,20 +7,39 @@ package CrudUserProfileView;
 
 import CrudUserProfileController.RegisterController;
 import CrudUserProfileModel.User;
+import DatabaseController.DatabaseController;
+import static DatabaseController.DatabaseController.DB_PASSWORD;
+import static DatabaseController.DatabaseController.DB_USERNAME;
 import java.awt.Color;
+import java.sql.Array;
+import java.sql.Connection;
+import java.util.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author michaelcavallaro
  */
-public class RegisterView extends javax.swing.JFrame {
-    RegisterController theRegisterController;
+public class RegisterView extends javax.swing.JFrame implements DatabaseController{
+    private RegisterController theRegisterController;
+    private User userModel;
     /**
      * Creates new form RegisterView
      */
     public RegisterView(RegisterController parentRegisterController) {
         theRegisterController = parentRegisterController;
         initComponents();
+        userModel = new User();
     }
 
     /**
@@ -136,15 +155,29 @@ public class RegisterView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if(firstNameField.getText().isEmpty() 
+        outputLabel.setForeground(Color.red);
+        if(!(firstNameField.getText().isEmpty() 
                 || lastNameField.getText().isEmpty()
                 || emailField.getText().isEmpty()
                 || (new String(passwordField.getPassword()).isEmpty())
-                || (new String(confirmField.getPassword()).isEmpty())) {
-            outputLabel.setForeground(Color.red);
-            outputLabel.setText("Please fill in all fields.");
+                || (new String(confirmField.getPassword()).isEmpty()))) {
+           
+            if(emailField.getText().contains("@") && (emailField.getText().indexOf(".", emailField.getText().indexOf("@"))>0)) {
+                if(Arrays.equals(passwordField.getPassword(), confirmField.getPassword())) {
+                    if(registerUser()) {
+                        outputLabel.setForeground(Color.green.darker());
+                        outputLabel.setText("User created successfully");
+                    } else {
+                        outputLabel.setText("User with that email already exists.");
+                    }
+                } else {
+                    outputLabel.setText("Passwords do not match.");
+                }
+            } else {
+                outputLabel.setText("Please enter a valid email.");
+            }
         } else {
-            User user = new User(firstNameField.getText(),lastNameField.getText(),emailField.getText(),passwordField.getPassword(),confirmField.getPassword());
+            outputLabel.setText("Please fill in all fields.");
         }
         
     }//GEN-LAST:event_registerButtonActionPerformed
@@ -204,4 +237,78 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
+
+    private boolean registerUser() {
+        try {
+            String sql = "SELECT * FROM USERS WHERE EMAIL='"+emailField.getText()+"'";
+            Connection con =newConnection();
+            ResultSet rs = executeNonUpdateQuery(con,sql);
+            
+            if(!rs.next()) {
+                
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+   
+                userModel = new User(firstNameField.getText(),lastNameField.getText(),emailField.getText(),passwordField.getPassword(),timestamp);
+                
+                String sqlIns = "INSERT INTO USERS (FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,ACCOUNT_CREATED) VALUES (?,?,?,?,?)";
+                userModel.setID(executeQuery(con,sqlIns));
+                con.close();
+                return true;
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();;
+        }
+        return false;
+    }
+    @Override
+    public Connection newConnection() {
+        Connection conn = null;
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(DB_HOST+DB_NAME+";user="+DB_USERNAME+";password="+DB_PASSWORD+";"); 
+            
+       }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        return conn;
+        
+    }
+
+    @Override
+    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public int executeQuery(Connection con, String sql) {
+        int res=-1;   
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, userModel.getFirstName());
+            stmt.setString(2, userModel.getLastName());
+            stmt.setString(3, userModel.getEmail());
+            stmt.setString(4, new String(userModel.getPassword()));
+            stmt.setTimestamp(5, userModel.getTimeStamp());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()){
+                res=rs.getInt(1);
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
 }

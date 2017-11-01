@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  */
 public interface DatabaseController {
     final String DB_NAME="FoodMood";
-    final String DB_HOST="";
+    final String DB_HOST="jdbc:derby://localhost:1527/";
     final String DB_USERNAME="ist412";
     final String DB_PASSWORD="ist412";
     

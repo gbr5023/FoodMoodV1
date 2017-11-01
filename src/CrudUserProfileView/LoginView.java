@@ -159,8 +159,9 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
 
     private boolean authenticateLogin(String email, String pass) {
         try {
-            String sql = "SELECT ID,EMAIL,PASSWORD FROM USERS WHERE EMAIL='"+email+"' AND PASSWORD='"+pass+"'";
-            ResultSet rs = executeNonUpdateQuery(newConnection(), sql);
+            String sql = "SELECT ID,EMAIL,PASSWORD FROM USERS WHERE EMAIL='"+email+"' AND PASSWORD='"+(pass)+"'";
+            Connection con = newConnection();
+            ResultSet rs = executeNonUpdateQuery(con, sql);
             
             if(rs.next()) {
                 return true;
@@ -254,7 +255,7 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
         {
             Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
             //Get a connection
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/FoodMood;user="+DB_USERNAME+";password="+DB_PASSWORD+";"); 
+            conn = DriverManager.getConnection(DB_HOST+DB_NAME+";user="+DB_USERNAME+";password="+DB_PASSWORD+";"); 
         }
         catch (Exception except)
         {
@@ -268,7 +269,8 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
         
         try {
             Statement stmt = con.createStatement();
-            return stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            return rs;
         } catch (SQLException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
