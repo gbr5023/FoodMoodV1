@@ -144,7 +144,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
-        this.parentNavigationController.getLoginController();
+        this.parentNavigationController.getUserProfileController();
     }//GEN-LAST:event_profileButtonActionPerformed
 
     /**

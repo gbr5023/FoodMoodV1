@@ -26,18 +26,16 @@ import javax.swing.JOptionPane;
  *
  * @author michaelcavallaro
  */
-public class LoginController {
-    private User model;
-    private LoginView view;
+public class UserProfileController {
     NavigationController theNavigationController;
-    
+    UserProfileView view;
     /**
      * Constructs an empty LoginController
      * @param  parentNavigationController the original NavigationController object
      */
-    public LoginController()
+    public UserProfileController(NavigationController parentNavigationController)
     {
-        view = new LoginView(this);
+        view = new UserProfileView(this);
         view.setTitle("Login");
         view.setLocationRelativeTo(null);
         view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,22 +44,11 @@ public class LoginController {
     }
     
     /**
-     * Constructs a new LoginController given a User Model and a LoginView
-     * @param model This is the User local object
-     * @param view This is the LoginView local object
-     */
-    public LoginController(User model, LoginView view) {
-        this.model = model;
-        this.view = view;
-        
-        
-    }
-    /**
      * Calls the original NavigationView GUI
      */
-    public void requestLoginView()
+    public void requestNavigationView()
     {
-        view.setVisible(true);
+        this.theNavigationController.requestNavigationView();
     }
     
 }

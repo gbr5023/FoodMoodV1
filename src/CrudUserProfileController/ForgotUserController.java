@@ -5,7 +5,7 @@
  */
 package CrudUserProfileController;
 
-import CrudUserProfileModel.GeneralUser;
+import CrudUserProfileModel.User;
 import CrudUserProfileView.LoginView;
 import CrudUserProfileView.*;
 import DatabaseController.DatabaseController;
@@ -25,14 +25,14 @@ import javax.swing.JOptionPane;
  * @author michaelcavallaro
  */
 public class ForgotUserController implements DatabaseController {
-    private GeneralUser model;
+    private User model;
     private ForgotUserView view;
     
     /**
      * Constructs an empty ForgotUser Controller
      */
     public ForgotUserController() {
-        model = new GeneralUser();
+        model = new User();
         view = new ForgotUserView(model);
     }
     

@@ -8,6 +8,7 @@ package NavigationController;
 import CrudIntakeController.CrudIntakeController;
 import CrudMoodController.CrudMoodController;
 import CrudUserProfileController.LoginController;
+import CrudUserProfileController.UserProfileController;
 import FoodRecController.FoodRecController;
 import NotificationController.NotificationController;
 import StatisticController.StatisticController;
@@ -65,8 +66,10 @@ public class NavigationController
      * Navigates user to the LoginController.
      * Creates a new LoginController
      */
-    public void getLoginController()
+    public void getUserProfileController()
     {
+        theNavigationView.setVisible(false);
+        UserProfileController theUserProfileController = new UserProfileController(this);
     }
     
     /**

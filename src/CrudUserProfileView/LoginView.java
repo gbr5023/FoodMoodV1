@@ -9,6 +9,8 @@ package CrudUserProfileView;
 import CrudMoodView.*;
 import CrudMoodController.CrudMoodController;
 import CrudUserProfileController.LoginController;
+import CrudUserProfileController.RegisterController;
+import CrudUserProfileModel.User;
 import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import java.awt.Color;
@@ -27,7 +29,7 @@ import java.util.logging.Logger;
 public class LoginView extends javax.swing.JFrame implements DatabaseController
 {
     LoginController theLoginController;
-    
+    User model;
     /** 
      * Creates new form CrudMoodView 
      * @param parentCrudMoodController the original CrudMoodController object
@@ -35,6 +37,7 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
     public LoginView(LoginController parentLoginController) 
     {
         this.theLoginController = parentLoginController;
+        model = new User();
         initComponents();
     }
 
@@ -183,7 +186,8 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
+        RegisterController theRegisterController = new RegisterController(theLoginController);
+        this.setVisible(false);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void forgotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotButtonActionPerformed

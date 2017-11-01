@@ -5,15 +5,17 @@
  */
 package CrudUserProfileController;
 
-import CrudUserProfileModel.GeneralUser;
+import CrudUserProfileModel.User;
 import CrudUserProfileView.RegisterView;
 import DatabaseController.DatabaseController;
+import NavigationController.NavigationView;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,24 +23,37 @@ import java.util.logging.Logger;
  */
 public class RegisterController implements DatabaseController {
     private RegisterView view;
-    private GeneralUser model;
+    private User model;
+    private LoginController theLoginController;
     /**
      * This method is the default constructor method with no parameters
      */
-    public RegisterController() {
-        view = new RegisterView();
-        model = new GeneralUser();
+    public RegisterController(LoginController parentLoginController) {
+        view = new RegisterView(this);
+        view.setTitle("FoodMood Registration");
+        view.setLocationRelativeTo(null);
+        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        view.setVisible(true);
+        theLoginController = parentLoginController;
+        model = new User();
+        
     }
     /**
      * This method is the constructor method with a given userModel and userView
      * @param model the user model
      * @param view  the registerUser view
      */
-    public RegisterController(GeneralUser model, RegisterView view) {
+    public RegisterController(User model, RegisterView view) {
         this.model = model;
         this.view = view;
     }
-
+    public User getUserModel() {
+        return model;
+    }
+    
+    public void requestLoginView() {
+        theLoginController.requestLoginView();
+    }
     /**
      * Returns a new connection to the system's database
      * @return The connection to be used

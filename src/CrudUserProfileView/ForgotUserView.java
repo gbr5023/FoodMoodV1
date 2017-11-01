@@ -5,7 +5,7 @@
  */
 package CrudUserProfileView;
 
-import CrudUserProfileModel.GeneralUser;
+import CrudUserProfileModel.User;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,13 +18,13 @@ import javax.swing.JTextField;
  * @author michaelcavallaro
  */
 public class ForgotUserView extends JFrame {
-    private GeneralUser model;
+    private User model;
     private JPanel mainPanel;
     private JButton submitButton;
     private JLabel emailLabel;
     private JTextField emailField;
     
-    public ForgotUserView(GeneralUser model) {
+    public ForgotUserView(User model) {
         this.model = model;
         setSize(300,300);
         setLayout(new FlowLayout());
