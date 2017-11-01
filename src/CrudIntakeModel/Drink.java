@@ -36,6 +36,8 @@ public class Drink
         this.timeSinceLastConsumed = timeSinceLastConsumed;
         dList = new ArrayList();
     }
+    
+    
 
     public Drink getDrink(){
         return new Drink (this.drinkName, this.drinkWeight, this.timeSinceLastConsumed);
@@ -45,6 +47,11 @@ public class Drink
         setDrinkName(d.getDrinkName());
         setDrinkWeight(d.getDrinkWeight());
         setTimeSinceLastConsumed(d.getTimeSinceLastConsumed());
+    }
+    public void setDrink(String n, Double d, Integer i){
+        setDrinkName(n);
+        setDrinkWeight(d);
+        setTimeSinceLastConsumed(i);
     }
     /**
      * @return the drinkName

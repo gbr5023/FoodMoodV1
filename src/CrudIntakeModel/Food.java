@@ -34,13 +34,15 @@ public class Food
         this.timeSinceLastConsumed = timeSinceLastConsumed;
         fList = new ArrayList();
     }
+    
+ 
     /**
      * 
      * @return the food
      */
     
       public Food getFood(){
-        return new Food (this.foodName, this.foodWeight, this.timeSinceLastConsumed);
+        return new Food(this.foodName, this.foodWeight, this.timeSinceLastConsumed);
     }
       /**
        * 
@@ -51,6 +53,12 @@ public class Food
         setFoodName(f.getFoodName());
         setFoodWeight(f.getFoodWeight());
         setTimeSinceLastConsumed(f.getTimeSinceLastConsumed());
+    }
+    
+    public void setFood(String n, Double d, Integer i){
+        setFoodName(n);
+        setFoodWeight(d);
+        setTimeSinceLastConsumed(i);
     }
 
     /**

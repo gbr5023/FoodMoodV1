@@ -20,7 +20,7 @@ public class CrudIntakeView extends javax.swing.JFrame
     CrudIntakeController theCrudIntakeController;
     Food f;
     Drink d;
-    CrudIntakeModel cim;
+  //  CrudIntakeModel cim;
     
     /** 
      * Creates new form CrudIntakeView 
@@ -151,7 +151,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
         Integer tscField = Integer.parseInt(intakeTSCTF.getText());
         f = new Food(nameField, weightField, tscField);
-        cim.addFood(f);
+        //f.addFood(new Food(f));
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
         intakeTSCTF.setText("");
@@ -163,7 +163,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
         Integer tscField = Integer.parseInt(intakeTSCTF.getText());
         d = new Drink(nameField, weightField, tscField);
-        cim.addDrink(d);
+       // d.addDrink(new Drink(d));
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
         intakeTSCTF.setText("");
