@@ -1,63 +1,14 @@
-Mon Oct 30 14:27:54 EDT 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Wed Nov 01 08:16:50 EDT 2017 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Mon Oct 30 14:27:55 EDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-015f-6e8a-3fb3-ffff8ca5868e 
-on database directory X:\My Documents\NetBeansProjects\FoodMoodV1\FoodMood with class loader sun.misc.Launcher$AppClassLoader@194fa3e 
-Loaded from file:/C:/Program%20Files%20(x86)/Java/jdk1.8.0_131/db/lib/derby.jar
+Wed Nov 01 08:17:05 EDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-015f-7783-3bad-000018662de8 
+on database directory C:\Users\Gisward\Documents\NetBeansProjects\FoodMoodV1-1\FoodMoodV1\FoodMood with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_91/db/lib/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_131-b11
-user.dir=C:\Program Files (x86)\Java\jdk1.8.0_131\db
+java.runtime.version=1.8.0_91-b14
+user.dir=C:\Program Files\Java\jdk1.8.0_91\db
 os.name=Windows 10
-os.arch=x86
+os.arch=amd64
 os.version=10.0
-derby.system.home=X:\My Documents\NetBeansProjects\FoodMoodV1
+derby.system.home=C:\Users\Gisward\Documents\NetBeansProjects\FoodMoodV1-1\FoodMoodV1
 Database Class Loader started - derby.database.classpath=''
-Mon Oct 30 14:27:56 EDT 2017 Thread[DRDAConnThread_2,5,main] (XID = 595), (SESSIONID = 0), (DATABASE = FoodMood), (DRDAID = {1}), Cleanup action starting
-java.sql.SQLNonTransientConnectionException: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Caused by: ERROR 08004: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	... 18 more
-============= begin nested exception, level (1) ===========
-ERROR 08004: Connection authentication failure occurred.  Reason: Invalid authentication..
-	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.wrapArgsForTransportAcrossDRDA(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.checkUserCredentials(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(Unknown Source)
-	at org.apache.derby.impl.drda.Database.makeConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.getConnFromDatabaseName(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.verifyUserIdPassword(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseSECCHK(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.parseDRDAConnection(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
-	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-============= end nested exception, level (1) ===========
-Cleanup action completed
-Mon Oct 30 14:27:56 EDT 2017 Thread[DRDAConnThread_2,5,main] (DATABASE = FoodMood), (DRDAID = {1}), Connection authentication failure occurred.  Reason: Invalid authentication..
