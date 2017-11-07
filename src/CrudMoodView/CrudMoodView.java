@@ -8,7 +8,7 @@ package CrudMoodView;
 
 import CrudMoodController.CrudMoodController;
 import CrudMoodModel.Mood;
-import CrudIntakeModel.CrudIntakeModel;
+//import CrudIntakeModel.CrudIntakeModel;
 import CrudIntakeModel.Food;
 import CrudIntakeModel.Drink;
 
@@ -20,7 +20,7 @@ public class CrudMoodView extends javax.swing.JFrame
 {
     CrudMoodController theCrudMoodController;
     Mood theMoodModel;
-    CrudIntakeModel theCrudIntakeModel;
+    //CrudIntakeModel theCrudIntakeModel;
     Food theFoodModel;
     Drink theDrinkModel;
     

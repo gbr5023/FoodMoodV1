@@ -7,7 +7,7 @@
 package CrudIntakeView;
 
 import CrudIntakeController.CrudIntakeController;
-import CrudIntakeModel.CrudIntakeModel;
+//import CrudIntakeModel.CrudIntakeModel;
 import CrudIntakeModel.Food;
 import CrudIntakeModel.Drink;
 
