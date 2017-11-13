@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author nja5128
  */
-public class Food 
+public class Food implements Intake
 {
     private String foodName;
     private double foodWeight;
@@ -50,58 +50,18 @@ public class Food
        */
     
     public void setFood(Food f){
-        setFoodName(f.getFoodName());
-        setFoodWeight(f.getFoodWeight());
+        setName(f.getName());
+        setWeight(f.getWeight());
         setTimeSinceLastConsumed(f.getTimeSinceLastConsumed());
     }
     
     public void setFood(String n, Double d, Integer i){
-        setFoodName(n);
-        setFoodWeight(d);
+        setName(n);
+        setWeight(d);
         setTimeSinceLastConsumed(i);
     }
 
-    /**
-     * @return the foodName
-     */
-    public String getFoodName() {
-        return foodName;
-    }
-
-    /**
-     * @param foodName the foodName to set
-     */
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
-
-    /**
-     * @return the foodWeight
-     */
-    public double getFoodWeight() {
-        return foodWeight;
-    }
-
-    /**
-     * @param foodWeight the foodWeight to set
-     */
-    public void setFoodWeight(double foodWeight) {
-        this.foodWeight = foodWeight;
-    }
-
-    /**
-     * @return the timeSinceLastConsumed
-     */
-    public int getTimeSinceLastConsumed() {
-        return timeSinceLastConsumed;
-    }
-
-    /**
-     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
-     */
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
-    }
+  
 
     /**
      * @return the fList
@@ -141,5 +101,53 @@ public class Food
         fList.remove(index);
     }
 
+    /**
+     * @return the foodName
+     */
+    @Override
+    public String getName() {
+        return foodName;
+    }
+    
+     /**
+     * @param foodName the foodName to set
+     */
+
+    @Override
+    public void setName(String name) {
+        this.foodName = name;
+    }
+
+     /**
+     * @return the foodWeight
+     */
+    @Override
+    public double getWeight() {
+        return foodWeight;
+    }
+
+     /**
+     * @param foodWeight the foodWeight to set
+     */
+    @Override
+    public void setWeight(double weight) {
+        this.foodWeight = weight;
+    }
+    
+     /**
+     * @return the timeSinceLastConsumed
+     */
+    @Override
+    public int getTimeSinceLastConsumed() {
+        return timeSinceLastConsumed;
+    }
+
+    /**
+     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
+     */
+    @Override
+    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+    }
    
 }

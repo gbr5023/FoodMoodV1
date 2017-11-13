@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Gisward
  */
-public class Drink 
+public class Drink implements Intake
 {
     private String drinkName;
     private double drinkWeight;
@@ -44,42 +44,16 @@ public class Drink
     }
     
     public void setDrink(Drink d){
-        setDrinkName(d.getDrinkName());
-        setDrinkWeight(d.getDrinkWeight());
+        setName(d.getName());
+        setWeight(d.getWeight());
         setTimeSinceLastConsumed(d.getTimeSinceLastConsumed());
     }
     public void setDrink(String n, Double d, Integer i){
-        setDrinkName(n);
-        setDrinkWeight(d);
+        setName(n);
+        setWeight(d);
         setTimeSinceLastConsumed(i);
     }
-    /**
-     * @return the drinkName
-     */
-    public String getDrinkName() {
-        return drinkName;
-    }
-
-    /**
-     * @param drinkName the drinkName to set
-     */
-    public void setDrinkName(String drinkName) {
-        this.drinkName = drinkName;
-    }
-
-    /**
-     * @return the drinkWeight
-     */
-    public double getDrinkWeight() {
-        return drinkWeight;
-    }
-
-    /**
-     * @param drinkWeight the drinkWeight to set
-     */
-    public void setDrinkWeight(double drinkWeight) {
-        this.drinkWeight = drinkWeight;
-    }
+ 
 
     /**
      * @return the dList
@@ -95,20 +69,7 @@ public class Drink
         this.dList = dList;
     }
 
-    /**
-     * @return the timeSinceLastConsumed
-     */
-    public int getTimeSinceLastConsumed() {
-        return timeSinceLastConsumed;
-    }
-
-    /**
-     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
-     */
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
-    }
-    
+   
     public void addDrink(Drink d){
         dList.add(d);
     }
@@ -119,4 +80,53 @@ public class Drink
     public void removeDrink(int index){
         dList.remove(index);
     }
+    /**
+     * @return the drinkName
+     */
+    @Override
+    public String getName() {
+        return drinkName;
+    }
+    
+     /**
+     * @param drinkName the drinkName to set
+     */
+
+    @Override
+    public void setName(String name) {
+        this.drinkName = name;
+    }
+
+     /**
+     * @return the drinkWeight
+     */
+    @Override
+    public double getWeight() {
+        return drinkWeight;
+    }
+
+     /**
+     * @param drinkWeight the drinkWeight to set
+     */
+    @Override
+    public void setWeight(double weight) {
+        this.drinkWeight = weight;
+    }
+    
+     /**
+     * @return the timeSinceLastConsumed
+     */
+    @Override
+    public int getTimeSinceLastConsumed() {
+        return timeSinceLastConsumed;
+    }
+
+    /**
+     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
+     */
+    @Override
+    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
+        this.timeSinceLastConsumed = timeSinceLastConsumed;
+    }
+    
 }
