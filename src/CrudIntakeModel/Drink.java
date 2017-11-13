@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Gisward
  */
-public class Drink implements Intake
+public class Drink extends Item
 {
     private String drinkName;
     private double drinkWeight;
@@ -31,9 +31,7 @@ public class Drink implements Intake
      */
     public Drink(String drinkName, double drinkWeight, int timeSinceLastConsumed)
     {
-        this.drinkName = drinkName;
-        this.drinkWeight = drinkWeight;
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
+        super(drinkName, drinkWeight, timeSinceLastConsumed);
         dList = new ArrayList();
     }
     
@@ -80,53 +78,6 @@ public class Drink implements Intake
     public void removeDrink(int index){
         dList.remove(index);
     }
-    /**
-     * @return the drinkName
-     */
-    @Override
-    public String getName() {
-        return drinkName;
-    }
     
-     /**
-     * @param drinkName the drinkName to set
-     */
-
-    @Override
-    public void setName(String name) {
-        this.drinkName = name;
-    }
-
-     /**
-     * @return the drinkWeight
-     */
-    @Override
-    public double getWeight() {
-        return drinkWeight;
-    }
-
-     /**
-     * @param drinkWeight the drinkWeight to set
-     */
-    @Override
-    public void setWeight(double weight) {
-        this.drinkWeight = weight;
-    }
-    
-     /**
-     * @return the timeSinceLastConsumed
-     */
-    @Override
-    public int getTimeSinceLastConsumed() {
-        return timeSinceLastConsumed;
-    }
-
-    /**
-     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
-     */
-    @Override
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
-    }
     
 }

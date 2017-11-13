@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author nja5128
  */
-public class Food implements Intake
+public class Food extends Item 
 {
     private String foodName;
     private double foodWeight;
@@ -27,11 +27,9 @@ public class Food implements Intake
      * @param foodWeight This is the Food's weight (in oz) to capture
      * @param timeSinceLastConsumed This is the time (in min) since Food was last consumed
      */
-    public Food(String foodname, double foodWeight, int timeSinceLastConsumed) 
+    public Food(String foodName, double foodWeight, int timeSinceLastConsumed) 
     {
-        this.foodName = foodname;
-        this.foodWeight = foodWeight;
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
+        super(foodName, foodWeight, timeSinceLastConsumed);
         fList = new ArrayList();
     }
     
@@ -93,61 +91,5 @@ public class Food implements Intake
     public void updateFood(int index, Food f){
         fList.get(index).setFood(f);
     }
-    /**
-     * 
-     * @param index Remove food from this index
-     */
-    public void removeFood(int index){
-        fList.remove(index);
-    }
-
-    /**
-     * @return the foodName
-     */
-    @Override
-    public String getName() {
-        return foodName;
-    }
     
-     /**
-     * @param foodName the foodName to set
-     */
-
-    @Override
-    public void setName(String name) {
-        this.foodName = name;
-    }
-
-     /**
-     * @return the foodWeight
-     */
-    @Override
-    public double getWeight() {
-        return foodWeight;
-    }
-
-     /**
-     * @param foodWeight the foodWeight to set
-     */
-    @Override
-    public void setWeight(double weight) {
-        this.foodWeight = weight;
-    }
-    
-     /**
-     * @return the timeSinceLastConsumed
-     */
-    @Override
-    public int getTimeSinceLastConsumed() {
-        return timeSinceLastConsumed;
-    }
-
-    /**
-     * @param timeSinceLastConsumed the timeSinceLastConsumed to set
-     */
-    @Override
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
-        this.timeSinceLastConsumed = timeSinceLastConsumed;
-    }
-   
 }
