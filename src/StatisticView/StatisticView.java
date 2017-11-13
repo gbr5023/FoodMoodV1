@@ -42,20 +42,22 @@ public class StatisticView extends javax.swing.JFrame
         foodRecFooter = new javax.swing.JButton();
         crudMoodFooter = new javax.swing.JButton();
         crudIntakeFooter = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        foodScrollPane = new javax.swing.JScrollPane();
+        foodTable = new javax.swing.JTable();
+        drinkScrollPane = new javax.swing.JScrollPane();
+        drinkTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        backButton.setText("<-");
+        backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
+        foodRecFooter.setBackground(new java.awt.Color(0, 204, 0));
         foodRecFooter.setText("Food Recommendations");
         foodRecFooter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +65,7 @@ public class StatisticView extends javax.swing.JFrame
             }
         });
 
+        crudMoodFooter.setBackground(new java.awt.Color(255, 153, 153));
         crudMoodFooter.setText("Input Mood");
         crudMoodFooter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +73,7 @@ public class StatisticView extends javax.swing.JFrame
             }
         });
 
+        crudIntakeFooter.setBackground(new java.awt.Color(153, 153, 255));
         crudIntakeFooter.setText("Input Intake");
         crudIntakeFooter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,31 +81,55 @@ public class StatisticView extends javax.swing.JFrame
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Spaghetti", "Satisfied"},
-                {"PB& J Sandwich", "Happy"},
-                {"General Tso's Chicken", "Lethargic"},
-                {"Blueberries", "Hyper"}
-            },
-            new String [] {
-                "Food", "Mood"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        foodScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        foodTable.setBackground(new java.awt.Color(204, 204, 255));
+        foodTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Bubble Tea", "Happy"},
-                {"Hot Tea", "Calm"},
-                {"Coffee", "Really hyper"},
-                {"Rum", "Sad"}
+                {"Hamburger",  new Double(5.0), "14 hr"},
+                {"Spaghetti",  new Double(16.0), "5 hr"},
+                {"Sandwich",  new Double(3.0), "30 min"},
+                {"Strawberries",  new Double(8.0), "2 min"}
             },
             new String [] {
-                "Title 1", "Mood"
+                "Food", "Weight (oz)", "Time Since Consumed"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        foodTable.setGridColor(new java.awt.Color(102, 102, 255));
+        foodScrollPane.setViewportView(foodTable);
+
+        drinkScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        drinkTable.setBackground(new java.awt.Color(255, 204, 204));
+        drinkTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Bubble Tea",  new Double(16.0), "2 hr"},
+                {"Beer",  new Double(8.0), "12 hr"},
+                {"Tea",  new Double(6.0), "20 min"},
+                {"Water",  new Double(16.0), "5 min"}
+            },
+            new String [] {
+                "Drink", "Weight (oz)", "Time Since Consumed"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        drinkTable.setGridColor(new java.awt.Color(255, 153, 153));
+        drinkScrollPane.setViewportView(drinkTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,15 +139,21 @@ public class StatisticView extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(foodScrollPane)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backButton)
+                                .addGap(0, 575, Short.MAX_VALUE))
+                            .addComponent(drinkScrollPane))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(crudIntakeFooter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(crudMoodFooter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(foodRecFooter))
-                    .addComponent(backButton)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(foodRecFooter)
+                        .addGap(124, 124, 124))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +161,10 @@ public class StatisticView extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(foodScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(drinkScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crudMoodFooter)
                     .addComponent(crudIntakeFooter)
@@ -211,11 +245,11 @@ public class StatisticView extends javax.swing.JFrame
     private javax.swing.JButton backButton;
     private javax.swing.JButton crudIntakeFooter;
     private javax.swing.JButton crudMoodFooter;
+    private javax.swing.JScrollPane drinkScrollPane;
+    private javax.swing.JTable drinkTable;
     private javax.swing.JButton foodRecFooter;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane foodScrollPane;
+    private javax.swing.JTable foodTable;
     // End of variables declaration//GEN-END:variables
 
 }

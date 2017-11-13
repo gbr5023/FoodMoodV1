@@ -42,6 +42,7 @@ public class NavigationView extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        intakeButton.setBackground(new java.awt.Color(153, 153, 255));
         intakeButton.setText("Intake");
         intakeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +50,7 @@ public class NavigationView extends javax.swing.JFrame
             }
         });
 
+        moodButton.setBackground(new java.awt.Color(255, 153, 153));
         moodButton.setText("Mood");
         moodButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +58,7 @@ public class NavigationView extends javax.swing.JFrame
             }
         });
 
+        profileButton.setBackground(new java.awt.Color(0, 204, 204));
         profileButton.setText("Profile");
         profileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +66,7 @@ public class NavigationView extends javax.swing.JFrame
             }
         });
 
+        notificationButton.setBackground(new java.awt.Color(0, 204, 153));
         notificationButton.setText("Notifications");
         notificationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +74,7 @@ public class NavigationView extends javax.swing.JFrame
             }
         });
 
+        statisticButton.setBackground(new java.awt.Color(255, 204, 0));
         statisticButton.setText("Statistics");
         statisticButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +82,7 @@ public class NavigationView extends javax.swing.JFrame
             }
         });
 
+        foodRecButton.setBackground(new java.awt.Color(0, 204, 0));
         foodRecButton.setText("Food Recommendations");
         foodRecButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

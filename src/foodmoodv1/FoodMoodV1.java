@@ -23,8 +23,8 @@ public class FoodMoodV1
     public static void main(String[] args) 
     {
         // TODO code application logic here
-        //NavigationController theNavigationController = new NavigationController();
-        LoginController theLoginController = new LoginController();
+        NavigationController theNavigationController = new NavigationController();
+        //LoginController theLoginController = new LoginController();
     }
 
 }
