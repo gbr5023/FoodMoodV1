@@ -23,7 +23,7 @@ public class Food extends Item
      * It captures user-entered name, weight, and time since last consumed. 
      * It sets it to local variables. 
      * It creates a new Food object.
-     * @param foodname This is the Food's name to capture
+     * @param foodName This is the Food's name to capture
      * @param foodWeight This is the Food's weight (in oz) to capture
      * @param timeSinceLastConsumed This is the time (in min) since Food was last consumed
      */
@@ -52,6 +52,12 @@ public class Food extends Item
         setWeight(f.getWeight());
         setTimeSinceLastConsumed(f.getTimeSinceLastConsumed());
     }
+    /**
+     * This is the method to set the food if it is given a name, a weight, and a time since last consumed
+     * @param n This is the food name
+     * @param d This is the food weight
+     * @param i This is the time since last consumed
+     */
     
     public void setFood(String n, Double d, Integer i){
         setName(n);
