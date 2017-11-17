@@ -50,6 +50,10 @@ public class Mood
         return moodList;
     }
     
+    public void setMoodList(List<Mood> moodList) {
+        this.moodList = moodList;
+    }
+    
     /**
      * This is the method that adds mood object to the moodList.
      * @param mood 
