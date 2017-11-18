@@ -36,6 +36,8 @@ public class NotificationView extends javax.swing.JFrame
     private void initComponents() {
 
         homeButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,21 +48,52 @@ public class NotificationView extends javax.swing.JFrame
             }
         });
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Daily Notification to add your intake!", "11-11-17"},
+                {"Did you go grocery shopping? Check our recommendations!", "11-10-17"},
+                {"Daily notification to add your intake!", "11-10-17"},
+                {"Make sure your user settings are updated", "11-09-17"},
+                {"Daily notification to add your intake!", "11-09-17"},
+                {"Don't forget to add your mood!", "11-08-17"},
+                {"Did you go grocery shopping? Check our recommendations!", "11-08-17"},
+                {"Daily notification to add your intake!", "11-08-17"},
+                {"Daily notification to add your intake!", "11-07-17"},
+                {"Daily notification to add your intake!", "11-06-17"},
+                {"Have you checked your Intake Statistics lately?", "11-05-17"},
+                {"Did you go grocery shopping? Check our recommendations!", "11-05-17"},
+                {"Daily notification to add your intake!", "11-05-17"},
+                {"Daily notification to add your intake!", "11-04-17"},
+                {"Welcome to FoodMood!", "11-04-17"}
+            },
+            new String [] {
+                "Notification", "Time"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(408, Short.MAX_VALUE)
                 .addComponent(homeButton)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(403, 403, 403))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(homeButton)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,6 +149,8 @@ public class NotificationView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton homeButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -5,11 +5,15 @@
  */
 package CrudIntakeController;
 
+import CrudIntakeModel.Food;
+import CrudIntakeModel.Drink;
 import CrudIntakeView.CrudIntakeView;
 import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import java.sql.Connection;
 import java.sql.ResultSet;
+//import java.util.List;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -19,13 +23,20 @@ import javax.swing.JFrame;
 public class CrudIntakeController implements DatabaseController{
     private CrudIntakeView view;
     NavigationController theNavigationController;
+    Food theFoodClass;
+    Drink theDrinkClass;
+    ArrayList<Food> fList;
+    ArrayList<Drink> dList;
     
     /**
      * Constructs a new empty CrudIntakeController
      * @param parentNavigationController This is the original NavigationController object
      */
+    
     public CrudIntakeController(NavigationController parentNavigationController)
     {
+        this.fList = new ArrayList();
+        this.dList = new ArrayList();
         this.theNavigationController = parentNavigationController;
         view = new CrudIntakeView(this);
         view.setTitle("Input Intake");
@@ -34,11 +45,32 @@ public class CrudIntakeController implements DatabaseController{
         view.setVisible(true);
     }
     
+    public void addFood(Food f)
+    {
+        this.fList.add(f);
+    }
+    
+    public ArrayList getFoodList()
+    {
+        return this.fList;
+    }
+    
+    public void addDrink(Drink d)
+    {
+        this.dList.add(d);
+    }
+    
+    public ArrayList getDrinkList()
+    {
+        return this.dList;
+    }
+    
     /**
      * Constructs a new CrudIntakeView
      * @param view This is the CrudIntakeView local object
      */
     public CrudIntakeController(CrudIntakeView view) {
+        //this.fList = new List<Food>();
         this.view = view;
     }
     

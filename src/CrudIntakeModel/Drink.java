@@ -6,6 +6,7 @@
 
 package CrudIntakeModel;
 
+import CrudIntakeController.CrudIntakeController;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Drink extends Item
     private double drinkWeight;
     private int timeSinceLastConsumed;
     private List<Drink> dList;
+    //CrudIntakeController theCrudIntakeController = new CrudIntakeController();
     
     /**
      * This is the default constructor for the Drink class
@@ -34,7 +36,6 @@ public class Drink extends Item
         super(drinkName, drinkWeight, timeSinceLastConsumed);
         dList = new ArrayList();
     }
-    
     
     /**
      * 

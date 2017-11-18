@@ -6,6 +6,7 @@
 package CrudIntakeModel;
 
 import java.util.*;
+import CrudIntakeController.CrudIntakeController;
 
 /**
  *
@@ -17,7 +18,8 @@ public class Food extends Item
     private double foodWeight;
     private int timeSinceLastConsumed;
     private List<Food> fList;
-    
+    //CrudIntakeController theCrudIntakeController = new CrudIntakeController();
+
     /**
      * This is the default constructor for the Food class
      * It captures user-entered name, weight, and time since last consumed. 
@@ -32,7 +34,6 @@ public class Food extends Item
         super(foodName, foodWeight, timeSinceLastConsumed);
         fList = new ArrayList();
     }
-    
  
     /**
      * 
