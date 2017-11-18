@@ -23,19 +23,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
               <Component id="homeButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="165" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="597" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="255" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="homeButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,11 +50,255 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="homeButton">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Home"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="jTable1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="cc" red="0" type="rgb"/>
+            </Property>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="2" rowCount="100">
+                <Column editable="true" title="Food" type="java.lang.String">
+                  <Data value="Whole wheat bread"/>
+                  <Data value="Whole wheat pita pockets"/>
+                  <Data value="Whole wheat English muffins"/>
+                  <Data value="Whole grain flour tortillas"/>
+                  <Data value="Skinless turkey breasts"/>
+                  <Data value="Skinless chicken"/>
+                  <Data value="Ground turkey"/>
+                  <Data value="Ground chicken"/>
+                  <Data value="Salmon"/>
+                  <Data value="Halibut"/>
+                  <Data value="Trout"/>
+                  <Data value="Mackerel"/>
+                  <Data value="Reduced sodium turkey"/>
+                  <Data value="Reduced sodium roast beef"/>
+                  <Data value="Brown rice"/>
+                  <Data value="Whole wheat pasta"/>
+                  <Data value="Whole grain pasta"/>
+                  <Data value="Tomato sauce"/>
+                  <Data value="Mustard"/>
+                  <Data value="BBQ Sauce"/>
+                  <Data value="Red-wine vinegar"/>
+                  <Data value="Salsa"/>
+                  <Data value="Extra virgin olive oil"/>
+                  <Data value="Jarred capers"/>
+                  <Data value="Jarred olives"/>
+                  <Data value="Hot pepper sauce"/>
+                  <Data value="Extra virgin canola oil"/>
+                  <Data value="Nonfat cooking spray"/>
+                  <Data value="Whole grain cereal"/>
+                  <Data value="Multigrain cereal"/>
+                  <Data value="Instant oatmeal"/>
+                  <Data value="Steel cut oatmeal"/>
+                  <Data value="Whole-grained cereal bars"/>
+                  <Data value="Diced tomatoes"/>
+                  <Data value="Whole peeled tomatoes"/>
+                  <Data value="Tuna packed in water"/>
+                  <Data value="Low-sodium broths"/>
+                  <Data value="Low-sodium soups"/>
+                  <Data value="Split peas"/>
+                  <Data value="Lentils"/>
+                  <Data value="Kidney beans"/>
+                  <Data value="Black beans"/>
+                  <Data value="Soy beans"/>
+                  <Data value="Garbanzo beans"/>
+                  <Data value="Diced green chilies"/>
+                  <Data value="Frozen carrots"/>
+                  <Data value="Frozen peas"/>
+                  <Data value="Frozen broccoli"/>
+                  <Data value="Frozen spinach"/>
+                  <Data value="Frozen blueberries"/>
+                  <Data value="Frozen strawberries"/>
+                  <Data value="Frozen raspberries"/>
+                  <Data value="Frozen shrimp"/>
+                  <Data value="Low fat ice cream"/>
+                  <Data value="Low fat frozen yogurt"/>
+                  <Data value="Whole grain waffles"/>
+                  <Data value="Whole grain vegetable pizza"/>
+                  <Data value="Skim milk"/>
+                  <Data value="Low fat milk "/>
+                  <Data value="Soy milk"/>
+                  <Data value="Fat free yogurt"/>
+                  <Data value="Low fat yogurt"/>
+                  <Data value="Fat free cottage cheese"/>
+                  <Data value="Low fat cottage cheese"/>
+                  <Data value="String cheese snacks"/>
+                  <Data value="Eggs"/>
+                  <Data value="Eggs substitute"/>
+                  <Data value="Firm tofu"/>
+                  <Data value="Butter (no hydrogenated oils)"/>
+                  <Data value="Spread (no hydrogenated oils)"/>
+                  <Data value="Whole grain crackers"/>
+                  <Data value="Dried apricots"/>
+                  <Data value="Dried figs"/>
+                  <Data value="Dried raisins"/>
+                  <Data value="Dried prunes"/>
+                  <Data value="Dried cranberries"/>
+                  <Data value="Almonds"/>
+                  <Data value="Cashews"/>
+                  <Data value="Walnuts"/>
+                  <Data value="Peanuts"/>
+                  <Data value="Pecans"/>
+                  <Data value="Pistachios"/>
+                  <Data value="Sunflower seeds"/>
+                  <Data value="Sesame seeds"/>
+                  <Data value="Whole flaxseeds"/>
+                  <Data value="Ground flaxseeds"/>
+                  <Data value="Peanut butter"/>
+                  <Data value="Almond butter"/>
+                  <Data value="Soy butter"/>
+                  <Data value="Hummus"/>
+                  <Data value="Dark chocolate pieces"/>
+                  <Data value="Bananas"/>
+                  <Data value="Apples"/>
+                  <Data value="Mangoes"/>
+                  <Data value="Blueberries"/>
+                  <Data value="Strawberries"/>
+                  <Data value="Sweet potatoes"/>
+                  <Data value="Baby spinach"/>
+                  <Data value="Broccoli"/>
+                  <Data value="Carrot sticks"/>
+                </Column>
+                <Column editable="true" title="Type" type="java.lang.String">
+                  <Data value="Bakery and Bread"/>
+                  <Data value="Bakery and Bread"/>
+                  <Data value="Bakery and Bread"/>
+                  <Data value="Bakery and Bread"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Meat and Seafood"/>
+                  <Data value="Pasta and Rice"/>
+                  <Data value="Pasta and Rice"/>
+                  <Data value="Pasta and Rice"/>
+                  <Data value="Sauce"/>
+                  <Data value="Sauce"/>
+                  <Data value="Sauce"/>
+                  <Data value="Sauce"/>
+                  <Data value="Sauce"/>
+                  <Data value="Oils"/>
+                  <Data value="Condiments"/>
+                  <Data value="Condiments"/>
+                  <Data value="Sauce"/>
+                  <Data value="Oil"/>
+                  <Data value="Condiments"/>
+                  <Data value="Cereal and Breakfast Food"/>
+                  <Data value="Cereal and Breakfast Food"/>
+                  <Data value="Cereal and Breakfast Food"/>
+                  <Data value="Cereal and Breakfast Food"/>
+                  <Data value="Cereal and Breakfast Food"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Soup and Canned Goods"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Frozen Food"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Dairy"/>
+                  <Data value="Crackers"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Snack"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                  <Data value="Produce"/>
+                </Column>
+              </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

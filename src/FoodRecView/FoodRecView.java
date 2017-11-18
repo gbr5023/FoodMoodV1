@@ -36,9 +36,12 @@ public class FoodRecView extends javax.swing.JFrame
     private void initComponents() {
 
         homeButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        homeButton.setBackground(new java.awt.Color(0, 204, 0));
         homeButton.setText("Home");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,21 +49,145 @@ public class FoodRecView extends javax.swing.JFrame
             }
         });
 
+        jTable1.setBackground(new java.awt.Color(0, 204, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Whole wheat bread", "Bakery and Bread"},
+                {"Whole wheat pita pockets", "Bakery and Bread"},
+                {"Whole wheat English muffins", "Bakery and Bread"},
+                {"Whole grain flour tortillas", "Bakery and Bread"},
+                {"Skinless turkey breasts", "Meat and Seafood"},
+                {"Skinless chicken", "Meat and Seafood"},
+                {"Ground turkey", "Meat and Seafood"},
+                {"Ground chicken", "Meat and Seafood"},
+                {"Salmon", "Meat and Seafood"},
+                {"Halibut", "Meat and Seafood"},
+                {"Trout", "Meat and Seafood"},
+                {"Mackerel", "Meat and Seafood"},
+                {"Reduced sodium turkey", "Meat and Seafood"},
+                {"Reduced sodium roast beef", "Meat and Seafood"},
+                {"Brown rice", "Pasta and Rice"},
+                {"Whole wheat pasta", "Pasta and Rice"},
+                {"Whole grain pasta", "Pasta and Rice"},
+                {"Tomato sauce", "Sauce"},
+                {"Mustard", "Sauce"},
+                {"BBQ Sauce", "Sauce"},
+                {"Red-wine vinegar", "Sauce"},
+                {"Salsa", "Sauce"},
+                {"Extra virgin olive oil", "Oils"},
+                {"Jarred capers", "Condiments"},
+                {"Jarred olives", "Condiments"},
+                {"Hot pepper sauce", "Sauce"},
+                {"Extra virgin canola oil", "Oil"},
+                {"Nonfat cooking spray", "Condiments"},
+                {"Whole grain cereal", "Cereal and Breakfast Food"},
+                {"Multigrain cereal", "Cereal and Breakfast Food"},
+                {"Instant oatmeal", "Cereal and Breakfast Food"},
+                {"Steel cut oatmeal", "Cereal and Breakfast Food"},
+                {"Whole-grained cereal bars", "Cereal and Breakfast Food"},
+                {"Diced tomatoes", "Soup and Canned Goods"},
+                {"Whole peeled tomatoes", "Soup and Canned Goods"},
+                {"Tuna packed in water", "Soup and Canned Goods"},
+                {"Low-sodium broths", "Soup and Canned Goods"},
+                {"Low-sodium soups", "Soup and Canned Goods"},
+                {"Split peas", "Soup and Canned Goods"},
+                {"Lentils", "Soup and Canned Goods"},
+                {"Kidney beans", "Soup and Canned Goods"},
+                {"Black beans", "Soup and Canned Goods"},
+                {"Soy beans", "Soup and Canned Goods"},
+                {"Garbanzo beans", "Soup and Canned Goods"},
+                {"Diced green chilies", "Soup and Canned Goods"},
+                {"Frozen carrots", "Frozen Food"},
+                {"Frozen peas", "Frozen Food"},
+                {"Frozen broccoli", "Frozen Food"},
+                {"Frozen spinach", "Frozen Food"},
+                {"Frozen blueberries", "Frozen Food"},
+                {"Frozen strawberries", "Frozen Food"},
+                {"Frozen raspberries", "Frozen Food"},
+                {"Frozen shrimp", "Frozen Food"},
+                {"Low fat ice cream", "Frozen Food"},
+                {"Low fat frozen yogurt", "Frozen Food"},
+                {"Whole grain waffles", "Frozen Food"},
+                {"Whole grain vegetable pizza", "Frozen Food"},
+                {"Skim milk", "Dairy"},
+                {"Low fat milk ", "Dairy"},
+                {"Soy milk", "Dairy"},
+                {"Fat free yogurt", "Dairy"},
+                {"Low fat yogurt", "Dairy"},
+                {"Fat free cottage cheese", "Dairy"},
+                {"Low fat cottage cheese", "Dairy"},
+                {"String cheese snacks", "Dairy"},
+                {"Eggs", "Dairy"},
+                {"Eggs substitute", "Dairy"},
+                {"Firm tofu", "Dairy"},
+                {"Butter (no hydrogenated oils)", "Dairy"},
+                {"Spread (no hydrogenated oils)", "Dairy"},
+                {"Whole grain crackers", "Crackers"},
+                {"Dried apricots", "Snack"},
+                {"Dried figs", "Snack"},
+                {"Dried raisins", "Snack"},
+                {"Dried prunes", "Snack"},
+                {"Dried cranberries", "Snack"},
+                {"Almonds", "Snack"},
+                {"Cashews", "Snack"},
+                {"Walnuts", "Snack"},
+                {"Peanuts", "Snack"},
+                {"Pecans", "Snack"},
+                {"Pistachios", "Snack"},
+                {"Sunflower seeds", "Snack"},
+                {"Sesame seeds", "Snack"},
+                {"Whole flaxseeds", "Snack"},
+                {"Ground flaxseeds", "Snack"},
+                {"Peanut butter", "Snack"},
+                {"Almond butter", "Snack"},
+                {"Soy butter", "Snack"},
+                {"Hummus", "Snack"},
+                {"Dark chocolate pieces", "Snack"},
+                {"Bananas", "Produce"},
+                {"Apples", "Produce"},
+                {"Mangoes", "Produce"},
+                {"Blueberries", "Produce"},
+                {"Strawberries", "Produce"},
+                {"Sweet potatoes", "Produce"},
+                {"Baby spinach", "Produce"},
+                {"Broccoli", "Produce"},
+                {"Carrot sticks", "Produce"}
+            },
+            new String [] {
+                "Food", "Type"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addGap(275, 275, 275)
                 .addComponent(homeButton)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(homeButton)
-                .addContainerGap())
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -116,6 +243,8 @@ public class FoodRecView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton homeButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
 }
