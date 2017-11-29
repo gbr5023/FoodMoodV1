@@ -10,6 +10,8 @@ import CrudIntakeController.CrudIntakeController;
 //import CrudIntakeModel.CrudIntakeModel;
 import CrudIntakeModel.Food;
 import CrudIntakeModel.Drink;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +22,8 @@ public class CrudIntakeView extends javax.swing.JFrame
     CrudIntakeController theCrudIntakeController;
     Food f;
     Drink d;
+    List<Food> fList = new ArrayList<Food>();
+    List<Drink> dList = new ArrayList<Drink>();
   //  CrudIntakeModel cim;
     
     /** 
@@ -152,6 +156,10 @@ public class CrudIntakeView extends javax.swing.JFrame
         Integer tscField = Integer.parseInt(intakeTSCTF.getText());
         f = new Food(nameField, weightField, tscField);
         this.theCrudIntakeController.addFood(f);
+        f.addFood(new Food(nameField, weightField, tscField));
+        fList.add(f);
+        f.setfList(fList);
+        System.out.println(f.getName() + " " + f.getWeight() + " " + f.getTimeSinceLastConsumed());
         //f.addFood(new Food(f));
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
@@ -165,6 +173,10 @@ public class CrudIntakeView extends javax.swing.JFrame
         Integer tscField = Integer.parseInt(intakeTSCTF.getText());
         d = new Drink(nameField, weightField, tscField);
         this.theCrudIntakeController.addDrink(d);
+        d.addDrink(new Drink(nameField, weightField, tscField));
+        dList.add(d);
+        d.setdList(dList);
+        System.out.println(d.getName() + " " + d.getWeight() + " " + d.getTimeSinceLastConsumed());
        // d.addDrink(new Drink(d));
         intakeNameTF.setText("");
         intakeWeightTF.setText("");

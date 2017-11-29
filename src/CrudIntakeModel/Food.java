@@ -17,7 +17,7 @@ public class Food extends Item
     private String foodName;
     private double foodWeight;
     private int timeSinceLastConsumed;
-    private List<Food> fList;
+    private List<Food> fList = new ArrayList();
     //CrudIntakeController theCrudIntakeController = new CrudIntakeController();
 
     /**
@@ -32,7 +32,7 @@ public class Food extends Item
     public Food(String foodName, double foodWeight, int timeSinceLastConsumed) 
     {
         super(foodName, foodWeight, timeSinceLastConsumed);
-        fList = new ArrayList();
+        //fList = new ArrayList();
     }
  
     /**
@@ -97,6 +97,10 @@ public class Food extends Item
     
     public void updateFood(int index, Food f){
         fList.get(index).setFood(f);
+    }
+    
+    public void deleteFood(int index){
+        fList.remove(index);
     }
     
 }
