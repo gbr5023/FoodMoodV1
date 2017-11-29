@@ -106,5 +106,16 @@ public class Drink extends Item
         dList.remove(index);
     }
     
+     public void prettyPrint(Drink d){
+        System.out.println(d.drinkName + " " + d.drinkWeight + " " + d.timeSinceLastConsumed);
+    }
+    public void prettyPrintList(List<Drink> dList){
+        int i = 0;
+        while (i < dList.size()){
+            System.out.println(dList.get(i).drinkName + " " + dList.get(i).drinkWeight + " " + dList.get(i).timeSinceLastConsumed);
+            i++;
+        }
+    }
+    
     
 }

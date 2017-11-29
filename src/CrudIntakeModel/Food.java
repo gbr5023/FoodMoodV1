@@ -102,5 +102,14 @@ public class Food extends Item
     public void deleteFood(int index){
         fList.remove(index);
     }
-    
+    public void prettyPrint(Food f){
+        System.out.println(f.foodName + " " + f.foodWeight + " " + f.timeSinceLastConsumed);
+    }
+    public void prettyPrintList(List<Food> fList){
+        int i = 0;
+        while (i < fList.size()){
+            System.out.println(fList.get(i).foodName + " " + fList.get(i).foodWeight + " " + fList.get(i).timeSinceLastConsumed);
+            i++;
+        }
+    }
 }
