@@ -16,7 +16,7 @@ public class Food extends Item
 {
     private String foodName;
     private double foodWeight;
-    private int timeSinceLastConsumed;
+    private String timeSinceLastConsumed;
     private List<Food> fList = new ArrayList();
     //CrudIntakeController theCrudIntakeController = new CrudIntakeController();
 
@@ -29,7 +29,7 @@ public class Food extends Item
      * @param foodWeight This is the Food's weight (in oz) to capture
      * @param timeSinceLastConsumed This is the time (in min) since Food was last consumed
      */
-    public Food(String foodName, double foodWeight, int timeSinceLastConsumed) 
+    public Food(String foodName, double foodWeight, String timeSinceLastConsumed) 
     {
         super(foodName, foodWeight, timeSinceLastConsumed);
         //fList = new ArrayList();
@@ -40,8 +40,27 @@ public class Food extends Item
      * @return the food
      */
     
-      public Food getFood(){
+    public Food getFood()
+    {
         return new Food(this.foodName, this.foodWeight, this.timeSinceLastConsumed);
+    }
+    
+    @Override
+    public String getName()
+    {
+        return this.foodName;
+    }
+    
+    @Override
+    public double getWeight()
+    {
+        return this.foodWeight;
+    }
+    
+    @Override
+    public String getTimeSinceLastConsumed()
+    {
+        return this.timeSinceLastConsumed;
     }
       /**
        * 
@@ -60,7 +79,24 @@ public class Food extends Item
      * @param i This is the time since last consumed
      */
     
-    public void setFood(String n, Double d, Integer i){
+    @Override
+    public void setName(String n)
+    {
+        this.foodName = n;
+    }
+    
+    @Override
+    public void setWeight(double d)
+    {
+        this.foodWeight = d;
+    }
+    
+    public void setTimeSinceLastConsumed(String i)
+    {
+        this.timeSinceLastConsumed = i;
+    }
+    
+    public void setFood(String n, Double d, String i){
         setName(n);
         setWeight(d);
         setTimeSinceLastConsumed(i);

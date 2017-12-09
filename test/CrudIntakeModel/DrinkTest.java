@@ -33,7 +33,7 @@ public class DrinkTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Drink instance = new Drink(null, 0.0, 30);
+        Drink instance = new Drink("test", 0.0, "30 hr");
         String expResult = null;
         //String result = instance.getName();
         //assertEquals(expResult, result);
@@ -60,7 +60,7 @@ public class DrinkTest {
     @Test
     public void testGetWeight() {
         System.out.println("getWeight");
-        Drink instance = new Drink("Drink", 0.0, 30);
+        Drink instance = new Drink("Drink", 0.0, "30 hr");
         double expResult = 0.0;
         //double result = instance.getWeight();
         //assertEquals(expResult, result, 0.0);
@@ -75,7 +75,7 @@ public class DrinkTest {
     public void testSetWeight() {
         System.out.println("setWeight");
         double weight = 1.0;
-        Drink instance = new Drink("Drink", 0.0, 30);
+        Drink instance = new Drink("Drink", 0.0, "30 hr");
         //instance.setWeight(weight);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -87,9 +87,9 @@ public class DrinkTest {
     @Test
     public void testGetTimeSinceLastConsumed() {
         System.out.println("getTimeSinceLastConsumed");
-        Drink instance = new Drink("Drink", 0.0, 0);
+        Drink instance = new Drink("Drink", 0.0, "30  hr");
         int expResult = 0;
-        int result = instance.getTimeSinceLastConsumed();
+        String result = instance.getTimeSinceLastConsumed();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -101,8 +101,8 @@ public class DrinkTest {
     @Test
     public void testSetTimeSinceLastConsumed() {
         System.out.println("setTimeSinceLastConsumed");
-        int timeSinceLastConsumed = 40;
-        Drink instance = new Drink("Drink", 0.0, 30);
+        String timeSinceLastConsumed = "40 hr";
+        Drink instance = new Drink("Drink", 0.0, "30 hr");
         instance.setTimeSinceLastConsumed(timeSinceLastConsumed);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

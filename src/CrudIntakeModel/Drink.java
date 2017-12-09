@@ -18,7 +18,7 @@ public class Drink extends Item
 {
     private String drinkName;
     private double drinkWeight;
-    private int timeSinceLastConsumed;
+    private String timeSinceLastConsumed;
     private List<Drink> dList;
     //CrudIntakeController theCrudIntakeController = new CrudIntakeController();
     
@@ -31,7 +31,7 @@ public class Drink extends Item
      * @param drinkWeight This is the Drink's weight (in oz)
      * @param timeSinceLastConsumed This is the time (in min) since drink was last consumed
      */
-    public Drink(String drinkName, double drinkWeight, int timeSinceLastConsumed)
+    public Drink(String drinkName, double drinkWeight, String timeSinceLastConsumed)
     {
         super(drinkName, drinkWeight, timeSinceLastConsumed);
         dList = new ArrayList();
@@ -43,6 +43,24 @@ public class Drink extends Item
      */
     public Drink getDrink(){
         return new Drink (this.drinkName, this.drinkWeight, this.timeSinceLastConsumed);
+    }
+    
+    @Override
+    public String getName()
+    {
+        return this.drinkName;
+    }
+    
+    @Override
+    public double getWeight()
+    {
+        return this.drinkWeight;
+    }
+    
+    @Override
+    public String getTimeSinceLastConsumed()
+    {
+        return this.timeSinceLastConsumed;
     }
     /**
      * 
@@ -59,10 +77,28 @@ public class Drink extends Item
      * @param d This is the drink weight
      * @param i This is the time since last consumed
      */
-    public void setDrink(String n, Double d, Integer i){
+    public void setDrink(String n, double d, String i){
         setName(n);
         setWeight(d);
         setTimeSinceLastConsumed(i);
+    }
+    
+    @Override
+    public void setName(String n)
+    {
+        this.drinkName = n;
+    }
+    
+    @Override
+    public void setWeight(double d)
+    {
+        this.drinkWeight = d;
+    }
+    
+    @Override
+    public void setTimeSinceLastConsumed(String i)
+    {
+        this.timeSinceLastConsumed = i;
     }
  
 

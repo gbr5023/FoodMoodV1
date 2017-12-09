@@ -153,7 +153,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         // TODO add your handling code here:
         String nameField = intakeNameTF.getText();
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
-        Integer tscField = Integer.parseInt(intakeTSCTF.getText());
+        String tscField = String.valueOf(intakeTSCTF.getText());
         f = new Food(nameField, weightField, tscField);
         this.theCrudIntakeController.addFood(f);
         f.addFood(new Food(nameField, weightField, tscField));
@@ -170,7 +170,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         // TODO add your handling code here:
         String nameField = intakeNameTF.getText();
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
-        Integer tscField = Integer.parseInt(intakeTSCTF.getText());
+        String tscField = String.valueOf(intakeTSCTF.getText());
         d = new Drink(nameField, weightField, tscField);
         this.theCrudIntakeController.addDrink(d);
         d.addDrink(new Drink(nameField, weightField, tscField));

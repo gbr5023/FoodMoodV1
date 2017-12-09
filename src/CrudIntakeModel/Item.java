@@ -12,9 +12,9 @@ package CrudIntakeModel;
 public class Item {
     private String name;
     private double weight;
-    private int timeSinceLastConsumed;
+    private String timeSinceLastConsumed;
     
-    public Item(String n, Double w, int t){
+    public Item(String n, Double w, String t){
         this.name = n;
         this.weight = w;
         this.timeSinceLastConsumed = t;
@@ -51,14 +51,14 @@ public class Item {
     /**
      * @return the timeSinceLastConsumed
      */
-    public int getTimeSinceLastConsumed() {
+    public String getTimeSinceLastConsumed() {
         return timeSinceLastConsumed;
     }
 
     /**
      * @param timeSinceLastConsumed the timeSinceLastConsumed to set
      */
-    public void setTimeSinceLastConsumed(int timeSinceLastConsumed) {
+    public void setTimeSinceLastConsumed(String timeSinceLastConsumed) {
         this.timeSinceLastConsumed = timeSinceLastConsumed;
     }
     

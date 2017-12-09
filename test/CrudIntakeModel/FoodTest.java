@@ -33,7 +33,7 @@ public class FoodTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Food instance = new Food(null, 0.0, 30);
+        Food instance = new Food("test", 0.0, "30 hr");
         String expResult = null;
         //String result = instance.getName();
         //assertEquals(expResult, result);
@@ -48,7 +48,7 @@ public class FoodTest {
     public void testSetName() {
         System.out.println("setName");
         String name = "name";
-        Food instance = new Food("Drink", 0.0, 0);
+        Food instance = new Food("test", 0.0, "30 hr");
         //instance.setName(name);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -60,7 +60,7 @@ public class FoodTest {
     @Test
     public void testGetWeight() {
         System.out.println("getWeight");
-        Food instance = new Food(null, 0.0, 30);
+        Food instance = new Food("test", 0.0, "30 hr");
         double expResult = 0.0;
         //double result = instance.getWeight();
         //assertEquals(expResult, result, 0.0);
@@ -75,7 +75,7 @@ public class FoodTest {
     public void testSetWeight() {
         System.out.println("setWeight");
         double weight = 0.0;
-        Food instance = new Food(null, 0.0, 0);
+        Food instance = new Food("test", 0.0, "30 hr");
         //instance.setWeight(weight);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -87,9 +87,9 @@ public class FoodTest {
     @Test
     public void testGetTimeSinceLastConsumed() {
         System.out.println("getTimeSinceLastConsumed");
-        Food instance = new Food(null, 0.0, 0);
+        Food instance = new Food("test", 0.0, "30 hr");
         int expResult = 0;
-        int result = instance.getTimeSinceLastConsumed();
+        String result = instance.getTimeSinceLastConsumed();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -101,8 +101,8 @@ public class FoodTest {
     @Test
     public void testSetTimeSinceLastConsumed() {
         System.out.println("setTimeSinceLastConsumed");
-        int timeSinceLastConsumed = 0;
-        Food instance = new Food(null, 0.0, 0);
+        String timeSinceLastConsumed = "40 hr";
+        Food instance = new Food(null, 0.0, "30 hr");
         instance.setTimeSinceLastConsumed(timeSinceLastConsumed);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
