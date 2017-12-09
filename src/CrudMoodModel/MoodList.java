@@ -6,6 +6,7 @@
 
 package CrudMoodModel;
 
+import CrudUserProfileController.LoginController;
 import Serializable.SerializedDataCntl;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 public class MoodList 
 {
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + "mood.ser";
+    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-mood.ser";
     
     private ArrayList<Mood> theListOfMoods;
 
@@ -50,7 +51,6 @@ public class MoodList
         theListOfMoods.add(new Mood("hyper"));
         theListOfMoods.add(new Mood("exhausted"));
         theListOfMoods.add(new Mood("happy"));
-        theListOfMoods.add(new Mood("sad"));
 
         System.out.println();
         System.out.println("For testing purposes: ");

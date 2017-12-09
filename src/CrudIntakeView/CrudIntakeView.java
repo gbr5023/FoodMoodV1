@@ -57,7 +57,7 @@ public class CrudIntakeView extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        homeButton.setText("Home");
+        homeButton.setText("Menu");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
@@ -91,7 +91,7 @@ public class CrudIntakeView extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGap(166, 166, 166)
                 .addComponent(homeButton)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

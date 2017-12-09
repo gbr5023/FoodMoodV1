@@ -29,9 +29,8 @@ public class CrudIntakeController{
     
     public CrudIntakeController(NavigationController parentNavigationController)
     {
-        this.theNavigationController = parentNavigationController;
-        this.requestCrudIntakeView();
-        
+        System.out.println("Made it to CrudIntakeController.");
+        this.theNavigationController = parentNavigationController;      
         this.theDrinkList = new DrinkList();
         this.theFoodList = new FoodList();
     }

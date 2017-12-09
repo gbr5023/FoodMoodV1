@@ -6,6 +6,7 @@
 
 package CrudIntakeModel;
 
+import CrudUserProfileController.LoginController;
 import Serializable.SerializedDataCntl;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 public class DrinkList 
 {
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + "drink.ser";
+    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-drink.ser";
     
     private ArrayList<Drink> theListOfDrinks;
 

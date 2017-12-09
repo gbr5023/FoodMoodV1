@@ -155,8 +155,11 @@ public class LoginView extends javax.swing.JFrame
         } else {
             outputLabel.setForeground(Color.green.darker());
             outputLabel.setText("Valid Login");
-            this.setVisible(false);
-            NavigationController theNavigationController = new NavigationController();
+            this.theLoginController.requestNavigationController();
+            
+            
+            //theNavigationController.requestNavigationView();
+            
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

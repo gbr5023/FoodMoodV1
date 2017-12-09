@@ -28,19 +28,24 @@ import javax.swing.JOptionPane;
  */
 public class UserProfileController {
     NavigationController theNavigationController;
-    UserProfileView view;
+    UserProfileView theUserProfileView;
     /**
      * Constructs an empty LoginController
      * @param  parentNavigationController the original NavigationController object
      */
     public UserProfileController(NavigationController parentNavigationController)
     {
-        view = new UserProfileView(this);
-        view.setTitle("Login");
-        view.setLocationRelativeTo(null);
-        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setVisible(true);
-        
+        System.out.println("Made it to UserProfileController.");
+        this.theNavigationController = parentNavigationController;
+    }
+    
+    public void requestUserProfileView()
+    {
+        theUserProfileView = new UserProfileView(this);
+        theUserProfileView.setTitle("Login");
+        theUserProfileView.setLocationRelativeTo(null);
+        theUserProfileView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        theUserProfileView.setVisible(true);
     }
     
     /**
@@ -48,7 +53,13 @@ public class UserProfileController {
      */
     public void requestNavigationView()
     {
+        this.theUserProfileView.setVisible(false);
         this.theNavigationController.requestNavigationView();
+    } 
+    
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
     }
     
 }

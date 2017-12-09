@@ -74,10 +74,10 @@ public class LoginController {
         this.theLoginView.setVisible(true);
     }
     
-    public NavigationController requestNavigationController() {
-        this.theLoginView.dispose();
+    public void requestNavigationController() {
+        this.theLoginView.setVisible(false);
         this.theNavigationController = new NavigationController();
-        return this.theNavigationController;
+        this.theNavigationController.requestNavigationView();
     }
     
     public boolean requestAuthenticate(String emailToCheck, char[] passwordToCheck) {
@@ -93,6 +93,10 @@ public class LoginController {
     public void requestRegisterView() {
         theLoginView.setVisible(false);
         this.theRegisterView = new RegisterView(this);
+        this.theRegisterView.setTitle("Registration");
+        this.theRegisterView.setLocationRelativeTo(null);
+        this.theRegisterView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.theRegisterView.setVisible(true);
     }
 
     public boolean registerUser(String firstName, String lastName, String email, char[] password) {

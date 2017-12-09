@@ -48,6 +48,7 @@ public class UserProfileView extends javax.swing.JFrame {
         infoLabel = new javax.swing.JLabel();
         changePictureButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
+        homeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,19 +64,24 @@ public class UserProfileView extends javax.swing.JFrame {
 
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/default-profile.png"))); // NOI18N
 
+        homeButton.setText("Menu");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(changePictureButton)
-                        .addGap(0, 0, 0)))
+                .addGap(54, 54, 54)
+                .addComponent(homeButton)
+                .addGap(18, 18, 18)
+                .addComponent(changePictureButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(106, 106, 106)
@@ -86,11 +92,13 @@ public class UserProfileView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(changePictureButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(homeButton)
+                        .addComponent(changePictureButton)))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +127,12 @@ public class UserProfileView extends javax.swing.JFrame {
             //log.append("Open command cancelled by user." + newline);
         }
     }//GEN-LAST:event_changePictureButtonActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.theUserProfileController.requestNavigationView();
+    }//GEN-LAST:event_homeButtonActionPerformed
     BufferedImage createResizedCopy(Image originalImage,  int scaledWidth, int scaledHeight, boolean preserveAlpha) {
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
@@ -167,6 +181,7 @@ public class UserProfileView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changePictureButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel infoLabel;
     // End of variables declaration//GEN-END:variables

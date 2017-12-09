@@ -50,7 +50,7 @@ public class StatisticView extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
 
-        backButton.setText("Back");
+        backButton.setText("Menu");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
@@ -143,7 +143,7 @@ public class StatisticView extends javax.swing.JFrame
                             .addComponent(foodScrollPane)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(backButton)
-                                .addGap(0, 575, Short.MAX_VALUE))
+                                .addGap(0, 569, Short.MAX_VALUE))
                             .addComponent(drinkScrollPane))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()

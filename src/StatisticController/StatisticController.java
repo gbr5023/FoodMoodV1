@@ -18,9 +18,10 @@ import javax.swing.JFrame;
  *
  * @author Gisward
  */
-public class StatisticController  implements DatabaseController
+public class StatisticController
 {
     NavigationController theNavigationController;
+    StatisticView theStatisticView;
     
     /**
      * Constructs a new StatisticController
@@ -28,8 +29,13 @@ public class StatisticController  implements DatabaseController
      */
     public StatisticController(NavigationController parentNavigationController)
     {
+        System.out.println("Made it to StatisticController.");
         this.theNavigationController = parentNavigationController;
-        StatisticView theStatisticView = new StatisticView(this, this.theNavigationController);
+    }
+    
+    public void requestStatisticView()
+    {
+        theStatisticView = new StatisticView(this, this.theNavigationController);
         theStatisticView.setTitle("Statistics");
         theStatisticView.setLocationRelativeTo(null);
         theStatisticView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,39 +47,12 @@ public class StatisticController  implements DatabaseController
      */
     public void requestNavigationView()
     {
+        this.theStatisticView.setVisible(false);
         this.theNavigationController.requestNavigationView();
-    }
+    } 
     
-    /**
-     * Returns a new connection to the system's database
-     * @return The connection to be used
-     */
-    @Override
-    public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
     }
-
-    /**
-     * Executes a new non-update query
-     * @param con Connection to given database
-     * @param sql Statement string to be executed
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Executes a new update query
-     *
-     * @param con Connection to given database
-     * @param sql Statement string to be executed
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

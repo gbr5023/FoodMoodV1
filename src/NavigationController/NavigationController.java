@@ -7,7 +7,6 @@
 package NavigationController;
 import CrudIntakeController.CrudIntakeController;
 import CrudMoodController.CrudMoodController;
-import CrudUserProfileController.LoginController;
 import CrudUserProfileController.UserProfileController;
 import FoodRecController.FoodRecController;
 import NotificationController.NotificationController;
@@ -34,7 +33,6 @@ public class NavigationController
     public NavigationController()
     {
         System.out.println("Made it to the NavigationController");
-        this.theNavigationView = new NavigationView(this);
         this.theCrudIntakeController = new CrudIntakeController(this);
         this.theCrudMoodController = new CrudMoodController(this);
         this.theUserProfileController = new UserProfileController(this);
@@ -48,6 +46,7 @@ public class NavigationController
      */
     public void requestNavigationView()
     {
+        theNavigationView = new NavigationView(this);
         theNavigationView.setTitle("FoodMood Navigation");
         theNavigationView.setLocationRelativeTo(null);
         theNavigationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +61,7 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         CrudIntakeController theCrudIntakeController = new CrudIntakeController(this);
+        theCrudIntakeController.requestCrudIntakeView();
     }
     
     /**
@@ -72,6 +72,7 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         CrudMoodController theCrudMoodController = new CrudMoodController(this);
+        theCrudMoodController.requestCrudMoodView();
     }
     
     /**
@@ -82,6 +83,7 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         UserProfileController theUserProfileController = new UserProfileController(this);
+        theUserProfileController.requestUserProfileView();
     }
     
     /**
@@ -92,6 +94,7 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         NotificationController theNotificationController = new NotificationController(this);
+        theNotificationController.requestNotificationView();
     }
     
     /**
@@ -102,6 +105,7 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         StatisticController theStatisticController = new StatisticController(this);
+        theStatisticController.requestStatisticView();
     }
     
     /**
@@ -112,5 +116,6 @@ public class NavigationController
     {
         theNavigationView.setVisible(false);
         FoodRecController theFoodRecController = new FoodRecController(this);
+        theFoodRecController.requestFoodRecView();
     }
 }

@@ -17,9 +17,10 @@ import javax.swing.JFrame;
  *
  * @author Gisward
  */
-public class NotificationController implements DatabaseController
+public class NotificationController
 {
     NavigationController theNavigationController;
+    NotificationView theNotificationView;
     
     /**
      * Constructs a new NotificationController
@@ -27,12 +28,17 @@ public class NotificationController implements DatabaseController
      */
     public NotificationController(NavigationController parentNavigationController)
     {
-        this.theNavigationController = parentNavigationController;
-        NotificationView theNotificationView = new NotificationView(this);
-        theNotificationView.setTitle("Notifications");
-        theNotificationView.setLocationRelativeTo(null);
-        theNotificationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        theNotificationView.setVisible(true);
+        System.out.println("Made it to NotificationController.");
+        this.theNavigationController = parentNavigationController;   
+    }
+    
+    public void requestNotificationView()
+    {
+        this.theNotificationView = new NotificationView(this);
+        this.theNotificationView.setTitle("Notifications");
+        this.theNotificationView.setLocationRelativeTo(null);
+        this.theNotificationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.theNotificationView.setVisible(true);
     }
 
     /**
@@ -40,38 +46,12 @@ public class NotificationController implements DatabaseController
      */
     public void requestNavigationView()
     {
+        this.theNotificationView.setVisible(false);
         this.theNavigationController.requestNavigationView();
-    }
+    } 
     
-    /**
-     * Returns a new connection to the system's database
-     * @return The connection to be used
-     */
-    @Override
-    public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
     }
-
-    /**
-     * Executes a new non-update query
-     * @param con Connection to given database
-     * @param sql Statement string to be executed
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Executes a new update query
-     * @param con Connection to given database
-     * @param sql Statement string to be executed
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

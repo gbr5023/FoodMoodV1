@@ -44,6 +44,7 @@ public class UserList
             System.out.println("New user " + email);
             theListOfUsers.add(newUser);
         }
+        System.out.println("Password: 1234");
 
         SerializedDataCntl.getSerializedDataCntl().setList(theListOfUsers, STORAGE_FILE_PATH);
     }

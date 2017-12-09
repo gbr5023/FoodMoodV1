@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 public class FoodRecController 
 {
     NavigationController theNavigationController;
+    FoodRecView theFoodRecView;
     
     /**
      * Constructs a new FoodRecController
@@ -24,8 +25,13 @@ public class FoodRecController
      */
     public FoodRecController(NavigationController parentNavigationController)
     {
+        System.out.println("Made it to FoodRecController.");
         this.theNavigationController = parentNavigationController;
-        FoodRecView theFoodRecView = new FoodRecView(this);
+    }
+    
+    public void requestFoodRecView()
+    {
+        theFoodRecView = new FoodRecView(this);
         theFoodRecView.setTitle("Food Recommendations");
         theFoodRecView.setLocationRelativeTo(null);
         theFoodRecView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +43,12 @@ public class FoodRecController
      */
     public void requestNavigationView()
     {
+        this.theFoodRecView.setVisible(false);
         this.theNavigationController.requestNavigationView();
+    } 
+    
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
     }
 }

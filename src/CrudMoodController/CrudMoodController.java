@@ -5,42 +5,70 @@
  */
 package CrudMoodController;
 
+import CrudMoodModel.Mood;
+import CrudMoodModel.MoodList;
+import CrudMoodModel.MoodTable;
 import CrudMoodView.CrudMoodView;
 import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.table.TableModel;
 
 /**
  * 
  * @author michaelcavallaro
  */
-public class CrudMoodController implements DatabaseController 
+public class CrudMoodController 
 {
-    private CrudMoodView view;
+    private CrudMoodView theCrudMoodView;
     NavigationController theNavigationController;
-    
+    MoodList theMoodList;
     /**
      * Constructs a new empty CrudIntakeController
      * @param parentNavigationController This is the original NavigationController object
      */
     public CrudMoodController(NavigationController parentNavigationController)
     {
+        System.out.println("Made it to CrudMoodController");
         this.theNavigationController = parentNavigationController;
-        view = new CrudMoodView(this);
-        view.setTitle("Input Mood");
-        view.setLocationRelativeTo(null);
-        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setVisible(true);
+        this.theMoodList = new MoodList();
     }
     
-    /**
-     * Constructs a new CrudIntakeView
-     * @param view This is the CrudMoodView local object
-     */
-    public CrudMoodController(CrudMoodView view) {
-        this.view = view;
+    public void requestCrudMoodView()
+    {
+        this.theCrudMoodView = new CrudMoodView(this);
+        this.theCrudMoodView.setTitle("Input Mood");
+        this.theCrudMoodView.setLocationRelativeTo(null);
+        this.theCrudMoodView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.theCrudMoodView.setVisible(true);
+    }
+    
+    public void addMood(Mood m)
+    {
+        this.theMoodList.add(m);
+    }
+    
+    public ArrayList getListOfMoods()
+    {
+        return this.theMoodList.getListOfMoods();
+    }
+    
+    public MoodList getMoodListClass()
+    {
+        return this.theMoodList;
+    }
+    
+    public void setListOfMoods(ArrayList<Mood> updatedListOfMoods)
+    {
+        this.theMoodList.setListOfMoods(updatedListOfMoods);
+    }
+       
+    public TableModel getMoodListTableModel() 
+    {
+        return new MoodTable(this.theMoodList);
     }
     
     /**
@@ -48,37 +76,12 @@ public class CrudMoodController implements DatabaseController
      */
     public void requestNavigationView()
     {
+        this.theCrudMoodView.setVisible(false);
         this.theNavigationController.requestNavigationView();
-    }
-    /**
-     * New connection to a database
-     * @return SQL Connection 
-     */
-    @Override
-    public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Execute query to read in information
-     * @param con Connection to database
-     * @param sql SQL Statement string
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Execute update statement to make changes, removals, etc.
-     * @param con Connection to database
-     * @param sql SQL Statement string
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    } 
     
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
+    }
 }
