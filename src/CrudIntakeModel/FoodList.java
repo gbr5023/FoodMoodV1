@@ -24,6 +24,13 @@ public class FoodList
             buildTestFoodList();
         }
     }
+    
+    public ArrayList<Food> getListOfFoods() {
+        if (this.theListOfFoods == null) {
+            buildTestFoodList();
+        }
+        return this.theListOfFoods;
+    }
 
     public void save() {
         SerializedDataCntl.getSerializedDataCntl().setList(theListOfFoods, STORAGE_FILE_PATH);

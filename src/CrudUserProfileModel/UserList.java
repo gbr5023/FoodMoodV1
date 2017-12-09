@@ -26,7 +26,10 @@ public class UserList
     }
 
     public ArrayList<User> getListOfUsers() {
-        return theListOfUsers;
+        if (this.theListOfUsers == null) {
+            buildTestUserList();
+        }
+        return this.theListOfUsers;
     }
 
     public void buildTestUserList() {
@@ -34,12 +37,11 @@ public class UserList
         for (int i = 0; i < 100; i++) {
             String firstName = "Jane";
             String lastName = "Doe" + i;
-            String username = ("test" + i);
             char[] password = {'1', '2', '3', '4'};
-            String email = "jdoe@email.com";
+            String email = "jdoe" + i +"@email.com";
             Timestamp time = new Timestamp(System.currentTimeMillis());
             User newUser = new User(firstName, lastName, email, password, time);
-            System.out.println("New user " + username);
+            System.out.println("New user " + email);
             theListOfUsers.add(newUser);
         }
 

@@ -25,6 +25,14 @@ public class MoodList
             buildTestMoodList();
         }
     }
+    
+    public ArrayList<Mood> getListOfMoods() {
+        if (this.theListOfMoods == null) {
+            buildTestMoodList();
+        }
+        return this.theListOfMoods;
+    }
+
 
     public void save() {
         SerializedDataCntl.getSerializedDataCntl().setList(theListOfMoods, STORAGE_FILE_PATH);

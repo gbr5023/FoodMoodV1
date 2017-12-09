@@ -6,27 +6,16 @@
 
 package CrudUserProfileView;
 
-import CrudMoodView.*;
-import CrudMoodController.CrudMoodController;
 import CrudUserProfileController.LoginController;
-import CrudUserProfileController.RegisterController;
 import CrudUserProfileModel.User;
-import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Gisward
  */
-public class LoginView extends javax.swing.JFrame implements DatabaseController
+public class LoginView extends javax.swing.JFrame
 {
     LoginController theLoginController;
     User model;
@@ -156,26 +145,11 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private boolean authenticateLogin(String email, String pass) {
-        try {
-            String sql = "SELECT ID,EMAIL,PASSWORD FROM USERS WHERE EMAIL='"+email+"' AND PASSWORD='"+(pass)+"'";
-            Connection con = newConnection();
-            ResultSet rs = executeNonUpdateQuery(con, sql);
-            
-            if(rs.next()) {
-                return true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
     
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String email = emailField.getText();
         char[] password = passwordField.getPassword();
-        if(!authenticateLogin(email, new String(password))) {
+        if(!this.theLoginController.requestAuthenticate(email, password)) {
             outputLabel.setForeground(Color.red);
             outputLabel.setText("Username/Password is incorrect");
         } else {
@@ -187,7 +161,7 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        RegisterController theRegisterController = new RegisterController(theLoginController);
+        this.theLoginController.requestRegisterView();
         this.setVisible(false);
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -247,39 +221,5 @@ public class LoginView extends javax.swing.JFrame implements DatabaseController
     private javax.swing.JButton registerButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Connection newConnection() {
-        Connection conn = null;
-        try
-        {
-            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-            //Get a connection
-            conn = DriverManager.getConnection(DB_HOST+DB_NAME+";user="+DB_USERNAME+";password="+DB_PASSWORD+";"); 
-        }
-        catch (Exception except)
-        {
-            except.printStackTrace();
-        }
-        return conn;
-    }
-
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

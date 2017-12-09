@@ -36,10 +36,6 @@ public class CrudIntakeView extends javax.swing.JFrame
         initComponents();
     }
 
-    public CrudIntakeView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -156,11 +152,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         String tscField = String.valueOf(intakeTSCTF.getText());
         f = new Food(nameField, weightField, tscField);
         this.theCrudIntakeController.addFood(f);
-        f.addFood(new Food(nameField, weightField, tscField));
-        fList.add(f);
-        f.setfList(fList);
-        System.out.println(f.getName() + " " + f.getWeight() + " " + f.getTimeSinceLastConsumed());
-        //f.addFood(new Food(f));
+        System.out.println(f.getName() + " " + f.getWeight() + " " + f.getTimeSinceLastConsumed() + " was added.");
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
         intakeTSCTF.setText("");
@@ -173,11 +165,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         String tscField = String.valueOf(intakeTSCTF.getText());
         d = new Drink(nameField, weightField, tscField);
         this.theCrudIntakeController.addDrink(d);
-        d.addDrink(new Drink(nameField, weightField, tscField));
-        dList.add(d);
-        d.setdList(dList);
-        System.out.println(d.getName() + " " + d.getWeight() + " " + d.getTimeSinceLastConsumed());
-       // d.addDrink(new Drink(d));
+        System.out.println(d.getName() + " " + d.getWeight() + " " + d.getTimeSinceLastConsumed() + " was added.");
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
         intakeTSCTF.setText("");

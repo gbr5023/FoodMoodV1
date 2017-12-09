@@ -21,17 +21,26 @@ import javax.swing.JFrame;
 public class NavigationController 
 {
     NavigationView theNavigationView;
+    CrudIntakeController theCrudIntakeController;
+    CrudMoodController theCrudMoodController;
+    UserProfileController theUserProfileController;
+    FoodRecController theFoodRecController;
+    NotificationController theNotificationController;
+    StatisticController theStatisticController;
     
     /**
      * Constructs a new NavigationController
      */
     public NavigationController()
     {
-        theNavigationView = new NavigationView(this);
-        theNavigationView.setTitle("FoodMood Navigation");
-        theNavigationView.setLocationRelativeTo(null);
-        theNavigationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        theNavigationView.setVisible(true);
+        System.out.println("Made it to the NavigationController");
+        this.theNavigationView = new NavigationView(this);
+        this.theCrudIntakeController = new CrudIntakeController(this);
+        this.theCrudMoodController = new CrudMoodController(this);
+        this.theUserProfileController = new UserProfileController(this);
+        this.theFoodRecController = new FoodRecController(this);
+        this.theNotificationController = new NotificationController(this);
+        this.theStatisticController = new StatisticController(this);
     }
     
     /**
@@ -39,6 +48,9 @@ public class NavigationController
      */
     public void requestNavigationView()
     {
+        theNavigationView.setTitle("FoodMood Navigation");
+        theNavigationView.setLocationRelativeTo(null);
+        theNavigationView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         theNavigationView.setVisible(true);
     }
     

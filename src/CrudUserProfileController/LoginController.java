@@ -17,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -28,8 +29,12 @@ import javax.swing.JOptionPane;
  */
 public class LoginController {
     private User model;
-    private LoginView view;
+    private LoginView theLoginView;
+    RegisterView theRegisterView;
     NavigationController theNavigationController;
+    UserList theUserList;
+    
+    private static String CUR_USERNAME;
     
     /**
      * Constructs an empty LoginController
@@ -37,12 +42,17 @@ public class LoginController {
      */
     public LoginController()
     {
-        view = new LoginView(this);
-        view.setTitle("Login");
-        view.setLocationRelativeTo(null);
-        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setVisible(true);
-        
+        System.out.println("Made it to the LoginController)");
+        this.theLoginView = new LoginView(this);
+        this.theLoginView.setTitle("Login");
+        this.theLoginView.setLocationRelativeTo(null);
+        this.theLoginView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.theLoginView.setVisible(true);
+        this.theUserList = new UserList();
+    }
+    
+    public static String getCurrentUser() {
+        return CUR_USERNAME.toLowerCase();
     }
     
     /**
@@ -52,7 +62,7 @@ public class LoginController {
      */
     public LoginController(User model, LoginView view) {
         this.model = model;
-        this.view = view;
+        this.theLoginView = view;
         
         
     }
@@ -61,7 +71,37 @@ public class LoginController {
      */
     public void requestLoginView()
     {
-        view.setVisible(true);
+        this.theLoginView.setVisible(true);
     }
     
+    public NavigationController requestNavigationController() {
+        this.theLoginView.dispose();
+        this.theNavigationController = new NavigationController();
+        return this.theNavigationController;
+    }
+    
+    public boolean requestAuthenticate(String emailToCheck, char[] passwordToCheck) {
+        boolean auth = theUserList.authenticate(emailToCheck, passwordToCheck);
+
+        if (auth) {
+            CUR_USERNAME = emailToCheck;
+        }
+
+        return auth;
+    }
+
+    public void requestRegisterView() {
+        theLoginView.setVisible(false);
+        this.theRegisterView = new RegisterView(this);
+    }
+
+    public boolean registerUser(String firstName, String lastName, String email, char[] password) {
+        if (theUserList.contains(email)) {
+            return false;
+        } else {
+            Timestamp time = new Timestamp(System.currentTimeMillis());
+            theUserList.add(new User(firstName, lastName, email, password, time));
+            return true;
+        }
+    }
 }

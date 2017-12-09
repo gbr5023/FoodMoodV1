@@ -5,15 +5,12 @@
  */
 package CrudUserProfileView;
 
-import CrudUserProfileController.RegisterController;
-import CrudUserProfileModel.User;
+import CrudUserProfileController.*;
 import DatabaseController.DatabaseController;
 import static DatabaseController.DatabaseController.DB_PASSWORD;
 import static DatabaseController.DatabaseController.DB_USERNAME;
 import java.awt.Color;
-import java.sql.Array;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,21 +22,25 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
  * @author michaelcavallaro
  */
-public class RegisterView extends javax.swing.JFrame implements DatabaseController{
-    private RegisterController theRegisterController;
-    private User userModel;
+public class RegisterView extends javax.swing.JFrame{
+    private LoginController theLoginController;
+
     /**
      * Creates new form RegisterView
      */
-    public RegisterView(RegisterController parentRegisterController) {
-        theRegisterController = parentRegisterController;
+    public RegisterView(LoginController parentLoginController) {
+        theLoginController = parentLoginController;
+        this.setTitle("FoodMood Registration");
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
         initComponents();
-        userModel = new User();
     }
 
     /**
@@ -155,36 +156,49 @@ public class RegisterView extends javax.swing.JFrame implements DatabaseControll
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        String firstName = this.firstNameField.getText();
+        String lastName = this.lastNameField.getText();
+        String email = this.emailField.getText();
+        char[] password = this.passwordField.getPassword();
+        char[] confirmField = this.confirmField.getPassword();        
+        
         outputLabel.setForeground(Color.red);
-        if(!(firstNameField.getText().isEmpty() 
-                || lastNameField.getText().isEmpty()
-                || emailField.getText().isEmpty()
-                || (new String(passwordField.getPassword()).isEmpty())
-                || (new String(confirmField.getPassword()).isEmpty()))) {
-           
-            if(emailField.getText().contains("@") && (emailField.getText().indexOf(".", emailField.getText().indexOf("@"))>0)) {
-                if(Arrays.equals(passwordField.getPassword(), confirmField.getPassword())) {
-                    if(registerUser()) {
+        if(!(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || new String(password).isEmpty() || new String(confirmField).isEmpty()))
+        {        
+            if(emailField.getText().contains("@") && (emailField.getText().indexOf(".", emailField.getText().indexOf("@"))>0)) 
+            {
+                if(Arrays.equals(password, confirmField)) 
+                {
+                    boolean registerUser = theLoginController.registerUser(firstName, lastName, email, password);
+                    if(registerUser) 
+                    {
                         outputLabel.setForeground(Color.green.darker());
                         outputLabel.setText("User created successfully");
-                    } else {
+                    } 
+                    else 
+                    {
                         outputLabel.setText("User with that email already exists.");
                     }
-                } else {
+                } 
+                else 
+                {
                     outputLabel.setText("Passwords do not match.");
                 }
-            } else {
+            } 
+            else 
+            {
                 outputLabel.setText("Please enter a valid email.");
             }
-        } else {
+        } 
+        else 
+        {
             outputLabel.setText("Please fill in all fields.");
         }
-        
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.setVisible(false);
-        this.theRegisterController.requestLoginView();
+        this.theLoginController.requestLoginView();
     }//GEN-LAST:event_backButtonActionPerformed
 
     /**
@@ -221,7 +235,7 @@ public class RegisterView extends javax.swing.JFrame implements DatabaseControll
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JPasswordField confirmField;
@@ -238,77 +252,4 @@ public class RegisterView extends javax.swing.JFrame implements DatabaseControll
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
 
-    private boolean registerUser() {
-        try {
-            String sql = "SELECT * FROM USERS WHERE EMAIL='"+emailField.getText()+"'";
-            Connection con =newConnection();
-            ResultSet rs = executeNonUpdateQuery(con,sql);
-            
-            if(!rs.next()) {
-                
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-   
-                userModel = new User(firstNameField.getText(),lastNameField.getText(),emailField.getText(),passwordField.getPassword(),timestamp);
-                
-                String sqlIns = "INSERT INTO USERS (FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,ACCOUNT_CREATED) VALUES (?,?,?,?,?)";
-                userModel.setID(executeQuery(con,sqlIns));
-                con.close();
-                return true;
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();;
-        }
-        return false;
-    }
-    @Override
-    public Connection newConnection() {
-        Connection conn = null;
-        try
-        {
-            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
-            //Get a connection
-            conn = DriverManager.getConnection(DB_HOST+DB_NAME+";user="+DB_USERNAME+";password="+DB_PASSWORD+";"); 
-            
-       }
-        catch (Exception except)
-        {
-            except.printStackTrace();
-        }
-        return conn;
-        
-    }
-
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        int res=-1;   
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, userModel.getFirstName());
-            stmt.setString(2, userModel.getLastName());
-            stmt.setString(3, userModel.getEmail());
-            stmt.setString(4, new String(userModel.getPassword()));
-            stmt.setTimestamp(5, userModel.getTimeStamp());
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()){
-                res=rs.getInt(1);
-            } 
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return res;
-    }
 }

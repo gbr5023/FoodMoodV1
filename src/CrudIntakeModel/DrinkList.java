@@ -26,6 +26,13 @@ public class DrinkList
         }
     }
 
+    public ArrayList<Drink> getListOfDrinks() {
+        if (this.theListOfDrinks == null) {
+            buildTestDrinkList();
+        }
+        return this.theListOfDrinks;
+    }
+    
     public void save() {
         SerializedDataCntl.getSerializedDataCntl().setList(theListOfDrinks, STORAGE_FILE_PATH);
     }

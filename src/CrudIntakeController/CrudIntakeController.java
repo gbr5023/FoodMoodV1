@@ -5,28 +5,22 @@
  */
 package CrudIntakeController;
 
-import CrudIntakeModel.Food;
-import CrudIntakeModel.Drink;
-import CrudIntakeView.CrudIntakeView;
-import DatabaseController.DatabaseController;
+import CrudIntakeModel.*;
+import CrudIntakeView.*;
 import NavigationController.NavigationController;
-import java.sql.Connection;
-import java.sql.ResultSet;
-//import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author michaelcavallaro
  */
-public class CrudIntakeController implements DatabaseController{
-    private CrudIntakeView view;
+public class CrudIntakeController{
+    private CrudIntakeView theCrudIntakeView;
     NavigationController theNavigationController;
-    Food theFoodClass;
-    Drink theDrinkClass;
-    ArrayList<Food> fList;
-    ArrayList<Drink> dList;
+    FoodList theFoodList;
+    DrinkList theDrinkList;
     
     /**
      * Constructs a new empty CrudIntakeController
@@ -35,82 +29,100 @@ public class CrudIntakeController implements DatabaseController{
     
     public CrudIntakeController(NavigationController parentNavigationController)
     {
-        this.fList = new ArrayList();
-        this.dList = new ArrayList();
         this.theNavigationController = parentNavigationController;
-        view = new CrudIntakeView(this);
-        view.setTitle("Input Intake");
-        view.setLocationRelativeTo(null);
-        view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        view.setVisible(true);
+        this.requestCrudIntakeView();
+        
+        this.theDrinkList = new DrinkList();
+        this.theFoodList = new FoodList();
+    }
+    
+    public void requestCrudIntakeView()
+    {
+        this.theCrudIntakeView = new CrudIntakeView(this);
+        this.theCrudIntakeView.setTitle("Input Intake");
+        this.theCrudIntakeView.setLocationRelativeTo(null);
+        this.theCrudIntakeView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.theCrudIntakeView.setVisible(true);
     }
     
     public void addFood(Food f)
     {
-        this.fList.add(f);
+        this.theFoodList.add(f);
     }
     
-    public ArrayList getFoodList()
+    public ArrayList getListOfFoods()
     {
-        return this.fList;
+        return this.theFoodList.getListOfFoods();
+    }
+    
+    public FoodList getFoodListClass()
+    {
+        return this.theFoodList;
+    }
+    
+    public void setListOfFoods(ArrayList<Food> updatedListOfFoods)
+    {
+        this.theFoodList.setListOfFoods(updatedListOfFoods);
     }
     
     public void addDrink(Drink d)
     {
-        this.dList.add(d);
+        this.theDrinkList.add(d);
     }
     
-    public ArrayList getDrinkList()
+    public ArrayList getListOfDrinks()
     {
-        return this.dList;
+        return this.theDrinkList.getListOfDrinks();
     }
     
-    /**
-     * Constructs a new CrudIntakeView
-     * @param view This is the CrudIntakeView local object
-     */
-    public CrudIntakeController(CrudIntakeView view) {
-        //this.fList = new List<Food>();
-        this.view = view;
+    public DrinkList getDrinkListClass()
+    {
+        return this.theDrinkList;
     }
     
+    public void setListOfDrinks(ArrayList<Drink> updatedListOfDrinks)
+    {
+        this.theDrinkList.setListOfDrinks(updatedListOfDrinks);
+    }
+    
+    public TableModel getFoodListTableModel() 
+    {
+        return new FoodTable(this.theFoodList);
+    }
+    
+    public TableModel getDrinkListTableModel()
+    {
+        return new DrinkTable(this.theDrinkList);
+    }
+
     /**
      * Calls the original NavigationView GUI
      */
     public void requestNavigationView()
     {
+        this.theCrudIntakeView.setVisible(false);
         this.theNavigationController.requestNavigationView();
+    }   
+
+    public Food getFood(int row) {
+        return this.theFoodList.get(row);
     }
     
-    /**
-     * New connection to a database
-     * @return SQL Connection 
-     */
-    @Override
-    public Connection newConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Drink getDrink(int row){
+        return this.theDrinkList.get(row);
     }
 
-    /**
-     * Execute query to read in information
-     * @param con Connection to database
-     * @param sql SQL Statement string
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public ResultSet executeNonUpdateQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public NavigationController getParentNavigationController() {
+        return this.theNavigationController;
     }
 
-    /**
-     * Execute update statement to make changes, removals, etc.
-     * @param con Connection to database
-     * @param sql SQL Statement string
-     * @return Result will be true if statement executed without error
-     */
-    @Override
-    public int executeQuery(Connection con, String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void deleteFood(Food theFood) 
+    {
+        this.theFoodList.delete(theFood);
+    } 
     
+    public void deleteDrink(Drink theDrink)
+    {
+        this.theDrinkList.delete(theDrink);
+    }
 }

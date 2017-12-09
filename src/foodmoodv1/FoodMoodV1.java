@@ -26,8 +26,8 @@ public class FoodMoodV1
         File newFile = new File(".");
         System.out.println(newFile.getAbsolutePath());
         // TODO code application logic here
-        NavigationController theNavigationController = new NavigationController();
-        //LoginController theLoginController = new LoginController();
+        //NavigationController theNavigationController = new NavigationController();
+        LoginController theLoginController = new LoginController();
     }
 
 }
