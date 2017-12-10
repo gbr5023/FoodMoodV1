@@ -31,7 +31,7 @@ public class SerializedDataCntl
 {
 
     private static SerializedDataCntl serializedDataController;
-    public static String EXTERNAL_DATA_PATH = "data\\";
+    public static String EXTERNAL_DATA_PATH = "data/";
 
     private SerializedData sdModel;
 
