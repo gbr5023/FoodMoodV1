@@ -9,6 +9,11 @@ package StatisticView;
 import StatisticController.StatisticController;
 import NavigationController.NavigationController;
 
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Gisward
@@ -17,6 +22,12 @@ public class StatisticView extends javax.swing.JFrame
 {
     StatisticController theStatisticController;
     NavigationController theNavigationController;
+    TableRowSorter<TableModel> rowSorterFood;
+    TableRowSorter<TableModel> rowSorterDrink;
+    TableRowSorter<TableModel> rowSorterMood;
+    int rowFood;
+    int rowDrink;
+    int rowMood;
     
     /** 
      * Creates new form StatisticView 
@@ -27,6 +38,9 @@ public class StatisticView extends javax.swing.JFrame
         this.theStatisticController = parentStatisticController;
         this.theNavigationController = parentNavigationController;
         initComponents();
+        this.rowSorterFood = new TableRowSorter<>(this.foodTable.getModel());
+        this.rowSorterDrink = new TableRowSorter<>(this.drinkTable.getModel());
+        this.rowSorterMood = new TableRowSorter<>(this.moodTable.getModel());
     }
 
     /** This method is called from within the constructor to
@@ -40,12 +54,19 @@ public class StatisticView extends javax.swing.JFrame
 
         backButton = new javax.swing.JButton();
         foodRecFooter = new javax.swing.JButton();
-        crudMoodFooter = new javax.swing.JButton();
         crudIntakeFooter = new javax.swing.JButton();
         foodScrollPane = new javax.swing.JScrollPane();
         foodTable = new javax.swing.JTable();
         drinkScrollPane = new javax.swing.JScrollPane();
         drinkTable = new javax.swing.JTable();
+        drinkScrollPane1 = new javax.swing.JScrollPane();
+        moodTable = new javax.swing.JTable();
+        searchFoodButton = new javax.swing.JButton();
+        searchDrinkButton = new javax.swing.JButton();
+        searchDrinkTextField = new javax.swing.JTextField();
+        searchMoodTextField = new javax.swing.JTextField();
+        searchMoodButton = new javax.swing.JButton();
+        searchFoodTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
@@ -65,16 +86,8 @@ public class StatisticView extends javax.swing.JFrame
             }
         });
 
-        crudMoodFooter.setBackground(new java.awt.Color(255, 153, 153));
-        crudMoodFooter.setText("Input Mood");
-        crudMoodFooter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crudMoodFooterActionPerformed(evt);
-            }
-        });
-
         crudIntakeFooter.setBackground(new java.awt.Color(153, 153, 255));
-        crudIntakeFooter.setText("Input Intake");
+        crudIntakeFooter.setText("Input Intake & Mood");
         crudIntakeFooter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crudIntakeFooterActionPerformed(evt);
@@ -84,52 +97,44 @@ public class StatisticView extends javax.swing.JFrame
         foodScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         foodTable.setBackground(new java.awt.Color(204, 204, 255));
-        foodTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Hamburger",  new Double(5.0), "14 hr"},
-                {"Spaghetti",  new Double(16.0), "5 hr"},
-                {"Sandwich",  new Double(3.0), "30 min"},
-                {"Strawberries",  new Double(8.0), "2 min"}
-            },
-            new String [] {
-                "Food", "Weight (oz)", "Time Since Consumed"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        foodTable.setModel(this.theStatisticController.getFoodTableModel());
         foodTable.setGridColor(new java.awt.Color(102, 102, 255));
         foodScrollPane.setViewportView(foodTable);
 
         drinkScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         drinkTable.setBackground(new java.awt.Color(255, 204, 204));
-        drinkTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Bubble Tea",  new Double(16.0), "2 hr"},
-                {"Beer",  new Double(8.0), "12 hr"},
-                {"Tea",  new Double(6.0), "20 min"},
-                {"Water",  new Double(16.0), "5 min"}
-            },
-            new String [] {
-                "Drink", "Weight (oz)", "Time Since Consumed"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        drinkTable.setModel(this.theStatisticController.getDrinkTableModel());
         drinkTable.setGridColor(new java.awt.Color(255, 153, 153));
         drinkScrollPane.setViewportView(drinkTable);
+
+        drinkScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        moodTable.setBackground(new java.awt.Color(255, 204, 204));
+        moodTable.setModel(this.theStatisticController.getMoodTableModel());
+        moodTable.setGridColor(new java.awt.Color(255, 153, 153));
+        drinkScrollPane1.setViewportView(moodTable);
+
+        searchFoodButton.setText("Search Foods");
+        searchFoodButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFoodButtonActionPerformed(evt);
+            }
+        });
+
+        searchDrinkButton.setText("Search Drinks");
+        searchDrinkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDrinkButtonActionPerformed(evt);
+            }
+        });
+
+        searchMoodButton.setText("Search Moods");
+        searchMoodButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchMoodButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,22 +143,36 @@ public class StatisticView extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(foodScrollPane)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(drinkScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(foodScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(backButton)
-                                .addGap(0, 569, Short.MAX_VALUE))
-                            .addComponent(drinkScrollPane))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(drinkScrollPane, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(searchMoodTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchMoodButton)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(searchDrinkTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchDrinkButton)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 103, Short.MAX_VALUE)
                         .addComponent(crudIntakeFooter)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(crudMoodFooter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(foodRecFooter)
-                        .addGap(124, 124, 124))))
+                        .addGap(173, 173, 173))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(searchFoodTextField)
+                        .addGap(11, 11, 11)
+                        .addComponent(searchFoodButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,13 +181,26 @@ public class StatisticView extends javax.swing.JFrame
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(foodScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(drinkScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crudMoodFooter)
-                    .addComponent(crudIntakeFooter)
-                    .addComponent(foodRecFooter))
+                    .addComponent(searchFoodButton)
+                    .addComponent(searchFoodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addComponent(drinkScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchDrinkButton)
+                    .addComponent(searchDrinkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(drinkScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchMoodButton)
+                    .addComponent(searchMoodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(foodRecFooter)
+                    .addComponent(crudIntakeFooter))
                 .addContainerGap())
         );
 
@@ -191,17 +223,56 @@ public class StatisticView extends javax.swing.JFrame
         this.theNavigationController.getFoodRecController();
     }//GEN-LAST:event_foodRecFooterActionPerformed
 
-    private void crudMoodFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudMoodFooterActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.theNavigationController.getCrudMoodController();
-    }//GEN-LAST:event_crudMoodFooterActionPerformed
-
     private void crudIntakeFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crudIntakeFooterActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         this.theNavigationController.getCrudIntakeController();
     }//GEN-LAST:event_crudIntakeFooterActionPerformed
+
+    private void searchFoodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFoodButtonActionPerformed
+        // TODO add your handling code here:
+        this.foodTable.setRowSorter(this.rowSorterFood);
+        String searchedWord = this.searchFoodTextField.getText();
+        
+        if (searchedWord.trim().length() == 0)
+        {
+            rowSorterFood.setRowFilter(null);
+        }
+        else 
+        {
+            rowSorterFood.setRowFilter(RowFilter.regexFilter("(?i)" + searchedWord));
+        }
+    }//GEN-LAST:event_searchFoodButtonActionPerformed
+
+    private void searchDrinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDrinkButtonActionPerformed
+        // TODO add your handling code here:
+        this.drinkTable.setRowSorter(this.rowSorterDrink);
+        String searchedWord = this.searchDrinkTextField.getText();
+        
+        if (searchedWord.trim().length() == 0)
+        {
+            rowSorterDrink.setRowFilter(null);
+        }
+        else 
+        {
+            rowSorterDrink.setRowFilter(RowFilter.regexFilter("(?i)" + searchedWord));
+        }
+    }//GEN-LAST:event_searchDrinkButtonActionPerformed
+
+    private void searchMoodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchMoodButtonActionPerformed
+        // TODO add your handling code here:
+        this.moodTable.setRowSorter(this.rowSorterMood);
+        String searchedWord = this.searchMoodTextField.getText();
+        
+        if (searchedWord.trim().length() == 0)
+        {
+            rowSorterMood.setRowFilter(null);
+        }
+        else 
+        {
+            rowSorterMood.setRowFilter(RowFilter.regexFilter("(?i)" + searchedWord));
+        }
+    }//GEN-LAST:event_searchMoodButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,12 +315,19 @@ public class StatisticView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton crudIntakeFooter;
-    private javax.swing.JButton crudMoodFooter;
     private javax.swing.JScrollPane drinkScrollPane;
+    private javax.swing.JScrollPane drinkScrollPane1;
     private javax.swing.JTable drinkTable;
     private javax.swing.JButton foodRecFooter;
     private javax.swing.JScrollPane foodScrollPane;
     private javax.swing.JTable foodTable;
+    private javax.swing.JTable moodTable;
+    private javax.swing.JButton searchDrinkButton;
+    private javax.swing.JTextField searchDrinkTextField;
+    private javax.swing.JButton searchFoodButton;
+    private javax.swing.JTextField searchFoodTextField;
+    private javax.swing.JButton searchMoodButton;
+    private javax.swing.JTextField searchMoodTextField;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -6,13 +6,10 @@
 
 package StatisticController;
 
-import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
-import NotificationView.NotificationView;
 import StatisticView.StatisticView;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import javax.swing.JFrame;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -22,6 +19,9 @@ public class StatisticController
 {
     NavigationController theNavigationController;
     StatisticView theStatisticView;
+    TableModel foodTableModel;
+    TableModel drinkTableModel;
+    TableModel moodTableModel;
     
     /**
      * Creates StatisticController
@@ -37,6 +37,28 @@ public class StatisticController
      */
     public NavigationController getParentNavigationController() {
         return this.theNavigationController;
+    }
+    
+    public void setTableModels(TableModel foodTableModel, TableModel drinkTableModel, TableModel moodTableModel)
+    {
+        this.foodTableModel = foodTableModel;
+        this.drinkTableModel = drinkTableModel;
+        this.moodTableModel = moodTableModel;
+    }
+    
+    public TableModel getFoodTableModel()
+    {
+        return this.foodTableModel;
+    }
+    
+    public TableModel getDrinkTableModel()
+    {
+        return this.drinkTableModel;
+    }
+    
+    public TableModel getMoodTableModel()
+    {
+        return this.moodTableModel;
     }
     
     /**

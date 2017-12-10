@@ -33,6 +33,7 @@ public class FoodRecController
     {
         System.out.println("FoodRecController instantiated.");
         this.theFoodRecList = new FoodRecList();
+        this.theFoodRecTable = new FoodRecTable(this.theFoodRecList);
     }
     
     /**
@@ -89,9 +90,7 @@ public class FoodRecController
      * @return TableModel
      */
     public TableModel getFoodRecListTableModel() 
-    {
-        this.theFoodRecTable = new FoodRecTable(this.theFoodRecList);
-        
+    {   
         return this.theFoodRecTable;
     }
     

@@ -23,6 +23,7 @@ public class CrudMoodController
     MoodList theMoodList;
     MoodTable theMoodTable;
     ArrayList<Integer> moodRowsFound;
+    String theIntake;
     
     /**
      * Creates CrudIntakeController and MoodList
@@ -31,6 +32,17 @@ public class CrudMoodController
     {
         System.out.println("CrudMoodController instantiated.");
         this.theMoodList = new MoodList();
+        theIntake = "";
+    }
+    
+    /**
+     * Sets parent NavigationController, requests CrudIntakeView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
+    {
+        System.out.println("Made it to CrudIntakeController.");
+        this.theNavigationController = parentNavigationController;
     }
     
     /**
@@ -43,22 +55,12 @@ public class CrudMoodController
     }
     
     /**
-     * Sets parent NavigationController, requests CrudMoodView
-     * @param parentNavigationController 
-     */
-    public void setParentNavigationController(NavigationController parentNavigationController)
-    {
-        System.out.println("Made it to CrudMoodController");
-        this.theNavigationController = parentNavigationController;
-        this.requestCrudMoodView();
-    }
-    
-    /**
      * Creates CrudMoodView
      */
-    public void requestCrudMoodView()
+    public void requestCrudMoodView(String theIntake)
     {
-        this.theCrudMoodView = new CrudMoodView(this);
+        System.out.println("Made it to CrudIntakeController.");
+        this.theCrudMoodView = new CrudMoodView(this, theIntake);
         this.theCrudMoodView.setTitle("Input Mood");
         this.theCrudMoodView.setLocationRelativeTo(null);
         this.theCrudMoodView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,7 +122,6 @@ public class CrudMoodController
      */
     public void requestNavigationView()
     {
-        this.theCrudMoodView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
 }

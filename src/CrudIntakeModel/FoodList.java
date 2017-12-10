@@ -30,66 +30,56 @@ public class FoodList
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = "data/" + LoginController.getCurrentUser() +"-food.ser";
+    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-food.ser";
 
     public FoodList() 
     {
         this.parentFoodList = SerializedDataCntl.getSerializedDataCntl().getFoodList();
         if (this.parentFoodList.isEmpty()) 
         {
-            readFoodFile();
+            buildTestFoodList();
+            //readDrinkFile();
         }
     }
     
-    public void readFoodFile() 
+    public void buildTestFoodList()
     {
-        this.parentFoodList = new ArrayList<>();
+        this.parentFoodList = new ArrayList();
         
-        try
-        {
-            this.foodFileURL = getClass().getResource("Food.csv");
-            this.foodFile = new File(this.foodFileURL.getPath());
-            
-            boolean cont = true;
-            in = new Scanner(this.foodFile);
-
-            while(cont == true)
-            {
-                if(in.hasNext())
-                {
-                    String temp = in.nextLine();
-                    String[] newF = temp.split(COMMA_DELIMITER);
-                    
-                    if (newF.length > 0) {
-                        this.newFood = new Food(newF[0], Double.valueOf(newF[1]), newF[2]);
-                        this.parentFoodList.add(this.newFood);
-                    }
-                }
-                else
-                {
-                    cont = false;
-                    System.out.println("Reading food file done.");
-                }   
-            }
-            SerializedDataCntl.getSerializedDataCntl().setList(this.parentFoodList, STORAGE_FILE_PATH);
-            //printParentFoodList();
-        }
-        catch(FileNotFoundException fnfe)
-        {
-            System.out.println(fnfe.getMessage());
-        }
-        catch(Exception err)
-        {
-            
-            System.out.println(err.getMessage());
-        }
+        Food hamburger = new Food("Hamburger", 5, "14 hr");
+        Food spaghetti = new Food("Spaghetti", 16, "5 hr");
+        Food sandwich = new Food("Sandwich", 3, "30 min");
+        Food strawberries = new Food("Strawberries", 8, "2 min");
+        
+        this.parentFoodList.add(hamburger);
+        this.parentFoodList.add(spaghetti);
+        this.parentFoodList.add(sandwich);
+        this.parentFoodList.add(strawberries);
+        
+        System.out.println();
+        this.printParentFoodList();
+        this.save();
+    }
+    
+    public void add(Food theFoodToAdd) {
+        parentFoodList.add(theFoodToAdd);
+        save();
+    }
+    
+    public Food get(int row) {
+        return this.parentFoodList.get(row);
+    }
+    
+    public void save() {
+        SerializedDataCntl.getSerializedDataCntl().setList(this.parentFoodList, STORAGE_FILE_PATH);
     }
     
     public ArrayList<Food> getParentFoodList()
     {
         if(this.parentFoodList == null)
         {
-            this.readFoodFile();
+            this.buildTestFoodList();
+            //this.readFoodFile();
         }
         
         return parentFoodList;

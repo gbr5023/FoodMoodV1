@@ -29,66 +29,56 @@ public class DrinkList
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = "data/" + LoginController.getCurrentUser() +"-drink.ser";
+    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-drink.ser";
 
     public DrinkList() 
     {
         this.parentDrinkList = SerializedDataCntl.getSerializedDataCntl().getDrinkList();
         if (this.parentDrinkList.isEmpty()) 
         {
-            readDrinkFile();
+            buildTestDrinkList();
+            //readDrinkFile();
         }
     }
     
-    public void readDrinkFile() 
+    public void buildTestDrinkList()
     {
-        this.parentDrinkList = new ArrayList<>();
+        this.parentDrinkList = new ArrayList();
         
-        try
-        {
-            this.drinkFileURL = getClass().getResource("Drink.csv");
-            this.drinkFile = new File(this.drinkFileURL.getPath());
-            
-            boolean cont = true;
-            in = new Scanner(this.drinkFile);
-
-            while(cont == true)
-            {
-                if(in.hasNext())
-                {
-                    String temp = in.nextLine();
-                    String[] newD = temp.split(COMMA_DELIMITER);
-                    
-                    if (newD.length > 0) {
-                        this.newDrink = new Drink(newD[0], Double.valueOf(newD[1]), newD[2]);
-                        this.parentDrinkList.add(this.newDrink);
-                    }
-                }
-                else
-                {
-                    cont = false;
-                    System.out.println("Reading drink file done.");
-                }   
-            }
-            SerializedDataCntl.getSerializedDataCntl().setList(this.parentDrinkList, STORAGE_FILE_PATH);
-            //printParentDrinkList();
-        }
-        catch(FileNotFoundException fnfe)
-        {
-            System.out.println(fnfe.getMessage());
-        }
-        catch(Exception err)
-        {
-            
-            System.out.println(err.getMessage());
-        }
+        Drink juice = new Drink("Juice", 16, "2 hr");
+        Drink beer = new Drink("Beer", 8, "12 hr");
+        Drink tea = new Drink("Tea", 6, "20 min");
+        Drink water = new Drink("Water", 16, "5 min");
+        
+        this.parentDrinkList.add(juice);
+        this.parentDrinkList.add(beer);
+        this.parentDrinkList.add(tea);
+        this.parentDrinkList.add(water);
+        
+        System.out.println();
+        this.printParentDrinkList();
+        this.save();
+    }
+    
+    public void add(Drink theDrinkToAdd) {
+        parentDrinkList.add(theDrinkToAdd);
+        save();
+    }
+    
+    public Drink get(int row) {
+        return this.parentDrinkList.get(row);
+    }
+    
+    public void save() {
+        SerializedDataCntl.getSerializedDataCntl().setList(this.parentDrinkList, STORAGE_FILE_PATH);
     }
 
     public ArrayList<Drink> getParentDrinkList()
     {
         if(this.parentDrinkList == null)
         {
-            this.readDrinkFile();
+            this.buildTestDrinkList();
+            //this.readDrinkFile();
         }
         
         return parentDrinkList;

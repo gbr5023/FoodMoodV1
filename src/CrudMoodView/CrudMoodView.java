@@ -11,6 +11,8 @@ import CrudMoodModel.Mood;
 //import CrudIntakeModel.CrudIntakeModel;
 import CrudIntakeModel.Food;
 import CrudIntakeModel.Drink;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,18 +21,17 @@ import CrudIntakeModel.Drink;
 public class CrudMoodView extends javax.swing.JFrame 
 {
     CrudMoodController theCrudMoodController;
-    Mood theMoodModel;
-    //CrudIntakeModel theCrudIntakeModel;
-    Food theFoodModel;
-    Drink theDrinkModel;
+    Mood m;
+    String theIntake;
     
     /** 
      * Creates new form CrudMoodView 
      * @param parentCrudMoodController the original CrudMoodController object
      */
-    public CrudMoodView(CrudMoodController parentCrudMoodController) 
+    public CrudMoodView(CrudMoodController parentCrudMoodController, String theIntake) 
     {
         this.theCrudMoodController = parentCrudMoodController;
+        this.theIntake = theIntake;
         initComponents();
     }
 
@@ -43,22 +44,15 @@ public class CrudMoodView extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        homeButton = new javax.swing.JButton();
         moodAskingLabel = new javax.swing.JLabel();
         moodField = new javax.swing.JTextField();
-        enterMoodPromptLabel = new javax.swing.JLabel();
+        moodLabel = new javax.swing.JLabel();
         okButton = new javax.swing.JButton();
+        outputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        homeButton.setText("Menu");
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homeButtonActionPerformed(evt);
-            }
-        });
-
-        moodAskingLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        moodAskingLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         moodAskingLabel.setText("How do you feel after eating the food/drink?");
 
         moodField.addActionListener(new java.awt.event.ActionListener() {
@@ -67,9 +61,9 @@ public class CrudMoodView extends javax.swing.JFrame
             }
         });
 
-        enterMoodPromptLabel.setText("Enter your mood:");
+        moodLabel.setText("Enter your mood:");
 
-        okButton.setText("OK");
+        okButton.setText("Save Mood");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -80,55 +74,61 @@ public class CrudMoodView extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(homeButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(moodAskingLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(enterMoodPromptLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(okButton)))
-                .addGap(0, 62, Short.MAX_VALUE))
+                        .addComponent(moodAskingLabel)
+                        .addContainerGap(50, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(moodLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(outputLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(okButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(moodAskingLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterMoodPromptLabel)
-                    .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(okButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(moodLabel)
+                    .addComponent(moodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(okButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(outputLabel)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Navigates user to the original NavigationView
-     * @param evt 
-     */
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.theCrudMoodController.requestNavigationView();
-    }//GEN-LAST:event_homeButtonActionPerformed
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        String mood = moodField.getText();
-        theMoodModel = new Mood(mood);
-        theMoodModel.addMood(new Mood(mood));
-        moodField.setText("");
+        if(!this.moodField.getText().isEmpty())
+        {
+            String mood = moodField.getText();
+            m = new Mood(mood, this.theIntake);
+            this.theCrudMoodController.getListOfMoods().add(m);
+            this.moodField.setText("");
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Intake and Mood were added.");
+        }
+        else
+        {
+            outputLabel.setForeground(Color.red);
+            outputLabel.setText("Please fill all fields.");
+        }
+        
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void moodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodFieldActionPerformed
@@ -174,11 +174,11 @@ public class CrudMoodView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterMoodPromptLabel;
-    private javax.swing.JButton homeButton;
     private javax.swing.JLabel moodAskingLabel;
     private javax.swing.JTextField moodField;
+    private javax.swing.JLabel moodLabel;
     private javax.swing.JButton okButton;
+    private javax.swing.JLabel outputLabel;
     // End of variables declaration//GEN-END:variables
 
 }

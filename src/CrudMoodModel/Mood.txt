@@ -1,4 +1,8 @@
-sleepy
-hyper
-exhausted
-tired
+sleepy, Juice
+hyper, Hamburger
+exhausted, Beer
+tired, Spaghetti
+happy, Tea
+angry, Sandwich
+excited, Water
+depressed, Strawberries

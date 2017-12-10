@@ -26,6 +26,7 @@ public class NavigationController
     FoodRecController theFoodRecController;
     NotificationController theNotificationController;
     StatisticController theStatisticController;
+    String theIntake;
     
     /**
      * Constructs a new NavigationController
@@ -40,6 +41,7 @@ public class NavigationController
         this.theFoodRecController = new FoodRecController();
         this.theNotificationController = new NotificationController();
         this.theStatisticController = new StatisticController();
+        this.theIntake = "";
         this.requestNavigationView();
     }
     
@@ -64,13 +66,23 @@ public class NavigationController
         this.theCrudIntakeController.setParentNavigationController(this);
     }
     
+    public CrudIntakeController requestCrudIntakeController()
+    {
+        return this.theCrudIntakeController;
+    }
+    
     /**
      * Navigates user to the CrudMoodController.
      * Holds Parent NavigationController
      */
     public void getCrudMoodController()
     {
-        this.theCrudMoodController.setParentNavigationController(this);
+        this.theCrudMoodController.requestCrudMoodView(theIntake);
+    }
+    
+    public CrudMoodController requestCrudMoodController()
+    {
+        return this.theCrudMoodController;
     }
     
     /**
@@ -97,6 +109,9 @@ public class NavigationController
      */
     public void getStatisticController()
     {
+        this.theStatisticController.setTableModels(this.requestCrudIntakeController().getFoodListTableModel(), 
+                this.requestCrudIntakeController().getDrinkListTableModel(), 
+                this.requestCrudMoodController().getMoodListTableModel());
         this.theStatisticController.setParentNavigationController(this);
     }
     

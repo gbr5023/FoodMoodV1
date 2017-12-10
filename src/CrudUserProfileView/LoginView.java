@@ -8,7 +8,6 @@ package CrudUserProfileView;
 
 import CrudUserProfileController.LoginController;
 import CrudUserProfileModel.User;
-import NavigationController.NavigationController;
 import java.awt.Color;
 
 /**

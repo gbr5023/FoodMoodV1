@@ -5,6 +5,7 @@ package CrudIntakeController;
 
 import CrudIntakeModel.*;
 import CrudIntakeView.*;
+import CrudMoodController.CrudMoodController;
 import NavigationController.NavigationController;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import javax.swing.table.TableModel;
  */
 public class CrudIntakeController{
     NavigationController theNavigationController;
+    CrudMoodController theCrudMoodController;
     private CrudIntakeView theCrudIntakeView;
     FoodList theFoodList;
     DrinkList theDrinkList;
@@ -23,6 +25,7 @@ public class CrudIntakeController{
     DrinkTable theDrinkTable;
     ArrayList<Integer> foodRowsFound;
     ArrayList<Integer> drinkRowsFound;
+    String theIntake;
     
     /**
      * Creates CrudIntakeController, FoodList, and DrinkList
@@ -33,6 +36,8 @@ public class CrudIntakeController{
         System.out.println("CrudIntakeController instantiated.");    
         this.theFoodList = new FoodList();
         this.theDrinkList = new DrinkList();
+        this.theCrudMoodController = new CrudMoodController();
+        theIntake = "";
     }
     
     /**
@@ -64,6 +69,11 @@ public class CrudIntakeController{
         this.theCrudIntakeView.setLocationRelativeTo(null);
         this.theCrudIntakeView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.theCrudIntakeView.setVisible(true);
+    }
+    
+    public CrudMoodController getCrudMoodController()
+    {
+        return this.theNavigationController.requestCrudMoodController();
     }
     
     /**

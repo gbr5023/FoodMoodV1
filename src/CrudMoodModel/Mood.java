@@ -6,6 +6,7 @@
 package CrudMoodModel;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public class Mood implements Serializable
 {
-    public String mood;
-    public List<Mood> moodList;
+    String mood;
+    String moodIntake;
     
     /**
      * This is the default constructor of the Mood class.
@@ -26,9 +27,10 @@ public class Mood implements Serializable
      * It instantiates the list of Mood objects.
      * @param mood This describes the user's Mood after eating a certain item.
      */
-    public Mood(String mood) {
+    public Mood(String mood, String moodIntake) 
+    {
         this.mood = mood;
-        moodList = new ArrayList();
+        this.moodIntake = moodIntake;
     }
     
     /**
@@ -47,42 +49,19 @@ public class Mood implements Serializable
         this.mood = mood;
     }
     
-    public List<Mood> getMoodList() {
-        return moodList;
+    public String getMoodIntake()
+    {
+        return this.moodIntake;
     }
     
-    public void setMoodList(List<Mood> moodList) {
-        this.moodList = moodList;
-    }
-    
-    /**
-     * This is the method that adds mood object to the moodList.
-     * @param mood 
-     */
-    public void addMood(Mood mood) {
-        moodList.add(mood);
-    }
-    
-    /**
-     * This is the method that updates the item in the list.
-     * @param index This is the position of the item in the list that is selected to be updated.
-     * @param mood This is the new mood that will replace the original mood.
-     */
-    public void updateMood(int index, String mood) {
-        moodList.get(index).setMood(mood);
-    }
-    
-    /**
-     * This is the method that removes the item from the list.
-     * @param index This is the position of the item in the list that is selected to be removed.
-     */
-    public void deleteMood(int index) {
-        moodList.remove(index);
+    public void setMoodIntake(String moodIntake)
+    {
+        this.moodIntake = moodIntake;
     }
     
     public String getMoodDetails()
     {
-        String moodDetails = "Mood: " + this.getMood();
+        String moodDetails = "Mood: " + this.getMood() + " from " + this.moodIntake;
         
         return moodDetails;
     }

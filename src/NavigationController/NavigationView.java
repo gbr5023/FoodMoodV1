@@ -34,7 +34,6 @@ public class NavigationView extends javax.swing.JFrame
     private void initComponents() {
 
         intakeButton = new javax.swing.JButton();
-        moodButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
         notificationButton = new javax.swing.JButton();
         statisticButton = new javax.swing.JButton();
@@ -43,18 +42,10 @@ public class NavigationView extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         intakeButton.setBackground(new java.awt.Color(153, 153, 255));
-        intakeButton.setText("Intake");
+        intakeButton.setText("Input Intake & Mood");
         intakeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 intakeButtonActionPerformed(evt);
-            }
-        });
-
-        moodButton.setBackground(new java.awt.Color(255, 153, 153));
-        moodButton.setText("Mood");
-        moodButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moodButtonActionPerformed(evt);
             }
         });
 
@@ -97,7 +88,6 @@ public class NavigationView extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(moodButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(intakeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(notificationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -111,8 +101,6 @@ public class NavigationView extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(intakeButton)
                 .addGap(18, 18, 18)
-                .addComponent(moodButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(profileButton)
                 .addGap(18, 18, 18)
                 .addComponent(notificationButton)
@@ -135,16 +123,6 @@ public class NavigationView extends javax.swing.JFrame
         this.setVisible(false);
         this.parentNavigationController.getCrudIntakeController();     
     }//GEN-LAST:event_intakeButtonActionPerformed
-
-    /**
-     * Navigates user to the CrudMoodController
-     * @param evt 
-     */
-    private void moodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodButtonActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        this.parentNavigationController.getCrudMoodController();
-    }//GEN-LAST:event_moodButtonActionPerformed
 
     /**
      * Navigates user to the CrudUserProfileController classes
@@ -227,7 +205,6 @@ public class NavigationView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton foodRecButton;
     private javax.swing.JButton intakeButton;
-    private javax.swing.JButton moodButton;
     private javax.swing.JButton notificationButton;
     private javax.swing.JButton profileButton;
     private javax.swing.JButton statisticButton;

@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class MoodTable extends AbstractTableModel
 {
-    private static final String[] COLUMNS = {"Mood"};
+    private static final String[] COLUMNS = {"Mood", "Intake"};
     private final ArrayList<Mood> theMoodListData;
     
     /**
@@ -48,6 +48,8 @@ public class MoodTable extends AbstractTableModel
         switch (col) {
             case 0:
                 return theMood.getMood();
+            case 1:
+                return theMood.getMoodIntake();
             default:
                 return null;
         }

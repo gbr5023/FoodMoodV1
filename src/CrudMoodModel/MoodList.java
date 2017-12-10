@@ -29,66 +29,64 @@ public class MoodList
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = "data/" + LoginController.getCurrentUser() +"-mood.ser";
-
+    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-mood.ser";
+    
     public MoodList() 
     {
         this.parentMoodList = SerializedDataCntl.getSerializedDataCntl().getMoodList();
         if (this.parentMoodList.isEmpty()) 
         {
-            readMoodFile();
+            buildTestDrinkList();
         }
     }
     
-    public void readMoodFile() 
+    public void buildTestDrinkList()
     {
-        this.parentMoodList = new ArrayList<>();
+        this.parentMoodList = new ArrayList();
         
-        try
-        {
-            this.moodFileURL = getClass().getResource("Mood.csv");
-            this.moodFile = new File(this.moodFileURL.getPath());
-            
-            boolean cont = true;
-            in = new Scanner(this.moodFile);
-
-            while(cont == true)
-            {
-                if(in.hasNext())
-                {
-                    String temp = in.nextLine();
-                    String[] newM = temp.split(COMMA_DELIMITER);
-                    
-                    if (newM.length > 0) {
-                        this.newMood = new Mood(newM[0]);
-                        this.parentMoodList.add(this.newMood);
-                    }
-                }
-                else
-                {
-                    cont = false;
-                    System.out.println("Reading mood file done.");
-                }   
-            }
-            SerializedDataCntl.getSerializedDataCntl().setList(this.parentMoodList, STORAGE_FILE_PATH);
-            //printParentMoodList();
-        }
-        catch(FileNotFoundException fnfe)
-        {
-            System.out.println(fnfe.getMessage());
-        }
-        catch(Exception err)
-        {
-            
-            System.out.println(err.getMessage());
-        }
+        Mood juice = new Mood("Sleepy", "Juice");
+        Mood hamburger = new Mood("HYper", "Hamburger");
+        Mood beer = new Mood("Exhausted", "Beer");
+        Mood spaghetti = new Mood("Tired", "Spaghetti");
+        Mood tea = new Mood("Happy", "Tea");
+        Mood sandwich = new Mood("Angry", " Sandwich");
+        Mood water = new Mood("Excited", "Water");
+        Mood strawberries = new Mood("Depresssed", "Strawberries");
+        
+        
+        this.parentMoodList.add(juice);
+        this.parentMoodList.add(beer);
+        this.parentMoodList.add(tea);
+        this.parentMoodList.add(water);
+        
+        this.parentMoodList.add(hamburger);
+        this.parentMoodList.add(spaghetti);
+        this.parentMoodList.add(sandwich);
+        this.parentMoodList.add(strawberries);
+        
+        System.out.println();
+        this.printParentMoodList();
+        this.save();
+    }
+    
+    public void add(Mood theMoodToAdd) {
+        parentMoodList.add(theMoodToAdd);
+        save();
+    }
+    
+    public Mood get(int row) {
+        return this.parentMoodList.get(row);
+    }
+    
+    public void save() {
+        SerializedDataCntl.getSerializedDataCntl().setList(this.parentMoodList, STORAGE_FILE_PATH);
     }
     
     public ArrayList<Mood> getParentMoodList()
     {
         if(this.parentMoodList == null)
         {
-            this.readMoodFile();
+            this.buildTestDrinkList();
         }
         
         return parentMoodList;
