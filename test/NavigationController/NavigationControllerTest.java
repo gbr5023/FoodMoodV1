@@ -38,8 +38,8 @@ public class NavigationControllerTest {
     @Test
     public void testRequestNavigationView() {
         System.out.println("requestNavigationView");
-        NavigationController instance = new NavigationController();
-        instance.requestNavigationView();
+        //NavigationController instance = new NavigationController();
+        //instance.requestNavigationView();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -50,8 +50,8 @@ public class NavigationControllerTest {
     @Test
     public void testGetCrudIntakeController() {
         System.out.println("getCrudIntakeController");
-        NavigationController instance = new NavigationController();
-        instance.getCrudIntakeController();
+        //NavigationController instance = new NavigationController();
+        //instance.getCrudIntakeController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -62,8 +62,8 @@ public class NavigationControllerTest {
     @Test
     public void testGetCrudMoodController() {
         System.out.println("getCrudMoodController");
-        NavigationController instance = new NavigationController();
-        instance.getCrudMoodController();
+        //NavigationController instance = new NavigationController();
+        //instance.getCrudMoodController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -74,7 +74,7 @@ public class NavigationControllerTest {
     @Test
     public void testGetLoginController() {
         System.out.println("getLoginController");
-        NavigationController instance = new NavigationController();
+        //NavigationController instance = new NavigationController();
         //instance.getLoginController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -86,8 +86,8 @@ public class NavigationControllerTest {
     @Test
     public void testGetNotificationController() {
         System.out.println("getNotificationController");
-        NavigationController instance = new NavigationController();
-        instance.getNotificationController();
+        //NavigationController instance = new NavigationController();
+        //instance.getNotificationController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -98,8 +98,8 @@ public class NavigationControllerTest {
     @Test
     public void testGetStatisticController() {
         System.out.println("getStatisticController");
-        NavigationController instance = new NavigationController();
-        instance.getStatisticController();
+        //NavigationController instance = new NavigationController();
+        //instance.getStatisticController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -110,8 +110,8 @@ public class NavigationControllerTest {
     @Test
     public void testGetFoodRecController() {
         System.out.println("getFoodRecController");
-        NavigationController instance = new NavigationController();
-        instance.getFoodRecController();
+        //NavigationController instance = new NavigationController();
+        //instance.getFoodRecController();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

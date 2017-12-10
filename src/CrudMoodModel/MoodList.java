@@ -7,6 +7,7 @@
 package CrudMoodModel;
 
 import CrudUserProfileController.LoginController;
+import CrudUserProfileModel.User;
 import Serializable.SerializedDataCntl;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,22 +26,25 @@ public class MoodList
     Scanner in;
     ArrayList<Mood> parentMoodList;
     Mood newMood;
+    User currentUser;
     ArrayList<Integer> moodRowsFound;
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-mood.ser";
+    public static String STORAGE_FILE_PATH = "";
     
-    public MoodList() 
+    public MoodList(User currentUser) 
     {
+        this.currentUser = currentUser;
+        this.STORAGE_FILE_PATH = "data/" + this.currentUser.getEmail() + "-mood.ser";
         this.parentMoodList = SerializedDataCntl.getSerializedDataCntl().getMoodList();
         if (this.parentMoodList.isEmpty()) 
         {
-            buildTestDrinkList();
+            buildTestMoodList();
         }
     }
     
-    public void buildTestDrinkList()
+    public void buildTestMoodList()
     {
         this.parentMoodList = new ArrayList();
         
@@ -86,7 +90,7 @@ public class MoodList
     {
         if(this.parentMoodList == null)
         {
-            this.buildTestDrinkList();
+            this.buildTestMoodList();
         }
         
         return parentMoodList;

@@ -35,7 +35,7 @@ public class LoginController {
     NavigationController theNavigationController;
     UserList theUserList;
     
-    private static String CUR_USERNAME;
+    private String CUR_USERNAME;
     
     /**
      * Creates LoginController
@@ -56,7 +56,7 @@ public class LoginController {
         this.theLoginView.setVisible(true);
     }
     
-    public static String getCurrentUser() {
+    public String getCurrentUser() {
         return CUR_USERNAME.toLowerCase();
     }
     
@@ -69,7 +69,7 @@ public class LoginController {
         boolean auth = theUserList.authenticate(emailToCheck, passwordToCheck);
 
         if (auth) {
-            CUR_USERNAME = emailToCheck;
+            this.CUR_USERNAME = emailToCheck;
         }
 
         return auth;

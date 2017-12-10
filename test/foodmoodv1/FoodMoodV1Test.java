@@ -39,8 +39,8 @@ public class FoodMoodV1Test {
     @Test
     public void testMain() {
         System.out.println("main");
-        NavigationController theNavigationController = new NavigationController();
-        theNavigationController.requestNavigationView();
+       // NavigationController theNavigationController = new NavigationController();
+        //theNavigationController.requestNavigationView();
     }
     
 }

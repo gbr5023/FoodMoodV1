@@ -32,7 +32,7 @@ public class CrudMoodController
     public CrudMoodController(User currentUser)
     {
         System.out.println("CrudMoodController instantiated.");
-        this.theMoodList = new MoodList();
+        this.theMoodList = new MoodList(currentUser);
         theIntake = "";
         this.currentUser= currentUser;
     }

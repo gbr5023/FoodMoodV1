@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class NotificationControllerTest 
 {
-    NavigationController theNavigationController = new NavigationController();
+    //NavigationController theNavigationController = new NavigationController();
     
     public NotificationControllerTest() {
     }
@@ -43,8 +43,8 @@ public class NotificationControllerTest
     @Test
     public void testRequestNavigationView() {
         System.out.println("requestNavigationView");
-        NotificationController instance = new NotificationController();
-        instance.requestNavigationView();
+        //NotificationController instance = new NotificationController();
+        //instance.requestNavigationView();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }

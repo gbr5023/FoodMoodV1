@@ -37,9 +37,8 @@ public class CrudIntakeController{
     {
         this.currentUser = currentUser;
         System.out.println("CrudIntakeController instantiated.");    
-        this.theFoodList = new FoodList();
-        this.theDrinkList = new DrinkList();
-        this.theCrudMoodController = new CrudMoodController(currentUser);
+        this.theFoodList = new FoodList(currentUser);
+        this.theDrinkList = new DrinkList(currentUser);
         theIntake = "";
     }
     
@@ -59,6 +58,7 @@ public class CrudIntakeController{
     {
         System.out.println("Made it to CrudIntakeController.");
         this.theNavigationController = parentNavigationController;
+        this.theCrudMoodController = this.theNavigationController.requestCrudMoodController();
         this.requestCrudIntakeView();
     }
     

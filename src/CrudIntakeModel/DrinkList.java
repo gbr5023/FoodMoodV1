@@ -7,6 +7,7 @@
 package CrudIntakeModel;
 
 import CrudUserProfileController.LoginController;
+import CrudUserProfileModel.User;
 import Serializable.SerializedDataCntl;
 import java.util.ArrayList;
 
@@ -25,14 +26,17 @@ public class DrinkList
     Scanner in;
     ArrayList<Drink> parentDrinkList;
     Drink newDrink;
+    User currentUser;
     ArrayList<Integer> drinkRowsFound;
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-drink.ser";
+    public static String STORAGE_FILE_PATH = "";
 
-    public DrinkList() 
+    public DrinkList(User currentUser) 
     {
+        this.currentUser = currentUser;
+        this.STORAGE_FILE_PATH = "data/" + this.currentUser.getEmail() + "-drink.ser";
         this.parentDrinkList = SerializedDataCntl.getSerializedDataCntl().getDrinkList();
         if (this.parentDrinkList.isEmpty()) 
         {

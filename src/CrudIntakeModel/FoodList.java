@@ -7,6 +7,7 @@
 package CrudIntakeModel;
 
 import CrudUserProfileController.LoginController;
+import CrudUserProfileModel.User;
 import Serializable.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,15 +26,18 @@ public class FoodList
     Scanner in;
     ArrayList<Food> parentFoodList;
     Food newFood;
+    User currentUser;
     ArrayList<Integer> foodRowsFound;
     ArrayList<Integer> foodCategoryRowsFound;
     final String COMMA_DELIMITER = ",";
     int readCount = 0;
     
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-food.ser";
+    public static String STORAGE_FILE_PATH = "";
 
-    public FoodList() 
+    public FoodList(User currentUser) 
     {
+        this.currentUser = currentUser;
+        this.STORAGE_FILE_PATH = "data/" + this.currentUser.getEmail() + "-food.ser";
         this.parentFoodList = SerializedDataCntl.getSerializedDataCntl().getFoodList();
         if (this.parentFoodList.isEmpty()) 
         {

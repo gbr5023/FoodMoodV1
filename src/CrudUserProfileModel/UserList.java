@@ -17,6 +17,7 @@ public class UserList
 {
     public static String STORAGE_FILE_PATH = "data/users.ser";
     private ArrayList<User> theListOfUsers;
+    User currentUser = new User();
     
     public UserList() {
         theListOfUsers = SerializedDataCntl.getSerializedDataCntl().getUserList();
@@ -26,8 +27,16 @@ public class UserList
         }
     }
     
-    public User getUserByEmail(String str) {
-        return theListOfUsers.get(theListOfUsers.indexOf(str));
+    public User getUserByEmail(String str) 
+    {
+        for(int i = 0; i < this.theListOfUsers.size(); i++)
+        {
+            if(this.theListOfUsers.get(i).getEmail().equalsIgnoreCase(str))
+            {
+                this.currentUser = theListOfUsers.get(i);
+            }
+        }
+        return currentUser;
     }
 
     public ArrayList<User> getListOfUsers() {
