@@ -20,10 +20,15 @@ public class DrinkTable extends AbstractTableModel
     
     /**
      *
-     * @param theEventList
+     * @param theDrinkListClass
      */
     public DrinkTable(DrinkList theDrinkListClass) {
-        theDrinkListData = theDrinkListClass.getListOfDrinks();
+        theDrinkListData = theDrinkListClass.getParentDrinkList();
+    }
+    
+    public void updeate()
+    {
+        super.fireTableDataChanged();
     }
     
     @Override

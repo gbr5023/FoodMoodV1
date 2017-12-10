@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * add search functionality
  */
 package CrudIntakeController;
 
@@ -17,24 +15,48 @@ import javax.swing.table.TableModel;
  * @author michaelcavallaro
  */
 public class CrudIntakeController{
-    private CrudIntakeView theCrudIntakeView;
     NavigationController theNavigationController;
+    private CrudIntakeView theCrudIntakeView;
     FoodList theFoodList;
     DrinkList theDrinkList;
+    FoodTable theFoodTable;
+    DrinkTable theDrinkTable;
+    ArrayList<Integer> foodRowsFound;
+    ArrayList<Integer> drinkRowsFound;
     
     /**
-     * Constructs a new empty CrudIntakeController
-     * @param parentNavigationController This is the original NavigationController object
+     * Creates CrudIntakeController, FoodList, and DrinkList
      */
     
-    public CrudIntakeController(NavigationController parentNavigationController)
+    public CrudIntakeController()
     {
-        System.out.println("Made it to CrudIntakeController.");
-        this.theNavigationController = parentNavigationController;      
-        this.theDrinkList = new DrinkList();
+        System.out.println("CrudIntakeController instantiated.");    
         this.theFoodList = new FoodList();
+        this.theDrinkList = new DrinkList();
     }
     
+    /**
+     * Returns parent NavigationController class
+     * @return theNavigationController
+     */
+    public NavigationController getParentNavigationController() {
+        return this.theNavigationController;
+    }
+    
+    /**
+     * Sets parent NavigationController, requests CrudIntakeView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
+    {
+        System.out.println("Made it to CrudIntakeController.");
+        this.theNavigationController = parentNavigationController;
+        this.requestCrudIntakeView();
+    }
+    
+    /**
+     * Creates CrudIntakeView
+     */
     public void requestCrudIntakeView()
     {
         this.theCrudIntakeView = new CrudIntakeView(this);
@@ -44,56 +66,101 @@ public class CrudIntakeController{
         this.theCrudIntakeView.setVisible(true);
     }
     
-    public void addFood(Food f)
-    {
-        this.theFoodList.add(f);
-    }
-    
+    /**
+     * Return parent ArrayList of Food
+     * @return ArrayList
+     */
     public ArrayList getListOfFoods()
     {
-        return this.theFoodList.getListOfFoods();
+        return this.theFoodList.getParentFoodList();
     }
     
-    public FoodList getFoodListClass()
+    /**
+     * Return parent ArrayList of Drink
+     * @return ArrayList
+     */
+    public ArrayList getListOfDrinks()
     {
-        return this.theFoodList;
+        return this.theDrinkList.getParentDrinkList();
     }
     
+    /**
+     * Update ArrayList of Food
+     * @param updatedListOfFoods 
+     */
     public void setListOfFoods(ArrayList<Food> updatedListOfFoods)
     {
         this.theFoodList.setListOfFoods(updatedListOfFoods);
     }
     
-    public void addDrink(Drink d)
-    {
-        this.theDrinkList.add(d);
-    }
-    
-    public ArrayList getListOfDrinks()
-    {
-        return this.theDrinkList.getListOfDrinks();
-    }
-    
-    public DrinkList getDrinkListClass()
-    {
-        return this.theDrinkList;
-    }
-    
+    /**
+     * Update ArrayList of Drink
+     * @param updatedListOfDrinks 
+     */
     public void setListOfDrinks(ArrayList<Drink> updatedListOfDrinks)
     {
         this.theDrinkList.setListOfDrinks(updatedListOfDrinks);
     }
     
+    /**
+     * Returns TableModel of FoodList for StatisticView
+     * @return TableModel
+     */
     public TableModel getFoodListTableModel() 
     {
-        return new FoodTable(this.theFoodList);
+        this.theFoodTable = new FoodTable(this.theFoodList);
+        
+        return this.theFoodTable;
     }
     
+    /**
+     * Returns TableModel of DrinkList for StatisticView
+     * @return TableModel
+     */
     public TableModel getDrinkListTableModel()
     {
-        return new DrinkTable(this.theDrinkList);
+        this.theDrinkTable = new DrinkTable(this.theDrinkList);
+        
+        return this.theDrinkTable;
     }
 
+    /**
+     * Update Food and Drink TableModels
+     */
+    public void updateTableModel()
+    {
+        this.theFoodTable.update();
+        this.theDrinkTable.updeate();
+    }
+    
+    public boolean requestSearchFoodList(String foodToSearch)
+    {
+        boolean searchedFoodFound = this.theFoodList.requestSearchFoodList(foodToSearch);
+        
+        return searchedFoodFound;
+    }
+    
+    public boolean requestSearchDrinkList(String drinkToSearch)
+    {
+        boolean searchedDrinkFound = this.theDrinkList.requestSearchDrinkList(drinkToSearch);
+        
+        return searchedDrinkFound;
+    }
+    
+    public ArrayList<Integer> getListOfFoodRowsFound()
+    {
+        this.foodRowsFound = this.theFoodList.getListOfFoodRowsFound();
+        
+        return this.foodRowsFound;
+    }
+    
+    public ArrayList<Integer> getListOfDrinkRowsFound()
+    {
+        this.drinkRowsFound = this.theDrinkList.getListOfDrinkRowsFound();
+        
+        return this.drinkRowsFound;
+    }
+    
     /**
      * Calls the original NavigationView GUI
      */
@@ -102,26 +169,4 @@ public class CrudIntakeController{
         this.theCrudIntakeView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     }   
-
-    public Food getFood(int row) {
-        return this.theFoodList.get(row);
-    }
-    
-    public Drink getDrink(int row){
-        return this.theDrinkList.get(row);
-    }
-
-    public NavigationController getParentNavigationController() {
-        return this.theNavigationController;
-    }
-
-    public void deleteFood(Food theFood) 
-    {
-        this.theFoodList.delete(theFood);
-    } 
-    
-    public void deleteDrink(Drink theDrink)
-    {
-        this.theDrinkList.delete(theDrink);
-    }
 }

@@ -20,10 +20,15 @@ public class FoodTable extends AbstractTableModel
     
     /**
      *
-     * @param theEventList
+     * @param theFoodListClass
      */
     public FoodTable(FoodList theFoodListClass) {
-        theFoodListData = theFoodListClass.getListOfFoods();
+        theFoodListData = theFoodListClass.getParentFoodList();
+    }
+    
+    public void update()
+    {
+        super.fireTableDataChanged();
     }
 
     @Override

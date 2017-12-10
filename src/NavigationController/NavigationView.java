@@ -132,6 +132,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void intakeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intakeButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getCrudIntakeController();     
     }//GEN-LAST:event_intakeButtonActionPerformed
 
@@ -141,6 +142,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void moodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getCrudMoodController();
     }//GEN-LAST:event_moodButtonActionPerformed
 
@@ -150,6 +152,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getUserProfileController();
     }//GEN-LAST:event_profileButtonActionPerformed
 
@@ -159,6 +162,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void notificationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getNotificationController();
     }//GEN-LAST:event_notificationButtonActionPerformed
 
@@ -168,6 +172,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void statisticButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getStatisticController();
     }//GEN-LAST:event_statisticButtonActionPerformed
 
@@ -177,6 +182,7 @@ public class NavigationView extends javax.swing.JFrame
      */
     private void foodRecButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodRecButtonActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
         this.parentNavigationController.getFoodRecController();
     }//GEN-LAST:event_foodRecButtonActionPerformed
 

@@ -5,6 +5,7 @@
  */
 package CrudMoodModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author hmk5180
  */
-public class Mood 
+public class Mood implements Serializable
 {
     public String mood;
     public List<Mood> moodList;
@@ -77,5 +78,12 @@ public class Mood
      */
     public void deleteMood(int index) {
         moodList.remove(index);
+    }
+    
+    public String getMoodDetails()
+    {
+        String moodDetails = "Mood: " + this.getMood();
+        
+        return moodDetails;
     }
 }

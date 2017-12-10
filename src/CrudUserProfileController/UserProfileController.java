@@ -8,19 +8,8 @@ import CrudIntakeView.CrudIntakeView;
 import CrudMoodView.CrudMoodView;
 import CrudUserProfileModel.*;
 import CrudUserProfileView.*;
-import DatabaseController.*;
 import NavigationController.NavigationController;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,20 +18,42 @@ import javax.swing.JOptionPane;
 public class UserProfileController {
     NavigationController theNavigationController;
     UserProfileView theUserProfileView;
+    
     /**
-     * Constructs an empty LoginController
-     * @param  parentNavigationController the original NavigationController object
+     * Creates UserProfileController
      */
-    public UserProfileController(NavigationController parentNavigationController)
+    public UserProfileController()
     {
-        System.out.println("Made it to UserProfileController.");
-        this.theNavigationController = parentNavigationController;
+        System.out.println("UserProfileController instantiated.");
     }
     
+    /**
+     * Returns parent NavigationController class
+     * @return theNavigationController
+     */
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
+    }
+    
+    /**
+     * Sets parent NavigationController, requests UserProfileView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
+    {
+        System.out.println("Made it to UserProfileController");
+        this.theNavigationController = parentNavigationController;
+        this.requestUserProfileView();
+    }
+    
+    /**
+     * Creates UserProfileView
+     */
     public void requestUserProfileView()
     {
         theUserProfileView = new UserProfileView(this);
-        theUserProfileView.setTitle("Login");
+        theUserProfileView.setTitle("User Profile");
         theUserProfileView.setLocationRelativeTo(null);
         theUserProfileView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         theUserProfileView.setVisible(true);
@@ -56,10 +67,4 @@ public class UserProfileController {
         this.theUserProfileView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
-    
-    public NavigationController getParentNavigationController() 
-    {
-        return this.theNavigationController;
-    }
-    
 }

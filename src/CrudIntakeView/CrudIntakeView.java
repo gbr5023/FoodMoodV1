@@ -151,7 +151,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
         String tscField = String.valueOf(intakeTSCTF.getText());
         f = new Food(nameField, weightField, tscField);
-        this.theCrudIntakeController.addFood(f);
+        this.theCrudIntakeController.getListOfFoods().add(f);
         System.out.println(f.getName() + " " + f.getWeight() + " " + f.getTimeSinceLastConsumed() + " was added.");
         intakeNameTF.setText("");
         intakeWeightTF.setText("");
@@ -164,7 +164,7 @@ public class CrudIntakeView extends javax.swing.JFrame
         Double weightField = Double.parseDouble(intakeWeightTF.getText());
         String tscField = String.valueOf(intakeTSCTF.getText());
         d = new Drink(nameField, weightField, tscField);
-        this.theCrudIntakeController.addDrink(d);
+        this.theCrudIntakeController.getListOfDrinks().add(d);
         System.out.println(d.getName() + " " + d.getWeight() + " " + d.getTimeSinceLastConsumed() + " was added.");
         intakeNameTF.setText("");
         intakeWeightTF.setText("");

@@ -43,7 +43,7 @@ public class StatisticControllerTest {
     @Test
     public void testRequestNavigationView() {
         System.out.println("requestNavigationView");
-        StatisticController instance = new StatisticController(theNavigationController);
+        StatisticController instance = new StatisticController();
         instance.requestNavigationView();
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

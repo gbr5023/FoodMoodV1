@@ -6,11 +6,8 @@
 
 package NotificationController;
 
-import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
 import NotificationView.NotificationView;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import javax.swing.JFrame;
 
 /**
@@ -24,14 +21,34 @@ public class NotificationController
     
     /**
      * Constructs a new NotificationController
-     * @param parentNavigationController This is the original NavigationController object
      */
-    public NotificationController(NavigationController parentNavigationController)
+    public NotificationController()
     {
-        System.out.println("Made it to NotificationController.");
-        this.theNavigationController = parentNavigationController;   
+        System.out.println("NotificationController instantiated.");
     }
     
+    /**
+     * Returns parent NavigationController class
+     * @return theNavigationController
+     */
+    public NavigationController getParentNavigationController() {
+        return this.theNavigationController;
+    }
+    
+    /**
+     * Sets parent NavigationController, requests NotificationView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
+    {
+        System.out.println("Made it to NotificationController.");
+        this.theNavigationController = parentNavigationController;
+        this.requestNotificationView();
+    }
+    
+    /**
+     * Creates NotificationView
+     */
     public void requestNotificationView()
     {
         this.theNotificationView = new NotificationView(this);
@@ -49,9 +66,4 @@ public class NotificationController
         this.theNotificationView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
-    
-    public NavigationController getParentNavigationController() 
-    {
-        return this.theNavigationController;
-    }
 }

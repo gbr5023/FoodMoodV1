@@ -15,12 +15,13 @@ import java.util.ArrayList;
  */
 public class UserList 
 {
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + "users.ser";
+    public static String STORAGE_FILE_PATH = "data/users.ser";
     private ArrayList<User> theListOfUsers;
     
     public UserList() {
         theListOfUsers = SerializedDataCntl.getSerializedDataCntl().getUserList();
-        if (theListOfUsers.isEmpty()) {
+        if (theListOfUsers.isEmpty()) 
+        {
             buildTestUserList();
         }
     }

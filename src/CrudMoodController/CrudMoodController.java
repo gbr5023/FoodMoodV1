@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * add search functionality
  */
 package CrudMoodController;
 
@@ -9,10 +7,7 @@ import CrudMoodModel.Mood;
 import CrudMoodModel.MoodList;
 import CrudMoodModel.MoodTable;
 import CrudMoodView.CrudMoodView;
-import DatabaseController.DatabaseController;
 import NavigationController.NavigationController;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
@@ -23,20 +18,44 @@ import javax.swing.table.TableModel;
  */
 public class CrudMoodController 
 {
-    private CrudMoodView theCrudMoodView;
     NavigationController theNavigationController;
+    private CrudMoodView theCrudMoodView;
     MoodList theMoodList;
+    MoodTable theMoodTable;
+    ArrayList<Integer> moodRowsFound;
+    
     /**
-     * Constructs a new empty CrudIntakeController
-     * @param parentNavigationController This is the original NavigationController object
+     * Creates CrudIntakeController and MoodList
      */
-    public CrudMoodController(NavigationController parentNavigationController)
+    public CrudMoodController()
     {
-        System.out.println("Made it to CrudMoodController");
-        this.theNavigationController = parentNavigationController;
+        System.out.println("CrudMoodController instantiated.");
         this.theMoodList = new MoodList();
     }
     
+    /**
+     * Returns parent NavigationController class
+     * @return theNavigationController
+     */
+    public NavigationController getParentNavigationController() 
+    {
+        return this.theNavigationController;
+    }
+    
+    /**
+     * Sets parent NavigationController, requests CrudMoodView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
+    {
+        System.out.println("Made it to CrudMoodController");
+        this.theNavigationController = parentNavigationController;
+        this.requestCrudMoodView();
+    }
+    
+    /**
+     * Creates CrudMoodView
+     */
     public void requestCrudMoodView()
     {
         this.theCrudMoodView = new CrudMoodView(this);
@@ -46,29 +65,54 @@ public class CrudMoodController
         this.theCrudMoodView.setVisible(true);
     }
     
-    public void addMood(Mood m)
-    {
-        this.theMoodList.add(m);
-    }
-    
+    /**
+     * Return parent ArrayList of Mood
+     * @return ArrayList
+     */
     public ArrayList getListOfMoods()
     {
-        return this.theMoodList.getListOfMoods();
+        return this.theMoodList.getParentMoodList();
     }
     
-    public MoodList getMoodListClass()
-    {
-        return this.theMoodList;
-    }
-    
+    /**
+     * Update ArrayList of Mood
+     * @param updatedListOfMoods 
+     */
     public void setListOfMoods(ArrayList<Mood> updatedListOfMoods)
     {
         this.theMoodList.setListOfMoods(updatedListOfMoods);
     }
        
+    /**
+     * Return TableModel of MoodList for StatisticView
+     * @return TableModel
+     */
     public TableModel getMoodListTableModel() 
     {
-        return new MoodTable(this.theMoodList);
+        this.theMoodTable = new MoodTable(this.theMoodList);
+        
+        return this.theMoodTable;
+    }
+    
+    /**
+     * Update Mood TableModel
+     */
+    public void updateTableModel()
+    {
+        this.theMoodTable.update();
+    }
+    
+    public boolean requestSearchMoodList(String moodToSearch)
+    {
+        boolean searchedMoodFound = this.theMoodList.requestSearchMoodList(moodToSearch);
+        return searchedMoodFound;
+    }
+    
+    public ArrayList<Integer> getListOfMoodRowsFound()
+    {
+        this.moodRowsFound = this.theMoodList.getListOfMoodRowsFound();
+        
+            return this.moodRowsFound;
     }
     
     /**
@@ -79,9 +123,4 @@ public class CrudMoodController
         this.theCrudMoodView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
-    
-    public NavigationController getParentNavigationController() 
-    {
-        return this.theNavigationController;
-    }
 }

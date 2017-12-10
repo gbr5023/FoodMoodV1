@@ -173,7 +173,12 @@ public class RegisterView extends javax.swing.JFrame{
                     if(registerUser) 
                     {
                         outputLabel.setForeground(Color.green.darker());
-                        outputLabel.setText("User created successfully");
+                        outputLabel.setText("User created successfully. Click Back to return to Login");
+                        this.firstNameField.setText("");
+                        this.lastNameField.setText("");
+                        this.emailField.setText("");
+                        this.passwordField.setText("");
+                        this.confirmField.setText("");
                     } 
                     else 
                     {

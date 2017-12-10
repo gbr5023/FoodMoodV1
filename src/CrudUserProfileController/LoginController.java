@@ -37,47 +37,31 @@ public class LoginController {
     private static String CUR_USERNAME;
     
     /**
-     * Constructs an empty LoginController
-     * @param  parentNavigationController the original NavigationController object
+     * Creates LoginController
      */
     public LoginController()
     {
         System.out.println("Made it to the LoginController)");
+        this.theUserList = new UserList();
+        this.requestLoginView();
+    }
+    
+    public void requestLoginView()
+    {
         this.theLoginView = new LoginView(this);
         this.theLoginView.setTitle("Login");
         this.theLoginView.setLocationRelativeTo(null);
         this.theLoginView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.theLoginView.setVisible(true);
-        this.theUserList = new UserList();
     }
     
     public static String getCurrentUser() {
         return CUR_USERNAME.toLowerCase();
     }
     
-    /**
-     * Constructs a new LoginController given a User Model and a LoginView
-     * @param model This is the User local object
-     * @param view This is the LoginView local object
-     */
-    public LoginController(User model, LoginView view) {
-        this.model = model;
-        this.theLoginView = view;
-        
-        
-    }
-    /**
-     * Calls the original NavigationView GUI
-     */
-    public void requestLoginView()
+    public void requestNavigationController() 
     {
-        this.theLoginView.setVisible(true);
-    }
-    
-    public void requestNavigationController() {
-        this.theLoginView.setVisible(false);
         this.theNavigationController = new NavigationController();
-        this.theNavigationController.requestNavigationView();
     }
     
     public boolean requestAuthenticate(String emailToCheck, char[] passwordToCheck) {
@@ -91,7 +75,6 @@ public class LoginController {
     }
 
     public void requestRegisterView() {
-        theLoginView.setVisible(false);
         this.theRegisterView = new RegisterView(this);
         this.theRegisterView.setTitle("Registration");
         this.theRegisterView.setLocationRelativeTo(null);

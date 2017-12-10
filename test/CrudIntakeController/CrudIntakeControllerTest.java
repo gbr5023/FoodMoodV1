@@ -42,8 +42,8 @@ public class CrudIntakeControllerTest {
   @Test
     public void testRequestControllerView() {
         System.out.println("requestIntakeView");
-        CrudIntakeController controller = new CrudIntakeController(n);
-        controller.requestNavigationView();
+        CrudIntakeController controller = new CrudIntakeController();
+        controller.requestCrudIntakeView();
         
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");

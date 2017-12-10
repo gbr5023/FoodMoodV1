@@ -7,8 +7,12 @@
 package CrudIntakeModel;
 
 import CrudUserProfileController.LoginController;
-import Serializable.SerializedDataCntl;
+import Serializable.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -16,97 +20,120 @@ import java.util.ArrayList;
  */
 public class FoodList 
 {
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-food.ser";
-    private ArrayList<Food> theListOfFoods;
+    URL foodFileURL;
+    File foodFile;
+    Scanner in;
+    ArrayList<Food> parentFoodList;
+    Food newFood;
+    ArrayList<Integer> foodRowsFound;
+    ArrayList<Integer> foodCategoryRowsFound;
+    final String COMMA_DELIMITER = ",";
+    int readCount = 0;
+    
+    public static String STORAGE_FILE_PATH = "data/" + LoginController.getCurrentUser() +"-food.ser";
 
-    public FoodList() {
-        theListOfFoods = SerializedDataCntl.getSerializedDataCntl().getFoodList();
-        if (this.theListOfFoods.isEmpty()) {
-            buildTestFoodList();
+    public FoodList() 
+    {
+        this.parentFoodList = SerializedDataCntl.getSerializedDataCntl().getFoodList();
+        if (this.parentFoodList.isEmpty()) 
+        {
+            readFoodFile();
         }
     }
     
-    public ArrayList<Food> getListOfFoods() {
-        if (this.theListOfFoods == null) {
-            buildTestFoodList();
-        }
-        return this.theListOfFoods;
-    }
+    public void readFoodFile() 
+    {
+        this.parentFoodList = new ArrayList<>();
+        
+        try
+        {
+            this.foodFileURL = getClass().getResource("Food.csv");
+            this.foodFile = new File(this.foodFileURL.getPath());
+            
+            boolean cont = true;
+            in = new Scanner(this.foodFile);
 
-    public void save() {
-        SerializedDataCntl.getSerializedDataCntl().setList(theListOfFoods, STORAGE_FILE_PATH);
-    }
-
-    public void setListOfFoods(ArrayList<Food> theFoodList) {
-        theListOfFoods = theFoodList;
-    }
-
-    public void buildTestFoodList() {
-        this.theListOfFoods = new ArrayList();
-
-        // Not using add() method in order to save time saving
-        theListOfFoods.add(new Food("Hamburger", 5, "14 hr"));
-        theListOfFoods.add(new Food("Spaghetti", 16, "5 hr"));
-        theListOfFoods.add(new Food("Sandwich", 3, "30 min"));
-        theListOfFoods.add(new Food("Strawberries", 8, "2 min"));
-
-        System.out.println();
-        System.out.println("For testing purposes: ");
-        for (int i = 0; i < this.theListOfFoods.size(); i++) {
-            System.out.println(this.theListOfFoods.get(i).getName() + ", Weight: "
-                    + this.theListOfFoods.get(i).getWeight() + ", Time Since Last Consumed: "
-                    + this.theListOfFoods.get(i).getTimeSinceLastConsumed());
-        }
-
-        save();
-    }
-
-    public void add(Food theFoodToAdd) {
-        theListOfFoods.add(theFoodToAdd);
-        save();
-    }
-
-    /* just copied from UserList class, but use the same logic to search for foods */
-    public int searchFoodName(String nameToSearch) {
-        for (int i = 0; i < this.theListOfFoods.size(); i++) {
-            if (this.theListOfFoods.get(i).getName().toLowerCase().contains(nameToSearch.toLowerCase())) {
-                return i;
+            while(cont == true)
+            {
+                if(in.hasNext())
+                {
+                    String temp = in.nextLine();
+                    String[] newF = temp.split(COMMA_DELIMITER);
+                    
+                    if (newF.length > 0) {
+                        this.newFood = new Food(newF[0], Double.valueOf(newF[1]), newF[2]);
+                        this.parentFoodList.add(this.newFood);
+                    }
+                }
+                else
+                {
+                    cont = false;
+                    System.out.println("Reading food file done.");
+                }   
             }
+            SerializedDataCntl.getSerializedDataCntl().setList(this.parentFoodList, STORAGE_FILE_PATH);
+            //printParentFoodList();
         }
-
-        return -1;
+        catch(FileNotFoundException fnfe)
+        {
+            System.out.println(fnfe.getMessage());
+        }
+        catch(Exception err)
+        {
+            
+            System.out.println(err.getMessage());
+        }
     }
-
-    public int searchFoodWeight(double weightToSearch) {
-        boolean weightMatch;
-
-        for (int i = 0; i < this.theListOfFoods.size(); i++) {
-            weightMatch = this.theListOfFoods.get(i).getWeight() == weightToSearch;
-            if (weightMatch) {
-                return i;
+    
+    public ArrayList<Food> getParentFoodList()
+    {
+        if(this.parentFoodList == null)
+        {
+            this.readFoodFile();
+        }
+        
+        return parentFoodList;
+    }
+    
+    public void setListOfFoods(ArrayList<Food> theListOfFoods) 
+    {
+        this.parentFoodList = theListOfFoods;
+    }
+    
+    public void printParentFoodList()
+    {
+        for(int i = 0; i < parentFoodList.size(); i++)
+        {
+            System.out.println(parentFoodList.get(i).getFoodDetails());
+        }
+        System.out.println(parentFoodList.size());
+    }
+    
+    public boolean requestSearchFoodList(String foodToSearch)
+    {
+        boolean searchedFoodFound;
+        int foodsFound = 0;        
+        this.foodRowsFound = new ArrayList();
+        foodToSearch = foodToSearch.toLowerCase();
+        
+        for(int i = 0; i < this.parentFoodList.size(); i++)
+        {
+            String foodName = this.parentFoodList.get(i).getName().toLowerCase();
+            
+            if(foodName.contains(foodToSearch) || foodName.equalsIgnoreCase(foodToSearch))
+            {
+                foodsFound++;
+                this.foodRowsFound.add(i);
             }
-        }
-
-        return -1;
+        }    
+        
+        searchedFoodFound = foodsFound > 0;
+        
+        return searchedFoodFound;
     }
-
-    public int searchTimeSinceLastConsumed(String timeSinceLastConsumedToSearch) {
-        for (int i = 0; i < this.theListOfFoods.size(); i++) {
-            if (this.theListOfFoods.get(i).getTimeSinceLastConsumed().toLowerCase().contains(timeSinceLastConsumedToSearch.toLowerCase())) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    public void delete(Food theFoodToDelete) {
-        boolean removed = theListOfFoods.remove(theFoodToDelete);
-        System.out.println("REMOVED : " + removed);
-        save();
-    }
-
-    public Food get(int theFoodID) {
-        return theListOfFoods.get(theFoodID);
+    
+    public ArrayList<Integer> getListOfFoodRowsFound()
+    {
+        return this.foodRowsFound;
     }
 }

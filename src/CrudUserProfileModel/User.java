@@ -6,13 +6,14 @@
 
 package CrudUserProfileModel;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  *
  * @author Gisward
  */
-public class User 
+public class User implements Serializable
 {
     private int ID;
     private String firstName;

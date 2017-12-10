@@ -24,15 +24,35 @@ public class StatisticController
     StatisticView theStatisticView;
     
     /**
-     * Constructs a new StatisticController
-     * @param parentNavigationController This is the original NavigationController object
+     * Creates StatisticController
      */
-    public StatisticController(NavigationController parentNavigationController)
+    public StatisticController()
+    {
+        System.out.println("StatisticController instantiated.");
+    }
+    
+    /**
+     * Returns parent NavigationController class
+     * @return theNavigationController
+     */
+    public NavigationController getParentNavigationController() {
+        return this.theNavigationController;
+    }
+    
+    /**
+     * Sets parent NavigationController, requests StatisticView
+     * @param parentNavigationController 
+     */
+    public void setParentNavigationController(NavigationController parentNavigationController)
     {
         System.out.println("Made it to StatisticController.");
         this.theNavigationController = parentNavigationController;
+        this.requestStatisticView();
     }
     
+    /**
+     * Creates StatisticView
+     */
     public void requestStatisticView()
     {
         theStatisticView = new StatisticView(this, this.theNavigationController);
@@ -50,9 +70,4 @@ public class StatisticController
         this.theStatisticView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
-    
-    public NavigationController getParentNavigationController() 
-    {
-        return this.theNavigationController;
-    }
 }

@@ -41,7 +41,7 @@ public class FoodRecControllerTest
     @Test
     public void testRequestNavigationView() {
         System.out.println("requestNavigationView");
-        FoodRecController instance = new FoodRecController(theNavigationController);
+        FoodRecController instance = new FoodRecController();
         this.theNavigationController = theNavigationController;
         instance.requestNavigationView();
         // TODO review the generated test code and remove the default call to fail.

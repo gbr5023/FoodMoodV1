@@ -8,7 +8,11 @@ package CrudMoodModel;
 
 import CrudUserProfileController.LoginController;
 import Serializable.SerializedDataCntl;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -16,74 +20,119 @@ import java.util.ArrayList;
  */
 public class MoodList 
 {
-    public static String STORAGE_FILE_PATH = SerializedDataCntl.EXTERNAL_DATA_PATH + LoginController.getCurrentUser() + "-mood.ser";
+    URL moodFileURL;
+    File moodFile;
+    Scanner in;
+    ArrayList<Mood> parentMoodList;
+    Mood newMood;
+    ArrayList<Integer> moodRowsFound;
+    final String COMMA_DELIMITER = ",";
+    int readCount = 0;
     
-    private ArrayList<Mood> theListOfMoods;
+    public static String STORAGE_FILE_PATH = "data/" + LoginController.getCurrentUser() +"-mood.ser";
 
-    public MoodList() {
-        theListOfMoods = SerializedDataCntl.getSerializedDataCntl().getMoodList();
-        if (this.theListOfMoods.isEmpty()) {
-            buildTestMoodList();
+    public MoodList() 
+    {
+        this.parentMoodList = SerializedDataCntl.getSerializedDataCntl().getMoodList();
+        if (this.parentMoodList.isEmpty()) 
+        {
+            readMoodFile();
         }
     }
     
-    public ArrayList<Mood> getListOfMoods() {
-        if (this.theListOfMoods == null) {
-            buildTestMoodList();
-        }
-        return this.theListOfMoods;
-    }
+    public void readMoodFile() 
+    {
+        this.parentMoodList = new ArrayList<>();
+        
+        try
+        {
+            this.moodFileURL = getClass().getResource("Mood.csv");
+            this.moodFile = new File(this.moodFileURL.getPath());
+            
+            boolean cont = true;
+            in = new Scanner(this.moodFile);
 
-
-    public void save() {
-        SerializedDataCntl.getSerializedDataCntl().setList(theListOfMoods, STORAGE_FILE_PATH);
-    }
-
-    public void setListOfMoods(ArrayList<Mood> theMoodList) {
-        theListOfMoods = theMoodList;
-    }
-
-    public void buildTestMoodList() {
-        this.theListOfMoods = new ArrayList();
-
-        // Not using add() method in order to save time saving
-        theListOfMoods.add(new Mood("sleepy"));
-        theListOfMoods.add(new Mood("hyper"));
-        theListOfMoods.add(new Mood("exhausted"));
-        theListOfMoods.add(new Mood("happy"));
-
-        System.out.println();
-        System.out.println("For testing purposes: ");
-        for (int i = 0; i < this.theListOfMoods.size(); i++) {
-            System.out.println(this.theListOfMoods.get(i).getMood());
-        }
-
-        save();
-    }
-
-    public void add(Mood theMoodToAdd) {
-        theListOfMoods.add(theMoodToAdd);
-        save();
-    }
-
-    /* just copied from UserList class, but use the same logic to search for moods */
-    public int searchMood(String moodToSearch) {
-        for (int i = 0; i < this.theListOfMoods.size(); i++) {
-            if (this.theListOfMoods.get(i).getMood().toLowerCase().contains(moodToSearch.toLowerCase())) {
-                return i;
+            while(cont == true)
+            {
+                if(in.hasNext())
+                {
+                    String temp = in.nextLine();
+                    String[] newM = temp.split(COMMA_DELIMITER);
+                    
+                    if (newM.length > 0) {
+                        this.newMood = new Mood(newM[0]);
+                        this.parentMoodList.add(this.newMood);
+                    }
+                }
+                else
+                {
+                    cont = false;
+                    System.out.println("Reading mood file done.");
+                }   
             }
+            SerializedDataCntl.getSerializedDataCntl().setList(this.parentMoodList, STORAGE_FILE_PATH);
+            //printParentMoodList();
         }
-
-        return -1;
+        catch(FileNotFoundException fnfe)
+        {
+            System.out.println(fnfe.getMessage());
+        }
+        catch(Exception err)
+        {
+            
+            System.out.println(err.getMessage());
+        }
     }
-
-    public void delete(Mood theMoodToDelete) {
-        boolean removed = theListOfMoods.remove(theMoodToDelete);
-        System.out.println("REMOVED : " + removed);
-        save();
+    
+    public ArrayList<Mood> getParentMoodList()
+    {
+        if(this.parentMoodList == null)
+        {
+            this.readMoodFile();
+        }
+        
+        return parentMoodList;
     }
-
-    public Mood get(int theMoodID) {
-        return theListOfMoods.get(theMoodID);
+    
+    public void setListOfMoods(ArrayList<Mood> theListOfMoods) 
+    {
+        this.parentMoodList = theListOfMoods;
+    }
+    
+    public void printParentMoodList()
+    {
+        for(int i = 0; i < parentMoodList.size(); i++)
+        {
+            System.out.println(parentMoodList.get(i).getMoodDetails());
+        }
+        System.out.println(parentMoodList.size());
+    }
+    
+    public boolean requestSearchMoodList(String moodToSearch)
+    {
+        boolean searchedMoodFound;
+        int moodsFound = 0;        
+        this.moodRowsFound = new ArrayList();
+        moodToSearch = moodToSearch.toLowerCase();
+        
+        for(int i = 0; i < this.parentMoodList.size(); i++)
+        {
+            String moodName = this.parentMoodList.get(i).getMood().toLowerCase();
+            
+            if(moodName.contains(moodToSearch) || moodName.equalsIgnoreCase(moodToSearch))
+            {
+                moodsFound++;
+                this.moodRowsFound.add(i);
+            }
+        }    
+        
+        searchedMoodFound = moodsFound > 0;
+        
+        return searchedMoodFound;
+    }
+    
+    public ArrayList<Integer> getListOfMoodRowsFound()
+    {
+        return this.moodRowsFound;
     }
 }

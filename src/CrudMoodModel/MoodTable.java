@@ -20,10 +20,15 @@ public class MoodTable extends AbstractTableModel
     
     /**
      *
-     * @param theEventList
+     * @param theMoodListClass
      */
     public MoodTable(MoodList theMoodListClass) {
-        theMoodListData = theMoodListClass.getListOfMoods();
+        theMoodListData = theMoodListClass.getParentMoodList();
+    }
+    
+    public void update()
+    {
+        super.fireTableDataChanged();
     }
 
     @Override

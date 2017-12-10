@@ -5,13 +5,13 @@
  */
 package CrudIntakeModel;
 
-import java.util.*;
+import java.io.Serializable;
 
 /**
  *
  * @author nja5128
  */
-public class Food
+public class Food implements Serializable
 {
     private String foodName;
     private double foodWeight;
@@ -61,5 +61,12 @@ public class Food
     public void setTimeSinceLastConsumed(String i)
     {
         this.timeSinceLastConsumed = i;
+    }
+    
+    public String getFoodDetails()
+    {
+        String foodDetails = this.getName()+ " // " + this.getWeight() + "oz // Time Since Last Consumed: " + this.getTimeSinceLastConsumed();
+        
+        return foodDetails;
     }
 }

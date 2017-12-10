@@ -13,27 +13,33 @@ import java.util.ArrayList;
  *
  * @author Gisward
  */
-public class SerializedData implements Serializable {
+public class SerializedData implements Serializable 
+{
 
     private ArrayList listToSave;
-
-    public SerializedData() {
+    
+    public SerializedData()
+    {
         listToSave = new ArrayList();
     }
-
-    public SerializedData(ArrayList listToSave) {
+    
+    public SerializedData(ArrayList listToSave)
+    {
         this.listToSave = listToSave;
     }
-
-    public ArrayList getList() {
+    
+    public ArrayList getList()
+    {
         return listToSave;
     }
-
-    public void setList(ArrayList listToSave) {
+    
+    public void setList(ArrayList listToSave)
+    {
         this.listToSave = listToSave;
     }
-
-    public boolean isEmpty() {
+    
+    public boolean isEmpty()
+    {
         return listToSave.isEmpty();
     }
 }

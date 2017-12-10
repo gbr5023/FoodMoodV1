@@ -29,16 +29,18 @@ public class NavigationController
     
     /**
      * Constructs a new NavigationController
+     * Creates all controller classes
      */
     public NavigationController()
     {
         System.out.println("Made it to the NavigationController");
-        this.theCrudIntakeController = new CrudIntakeController(this);
-        this.theCrudMoodController = new CrudMoodController(this);
-        this.theUserProfileController = new UserProfileController(this);
-        this.theFoodRecController = new FoodRecController(this);
-        this.theNotificationController = new NotificationController(this);
-        this.theStatisticController = new StatisticController(this);
+        this.theCrudIntakeController = new CrudIntakeController();
+        this.theCrudMoodController = new CrudMoodController();
+        this.theUserProfileController = new UserProfileController();
+        this.theFoodRecController = new FoodRecController();
+        this.theNotificationController = new NotificationController();
+        this.theStatisticController = new StatisticController();
+        this.requestNavigationView();
     }
     
     /**
@@ -55,67 +57,55 @@ public class NavigationController
     
     /**
      * Navigates user to the CrudIntakeController.
-     * Creates a new CrudIntakeController
+     * Holds Parent NavigationController
      */
     public void getCrudIntakeController()
     {
-        theNavigationView.setVisible(false);
-        CrudIntakeController theCrudIntakeController = new CrudIntakeController(this);
-        theCrudIntakeController.requestCrudIntakeView();
+        this.theCrudIntakeController.setParentNavigationController(this);
     }
     
     /**
      * Navigates user to the CrudMoodController.
-     * Creates a new CrudMoodController
+     * Holds Parent NavigationController
      */
     public void getCrudMoodController()
     {
-        theNavigationView.setVisible(false);
-        CrudMoodController theCrudMoodController = new CrudMoodController(this);
-        theCrudMoodController.requestCrudMoodView();
+        this.theCrudMoodController.setParentNavigationController(this);
     }
     
     /**
-     * Navigates user to the LoginController.
-     * Creates a new LoginController
+     * Navigates user to the UserLoginController.
+     * Holds Parent NavigationController
      */
     public void getUserProfileController()
     {
-        theNavigationView.setVisible(false);
-        UserProfileController theUserProfileController = new UserProfileController(this);
-        theUserProfileController.requestUserProfileView();
+        this.theUserProfileController.setParentNavigationController(this);
     }
     
     /**
      * Navigates user to the NotificationController.
-     * Creates a new NotificationController
+     * Holds Parent NavigationController
      */
     public void getNotificationController()
     {
-        theNavigationView.setVisible(false);
-        NotificationController theNotificationController = new NotificationController(this);
-        theNotificationController.requestNotificationView();
+        this.theNotificationController.setParentNavigationController(this);
     }
     
     /**
      * Navigates user to the StatisticController.
-     * Creates a new StatisticController
+     * Holds Parent NavigationController
      */
     public void getStatisticController()
     {
-        theNavigationView.setVisible(false);
-        StatisticController theStatisticController = new StatisticController(this);
-        theStatisticController.requestStatisticView();
+        this.theStatisticController.setParentNavigationController(this);
     }
     
     /**
      * Navigates user to the FoodRecController
-     * Creates a new FoodRecController
+     * Holds Parent NavigationController
      */
     public void getFoodRecController()
     {
-        theNavigationView.setVisible(false);
-        FoodRecController theFoodRecController = new FoodRecController(this);
-        theFoodRecController.requestFoodRecView();
+        this.theFoodRecController.setParentNavigationController(this);
     }
 }
