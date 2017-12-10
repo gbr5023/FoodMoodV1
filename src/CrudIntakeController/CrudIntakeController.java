@@ -6,6 +6,7 @@ package CrudIntakeController;
 import CrudIntakeModel.*;
 import CrudIntakeView.*;
 import CrudMoodController.CrudMoodController;
+import CrudUserProfileModel.User;
 import NavigationController.NavigationController;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -26,17 +27,19 @@ public class CrudIntakeController{
     ArrayList<Integer> foodRowsFound;
     ArrayList<Integer> drinkRowsFound;
     String theIntake;
+    User currentUser;
     
     /**
      * Creates CrudIntakeController, FoodList, and DrinkList
      */
     
-    public CrudIntakeController()
+    public CrudIntakeController(User currentUser)
     {
+        this.currentUser = currentUser;
         System.out.println("CrudIntakeController instantiated.");    
         this.theFoodList = new FoodList();
         this.theDrinkList = new DrinkList();
-        this.theCrudMoodController = new CrudMoodController();
+        this.theCrudMoodController = new CrudMoodController(currentUser);
         theIntake = "";
     }
     

@@ -18,12 +18,15 @@ import javax.swing.JFrame;
 public class UserProfileController {
     NavigationController theNavigationController;
     UserProfileView theUserProfileView;
+    User currentUser;
     
     /**
      * Creates UserProfileController
+     * @param currentUser
      */
-    public UserProfileController()
+    public UserProfileController(User currentUser)
     {
+        this.currentUser = currentUser;
         System.out.println("UserProfileController instantiated.");
     }
     

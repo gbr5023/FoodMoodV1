@@ -7,6 +7,7 @@ import CrudMoodModel.Mood;
 import CrudMoodModel.MoodList;
 import CrudMoodModel.MoodTable;
 import CrudMoodView.CrudMoodView;
+import CrudUserProfileModel.User;
 import NavigationController.NavigationController;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -24,15 +25,16 @@ public class CrudMoodController
     MoodTable theMoodTable;
     ArrayList<Integer> moodRowsFound;
     String theIntake;
-    
+    User currentUser;
     /**
      * Creates CrudIntakeController and MoodList
      */
-    public CrudMoodController()
+    public CrudMoodController(User currentUser)
     {
         System.out.println("CrudMoodController instantiated.");
         this.theMoodList = new MoodList();
         theIntake = "";
+        this.currentUser= currentUser;
     }
     
     /**

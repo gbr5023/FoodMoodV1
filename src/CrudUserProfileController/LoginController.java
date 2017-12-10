@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -61,7 +62,7 @@ public class LoginController {
     
     public void requestNavigationController() 
     {
-        this.theNavigationController = new NavigationController();
+        this.theNavigationController = new NavigationController(theUserList.getUserByEmail(CUR_USERNAME));
     }
     
     public boolean requestAuthenticate(String emailToCheck, char[] passwordToCheck) {
@@ -90,5 +91,9 @@ public class LoginController {
             theUserList.add(new User(firstName, lastName, email, password, time));
             return true;
         }
+    }
+    
+    public UserList getUserList() {
+        return theUserList;
     }
 }

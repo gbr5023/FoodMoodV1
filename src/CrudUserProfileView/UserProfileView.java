@@ -160,6 +160,7 @@ public class UserProfileView extends javax.swing.JFrame {
         g.dispose();
         return scaledBI;
     }
+    
     /**
      * @param args the command line arguments
      */

@@ -8,6 +8,7 @@ package NavigationController;
 import CrudIntakeController.CrudIntakeController;
 import CrudMoodController.CrudMoodController;
 import CrudUserProfileController.UserProfileController;
+import CrudUserProfileModel.User;
 import FoodRecController.FoodRecController;
 import NotificationController.NotificationController;
 import StatisticController.StatisticController;
@@ -27,21 +28,23 @@ public class NavigationController
     NotificationController theNotificationController;
     StatisticController theStatisticController;
     String theIntake;
+    User currentUser;
     
     /**
      * Constructs a new NavigationController
      * Creates all controller classes
      */
-    public NavigationController()
+    public NavigationController(User cur)
     {
         System.out.println("Made it to the NavigationController");
-        this.theCrudIntakeController = new CrudIntakeController();
-        this.theCrudMoodController = new CrudMoodController();
-        this.theUserProfileController = new UserProfileController();
-        this.theFoodRecController = new FoodRecController();
-        this.theNotificationController = new NotificationController();
-        this.theStatisticController = new StatisticController();
+        this.theCrudIntakeController = new CrudIntakeController(cur);
+        this.theCrudMoodController = new CrudMoodController(cur);
+        this.theUserProfileController = new UserProfileController(cur);
+        this.theFoodRecController = new FoodRecController(cur);
+        this.theNotificationController = new NotificationController(cur);
+        this.theStatisticController = new StatisticController(cur);
         this.theIntake = "";
+        currentUser = cur;
         this.requestNavigationView();
     }
     

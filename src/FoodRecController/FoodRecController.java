@@ -4,6 +4,7 @@
 
 package FoodRecController;
 
+import CrudUserProfileModel.User;
 import FoodRecModel.FoodRec;
 import FoodRecModel.FoodRecList;
 import FoodRecModel.FoodRecTable;
@@ -25,13 +26,14 @@ public class FoodRecController
     FoodRecTable theFoodRecTable;
     ArrayList<Integer> foodRecRowsFound;
     ArrayList<Integer> foodRecCategoryRowsFound;
-    
+    User currentUser;
     /**
      * Creates FoodRecController and FoodRecList
      */
-    public FoodRecController()
+    public FoodRecController(User currentUser)
     {
         System.out.println("FoodRecController instantiated.");
+        this.currentUser =currentUser;
         this.theFoodRecList = new FoodRecList();
         this.theFoodRecTable = new FoodRecTable(this.theFoodRecList);
     }

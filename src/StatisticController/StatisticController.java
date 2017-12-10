@@ -6,6 +6,7 @@
 
 package StatisticController;
 
+import CrudUserProfileModel.User;
 import NavigationController.NavigationController;
 import StatisticView.StatisticView;
 import javax.swing.JFrame;
@@ -22,12 +23,13 @@ public class StatisticController
     TableModel foodTableModel;
     TableModel drinkTableModel;
     TableModel moodTableModel;
-    
+    User currentUser;
     /**
      * Creates StatisticController
      */
-    public StatisticController()
+    public StatisticController(User currentUser)
     {
+        this.currentUser = currentUser;
         System.out.println("StatisticController instantiated.");
     }
     

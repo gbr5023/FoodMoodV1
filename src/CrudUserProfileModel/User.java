@@ -6,6 +6,7 @@
 
 package CrudUserProfileModel;
 
+import java.awt.Image;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -22,7 +23,8 @@ public class User implements Serializable
     private char[] password;
     private char[] confirmPassword;
     private Timestamp timeStamp;
-
+    private Image profilePic;
+    
     public User() {
         firstName = "";
         lastName = "";
@@ -44,7 +46,15 @@ public class User implements Serializable
         password = pass;
         confirmPassword = confirmPass;
     }
-
+    
+    public User(String first, String last, String email, char[] pass, Timestamp time, Image image) {
+        firstName = first;
+        lastName = last;
+        this.email = email;
+        password = pass;
+        timeStamp = time;
+        profilePic = image;
+    }
     public int getID() {
         return ID;
     }
@@ -71,6 +81,10 @@ public class User implements Serializable
 
     public Timestamp getTimeStamp() {
         return timeStamp;
+    }
+    
+    public Image getProfilePic() {
+        return profilePic;
     }
 
     public void setID(int ID) {
@@ -99,6 +113,10 @@ public class User implements Serializable
 
     public void setTimeStamp(Timestamp timeStamp) {
         this.timeStamp = timeStamp;
+    }
+    
+    public void setProfilePic(Image image) {
+        profilePic = image;
     }
     
     

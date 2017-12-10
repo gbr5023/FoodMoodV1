@@ -25,6 +25,10 @@ public class UserList
             buildTestUserList();
         }
     }
+    
+    public User getUserByEmail(String str) {
+        return theListOfUsers.get(theListOfUsers.indexOf(str));
+    }
 
     public ArrayList<User> getListOfUsers() {
         if (this.theListOfUsers == null) {

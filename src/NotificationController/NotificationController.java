@@ -6,6 +6,7 @@
 
 package NotificationController;
 
+import CrudUserProfileModel.User;
 import NavigationController.NavigationController;
 import NotificationView.NotificationView;
 import javax.swing.JFrame;
@@ -18,12 +19,14 @@ public class NotificationController
 {
     NavigationController theNavigationController;
     NotificationView theNotificationView;
-    
+    User currentUser;
     /**
      * Constructs a new NotificationController
+     * @param currentUser
      */
-    public NotificationController()
+    public NotificationController(User currentUser)
     {
+        this.currentUser = currentUser;
         System.out.println("NotificationController instantiated.");
     }
     
