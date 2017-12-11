@@ -62,7 +62,7 @@ public class LoginController {
     
     public void requestNavigationController() 
     {
-        this.theNavigationController = new NavigationController(theUserList.getUserByEmail(CUR_USERNAME));
+        this.theNavigationController = new NavigationController(theUserList.getUserByEmail(CUR_USERNAME), theUserList);
     }
     
     public boolean requestAuthenticate(String emailToCheck, char[] passwordToCheck) {

@@ -19,14 +19,16 @@ public class UserProfileController {
     NavigationController theNavigationController;
     UserProfileView theUserProfileView;
     User currentUser;
+    UserList currentUserList;
     
     /**
      * Creates UserProfileController
      * @param currentUser
      */
-    public UserProfileController(User currentUser)
+    public UserProfileController(User currentUser, UserList currentUserList)
     {
         this.currentUser = currentUser;
+        this.currentUserList = currentUserList;
         System.out.println("UserProfileController instantiated.");
     }
     
@@ -70,4 +72,12 @@ public class UserProfileController {
         this.theUserProfileView.setVisible(false);
         this.theNavigationController.requestNavigationView();
     } 
+    
+    public User getCurrentUser() {
+        return currentUser;
+    }
+    
+    public UserList getCurrentUserList() {
+        return currentUserList;
+    }
 }

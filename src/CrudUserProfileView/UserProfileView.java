@@ -6,6 +6,7 @@
 package CrudUserProfileView;
 
 import CrudUserProfileController.UserProfileController;
+import CrudUserProfileModel.User;
 import java.awt.AlphaComposite;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -14,11 +15,14 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 /**
  *
@@ -26,10 +30,16 @@ import javax.swing.JFileChooser;
  */
 public class UserProfileView extends javax.swing.JFrame {
 
-    UserProfileController theUserProfileController;
+    private UserProfileController theUserProfileController;
+    private String imagePath;
+    private ImageIcon profilePicIcon = new ImageIcon(createResizedCopy(Toolkit.getDefaultToolkit().createImage("resources/default-profile.png"),200,200,true));;
     public UserProfileView(UserProfileController parentUserProfileController) 
     {
         this.theUserProfileController = parentUserProfileController;
+        imagePath = theUserProfileController.getCurrentUser().getProfilePicPath();
+        if(!(imagePath.contains("default-profile") && !imagePath.contains("@"))) {
+            updateImageIcon();
+        }
         initComponents();
         this.setResizable(false);
         this.setSize(new Dimension(411, 383));
@@ -47,7 +57,7 @@ public class UserProfileView extends javax.swing.JFrame {
 
         infoLabel = new javax.swing.JLabel();
         changePictureButton = new javax.swing.JButton();
-        imageLabel = new javax.swing.JLabel();
+        imageLabel = new JLabel(profilePicIcon);
         homeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,7 +72,6 @@ public class UserProfileView extends javax.swing.JFrame {
             }
         });
 
-        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/default-profile.png"))); // NOI18N
         imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imageLabelMouseClicked(evt);
@@ -140,8 +149,8 @@ public class UserProfileView extends javax.swing.JFrame {
                 tracker.waitForAll();
                 ImageIcon icon = new ImageIcon(createResizedCopy(image,200,200,true));
                 
-                imageLabel.setIcon(icon);
-                //This is where a real application would open the file.
+                updateImageIcon();
+                saveImage();
             } catch (InterruptedException ex) {
                 Logger.getLogger(UserProfileView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -161,6 +170,32 @@ public class UserProfileView extends javax.swing.JFrame {
         return scaledBI;
     }
     
+    public void saveImage() {
+        User user = theUserProfileController.getCurrentUser();
+        File outputfile = new File("resources/"+theUserProfileController.getCurrentUser().getEmail()+"-profile.png");
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage(outputfile.getAbsolutePath());
+        theUserProfileController.getCurrentUserList().getUserByEmail(user.getEmail()).setProfilePicPath("resources/"+theUserProfileController.getCurrentUser().getEmail()+"-profile.png");
+        theUserProfileController.getCurrentUserList().updateList();
+        BufferedImage buff = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D bGr = buff.createGraphics();
+        bGr.drawImage(image, 0, 0, null);
+        bGr.dispose();
+        try {
+            ImageIO.write(buff, "png", outputfile);
+        } catch (IOException ex) {
+            Logger.getLogger(UserProfileView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void updateImageIcon() {
+        profilePicIcon = new ImageIcon(createResizedCopy(Toolkit.getDefaultToolkit().createImage(imagePath),200,200,true));
+        imageLabel.setIcon(profilePicIcon);
+        this.repaint();
+        this.revalidate();
+    }
+    /**
+
     /**
      * @param args the command line arguments
      */

@@ -23,12 +23,13 @@ public class User implements Serializable
     private char[] password;
     private char[] confirmPassword;
     private Timestamp timeStamp;
-    private Image profilePic;
+    private String profilePicPath;
     
     public User() {
         firstName = "";
         lastName = "";
         email = "";
+        profilePicPath = "resources/default-profile.png";
     }
     
     public User(String first, String last, String email, char[] pass, Timestamp time) {
@@ -37,6 +38,7 @@ public class User implements Serializable
         this.email = email;
         password = pass;
         timeStamp = time;
+        profilePicPath = "resources/default-profile.png";
     }
     
     public User(String first, String last, String email, char[] pass, char[] confirmPass) {
@@ -45,15 +47,16 @@ public class User implements Serializable
         this.email = email;
         password = pass;
         confirmPassword = confirmPass;
+        profilePicPath = "resources/default-profile.png";
     }
     
-    public User(String first, String last, String email, char[] pass, Timestamp time, Image image) {
+    public User(String first, String last, String email, char[] pass, Timestamp time, String imagePath) {
         firstName = first;
         lastName = last;
         this.email = email;
         password = pass;
         timeStamp = time;
-        profilePic = image;
+        profilePicPath = imagePath;
     }
     public int getID() {
         return ID;
@@ -83,8 +86,8 @@ public class User implements Serializable
         return timeStamp;
     }
     
-    public Image getProfilePic() {
-        return profilePic;
+    public String getProfilePicPath() {
+        return profilePicPath;
     }
 
     public void setID(int ID) {
@@ -115,9 +118,10 @@ public class User implements Serializable
         this.timeStamp = timeStamp;
     }
     
-    public void setProfilePic(Image image) {
-        profilePic = image;
+    public void setProfilePicPath(String path) {
+        profilePicPath = path;
     }
+    
     
     
 }

@@ -82,4 +82,9 @@ public class UserList
         theListOfUsers.add(theUserToAdd);
         SerializedDataCntl.getSerializedDataCntl().setList(theListOfUsers, STORAGE_FILE_PATH);
     }
+    
+    public void updateList() {
+        //theListOfUsers.set(theListOfUsers.indexOf(user.getEmail()), user);
+        SerializedDataCntl.getSerializedDataCntl().setList(theListOfUsers, STORAGE_FILE_PATH);
+    }
 }
