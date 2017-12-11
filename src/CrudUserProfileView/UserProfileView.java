@@ -5,6 +5,7 @@
  */
 package CrudUserProfileView;
 
+import CrudUserProfileController.EditProfileController;
 import CrudUserProfileController.UserProfileController;
 import CrudUserProfileModel.User;
 import java.awt.AlphaComposite;
@@ -33,6 +34,7 @@ import javax.swing.JLabel;
 public class UserProfileView extends javax.swing.JFrame {
 
     private UserProfileController theUserProfileController;
+    private EditProfileController theEditProfileController;
     private String imagePath;
     private ImageIcon profilePicIcon;
     private User currentUser;
@@ -155,25 +157,21 @@ public class UserProfileView extends javax.swing.JFrame {
         int returnVal = fc.showOpenDialog(UserProfileView.this);
         
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            try {
-                File file = fc.getSelectedFile();
-                Toolkit toolkit = Toolkit.getDefaultToolkit();
-                MediaTracker tracker = new MediaTracker(this);
-                Image image = toolkit.getImage(file.getAbsolutePath());
-                tracker.addImage(image, 0);
-                tracker.waitForAll();
-                saveImage(file.getAbsolutePath());
-                updateImageIcon();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(UserProfileView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            File file = fc.getSelectedFile();
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Image image = toolkit.getImage(file.getAbsolutePath());
+            imagePath = file.getAbsolutePath();
+            updateImageIcon();
+            
         } else {
             //log.append("Open command cancelled by user." + newline);
         }
     }//GEN-LAST:event_imageLabelMouseClicked
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        
+        this.setVisible(false);
+        this.theEditProfileController = new EditProfileController(theUserProfileController);
+        this.theEditProfileController.requestEditProfileView();
     }//GEN-LAST:event_editButtonActionPerformed
     private BufferedImage createResizedCopy(Image originalImage) {
         BufferedImage scaledBI = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
@@ -183,10 +181,10 @@ public class UserProfileView extends javax.swing.JFrame {
         return scaledBI;
     }
     
-    public void saveImage(String oldPath) {
+    public void saveImage() {
         File outputfile = new File("resources/"+currentUser.getEmail()+"-profile.png");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = toolkit.getImage(oldPath);
+        Image image = toolkit.getImage(imagePath);
         theUserProfileController.getCurrentUserList().getUserByEmail(currentUser.getEmail()).setProfilePicPath("resources/"+currentUser.getEmail()+"-profile.png");
         theUserProfileController.getCurrentUserList().updateList();
         BufferedImage buff = createResizedCopy(image);
@@ -198,11 +196,15 @@ public class UserProfileView extends javax.swing.JFrame {
     }
     
     private void updateImageIcon() {
-        profilePicIcon = new ImageIcon(imagePath);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage(imagePath);
+        profilePicIcon = new ImageIcon(createResizedCopy(image));
         imageLabel.setIcon(profilePicIcon);
         revalidate();
         repaint();
-        
+        saveImage();
+        imagePath = "resources/"+currentUser.getEmail()+"-profile.png";
+        currentUser.setProfilePicPath(imagePath);
     }
     /**
 

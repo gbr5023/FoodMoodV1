@@ -80,4 +80,5 @@ public class UserProfileController {
     public UserList getCurrentUserList() {
         return currentUserList;
     }
+    
 }
