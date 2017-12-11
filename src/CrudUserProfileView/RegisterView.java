@@ -23,6 +23,10 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -54,7 +58,71 @@ public class RegisterView extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
+        passwordField = new JPasswordField(26);
+        passwordField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                int score = calculatePasswordStrength(new String(passwordField.getPassword()));
+                if(score >=8) {
+                    passwordField.setBackground(Color.GREEN);
+                } else if(score<=4) {
+                    passwordField.setBackground(Color.RED);
+                } else {
+                    passwordField.setBackground(Color.YELLOW);
+                }
+            }
+            public void removeUpdate(DocumentEvent e) {
+                int score = calculatePasswordStrength(new String(passwordField.getPassword()));
+                if(score >=8) {
+                    passwordField.setBackground(Color.GREEN);
+                } else if(score<=4) {
+                    passwordField.setBackground(Color.RED);
+                } else {
+                    passwordField.setBackground(Color.YELLOW);
+                }
+            }
+            public void insertUpdate(DocumentEvent e) {
+                int score = calculatePasswordStrength(new String(passwordField.getPassword()));
+                if(score >=8) {
+                    passwordField.setBackground(Color.GREEN);
+                } else if(score<=4) {
+                    passwordField.setBackground(Color.RED);
+                } else {
+                    passwordField.setBackground(Color.YELLOW);
+                }
+            }
+
+            private int calculatePasswordStrength(String str){
+                int score = 0;
+
+                if( str.length() < 8 )
+                return 0;
+                else if( str.length() >= 10 )
+                score += 2;
+                else
+                score += 1;
+
+                if( str.matches("(?=.*[0-9].*[0-9]).*") )
+                score += 2;
+                else if ( str.matches("(?=.*[0-9]).*") )
+                score += 1;
+
+                if( str.matches("(?=.*[a-z]).*") )
+                score += 2;
+
+                if( str.matches("(?=.*[A-Z].*[A-Z]).*") )
+                score += 2;
+                else if( str.matches("(?=.*[A-Z]).*") )
+                score += 1;
+
+                if( str.matches("(?=.*[~!@#$%^&*()_-].*[~!@#$%^&*()_-]).*") )
+                score += 2;
+                else if( str.matches("(?=.*[~!@#$%^&*()_-]).*") )
+                score += 1;
+
+                return score;
+
+            }
+        });
         confirmField = new javax.swing.JPasswordField();
         emailField = new javax.swing.JTextField();
         lastNameField = new javax.swing.JTextField();
@@ -206,6 +274,7 @@ public class RegisterView extends javax.swing.JFrame{
         this.theLoginController.requestLoginView();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
