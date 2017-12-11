@@ -16,6 +16,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -32,17 +34,22 @@ public class UserProfileView extends javax.swing.JFrame {
 
     private UserProfileController theUserProfileController;
     private String imagePath;
-    private ImageIcon profilePicIcon = new ImageIcon(createResizedCopy(Toolkit.getDefaultToolkit().createImage("resources/default-profile.png"),200,200,true));;
+    private ImageIcon profilePicIcon;
+    private User currentUser;
+    
     public UserProfileView(UserProfileController parentUserProfileController) 
     {
         this.theUserProfileController = parentUserProfileController;
-        imagePath = theUserProfileController.getCurrentUser().getProfilePicPath();
-        if(!(imagePath.contains("default-profile") && !imagePath.contains("@"))) {
-            updateImageIcon();
-        }
+        currentUser = theUserProfileController.getCurrentUser();
+        imagePath = currentUser.getProfilePicPath();
+        imagePath = (!(imagePath.contains("default-profile") && !imagePath.contains("@"))) ? currentUser.getProfilePicPath() : ("resources/default-profile.png");
         initComponents();
+        updateImageIcon();
         this.setResizable(false);
-        this.setSize(new Dimension(411, 383));
+        this.setSize(new Dimension(300, 415));
+        changeLabel.setText("<html><p align=\"center\">Click to Change!</p></html>");
+        this.revalidate();
+        this.repaint();
         
     }
 
@@ -55,23 +62,19 @@ public class UserProfileView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        infoLabel = new javax.swing.JLabel();
-        changePictureButton = new javax.swing.JButton();
-        imageLabel = new JLabel(profilePicIcon);
+        imageLabel = new JLabel(new ImageIcon(imagePath));
+        ;
         homeButton = new javax.swing.JButton();
+        infoLabel = new JLabel("<html><p align=\"center\"><strong>"+currentUser.getFirstName()+" "+currentUser.getLastName()+"</strong><br>"+ currentUser.getEmail()+"<br><br>Member Since:<br>"+currentUser.getTimeStamp()+"</p></html>");
+        imageLabel.setText("Click to change!");
+        editButton = new javax.swing.JButton();
+        changeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        infoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        changePictureButton.setText("Change");
-        changePictureButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        changePictureButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changePictureButtonActionPerformed(evt);
-            }
-        });
-
+        imageLabel.setBounds(new java.awt.Rectangle(0, 0, 150, 150));
+        imageLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        imageLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imageLabelMouseClicked(evt);
@@ -85,49 +88,61 @@ public class UserProfileView extends javax.swing.JFrame {
             }
         });
 
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        infoLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        changeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        changeLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(homeButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(changePictureButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(homeButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(imageLabel)))
-                .addGap(111, 111, 111))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(editButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(homeButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addComponent(changePictureButton)
-                .addGap(18, 18, 18)
-                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(homeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editButton)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void changePictureButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePictureButtonActionPerformed
-        
-    }//GEN-LAST:event_changePictureButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
@@ -147,10 +162,8 @@ public class UserProfileView extends javax.swing.JFrame {
                 Image image = toolkit.getImage(file.getAbsolutePath());
                 tracker.addImage(image, 0);
                 tracker.waitForAll();
-                ImageIcon icon = new ImageIcon(createResizedCopy(image,200,200,true));
-                
+                saveImage(file.getAbsolutePath());
                 updateImageIcon();
-                saveImage();
             } catch (InterruptedException ex) {
                 Logger.getLogger(UserProfileView.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -158,41 +171,38 @@ public class UserProfileView extends javax.swing.JFrame {
             //log.append("Open command cancelled by user." + newline);
         }
     }//GEN-LAST:event_imageLabelMouseClicked
-    BufferedImage createResizedCopy(Image originalImage,  int scaledWidth, int scaledHeight, boolean preserveAlpha) {
-        int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
-        BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        
+    }//GEN-LAST:event_editButtonActionPerformed
+    private BufferedImage createResizedCopy(Image originalImage) {
+        BufferedImage scaledBI = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = scaledBI.createGraphics();
-        if (preserveAlpha) {
-            g.setComposite(AlphaComposite.Src);
-        }
-        g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null); 
+        g.drawImage(originalImage, 0, 0, 200, 200, null); 
         g.dispose();
         return scaledBI;
     }
     
-    public void saveImage() {
-        User user = theUserProfileController.getCurrentUser();
-        File outputfile = new File("resources/"+theUserProfileController.getCurrentUser().getEmail()+"-profile.png");
+    public void saveImage(String oldPath) {
+        File outputfile = new File("resources/"+currentUser.getEmail()+"-profile.png");
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = toolkit.getImage(outputfile.getAbsolutePath());
-        theUserProfileController.getCurrentUserList().getUserByEmail(user.getEmail()).setProfilePicPath("resources/"+theUserProfileController.getCurrentUser().getEmail()+"-profile.png");
+        Image image = toolkit.getImage(oldPath);
+        theUserProfileController.getCurrentUserList().getUserByEmail(currentUser.getEmail()).setProfilePicPath("resources/"+currentUser.getEmail()+"-profile.png");
         theUserProfileController.getCurrentUserList().updateList();
-        BufferedImage buff = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-
-        Graphics2D bGr = buff.createGraphics();
-        bGr.drawImage(image, 0, 0, null);
-        bGr.dispose();
+        BufferedImage buff = createResizedCopy(image);
         try {
             ImageIO.write(buff, "png", outputfile);
         } catch (IOException ex) {
             Logger.getLogger(UserProfileView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     private void updateImageIcon() {
-        profilePicIcon = new ImageIcon(createResizedCopy(Toolkit.getDefaultToolkit().createImage(imagePath),200,200,true));
+        profilePicIcon = new ImageIcon(imagePath);
         imageLabel.setIcon(profilePicIcon);
-        this.repaint();
-        this.revalidate();
+        revalidate();
+        repaint();
+        
     }
     /**
 
@@ -232,7 +242,8 @@ public class UserProfileView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton changePictureButton;
+    private javax.swing.JLabel changeLabel;
+    private javax.swing.JButton editButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel infoLabel;
