@@ -33,40 +33,49 @@ public class NavigationView extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        intakeButton = new javax.swing.JButton();
-        profileButton = new javax.swing.JButton();
+        navigationPanel = new javax.swing.JPanel();
         notificationButton = new javax.swing.JButton();
+        profileButton = new javax.swing.JButton();
         statisticButton = new javax.swing.JButton();
         foodRecButton = new javax.swing.JButton();
+        intakeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        intakeButton.setBackground(new java.awt.Color(153, 153, 255));
-        intakeButton.setText("Input Intake & Mood");
-        intakeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                intakeButtonActionPerformed(evt);
-            }
-        });
-
-        profileButton.setBackground(new java.awt.Color(0, 204, 204));
-        profileButton.setText("Profile");
-        profileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profileButtonActionPerformed(evt);
-            }
-        });
+        navigationPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         notificationButton.setBackground(new java.awt.Color(0, 204, 153));
-        notificationButton.setText("Notifications");
+        notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/notifications_icon.png"))); // NOI18N
+        notificationButton.setToolTipText("Notifications");
+        notificationButton.setMaximumSize(new java.awt.Dimension(66, 66));
+        notificationButton.setMinimumSize(new java.awt.Dimension(66, 66));
+        notificationButton.setPreferredSize(new java.awt.Dimension(66, 66));
+        notificationButton.setSize(new java.awt.Dimension(66, 66));
         notificationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notificationButtonActionPerformed(evt);
             }
         });
 
+        profileButton.setBackground(new java.awt.Color(0, 204, 204));
+        profileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/default-profile.png"))); // NOI18N
+        profileButton.setToolTipText("User Profile");
+        profileButton.setMaximumSize(new java.awt.Dimension(66, 66));
+        profileButton.setMinimumSize(new java.awt.Dimension(66, 66));
+        profileButton.setPreferredSize(new java.awt.Dimension(66, 66));
+        profileButton.setSize(new java.awt.Dimension(66, 66));
+        profileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileButtonActionPerformed(evt);
+            }
+        });
+
         statisticButton.setBackground(new java.awt.Color(255, 204, 0));
-        statisticButton.setText("Statistics");
+        statisticButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/stat-icon.png"))); // NOI18N
+        statisticButton.setToolTipText("Statistics");
+        statisticButton.setPreferredSize(new java.awt.Dimension(66, 66));
+        statisticButton.setSize(new java.awt.Dimension(66, 66));
         statisticButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statisticButtonActionPerformed(evt);
@@ -74,40 +83,76 @@ public class NavigationView extends javax.swing.JFrame
         });
 
         foodRecButton.setBackground(new java.awt.Color(0, 204, 0));
-        foodRecButton.setText("Food Recommendations");
+        foodRecButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/food-icon.png"))); // NOI18N
+        foodRecButton.setToolTipText("Food Recommendation");
+        foodRecButton.setMaximumSize(new java.awt.Dimension(66, 66));
+        foodRecButton.setMinimumSize(new java.awt.Dimension(66, 66));
+        foodRecButton.setPreferredSize(new java.awt.Dimension(66, 66));
+        foodRecButton.setSize(new java.awt.Dimension(66, 66));
         foodRecButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 foodRecButtonActionPerformed(evt);
             }
         });
 
+        intakeButton.setBackground(new java.awt.Color(153, 153, 255));
+        intakeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/mood-icon.png"))); // NOI18N
+        intakeButton.setToolTipText("Mood & Intake");
+        intakeButton.setMaximumSize(new java.awt.Dimension(66, 66));
+        intakeButton.setMinimumSize(new java.awt.Dimension(66, 66));
+        intakeButton.setPreferredSize(new java.awt.Dimension(66, 66));
+        intakeButton.setSize(new java.awt.Dimension(66, 66));
+        intakeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                intakeButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout navigationPanelLayout = new javax.swing.GroupLayout(navigationPanel);
+        navigationPanel.setLayout(navigationPanelLayout);
+        navigationPanelLayout.setHorizontalGroup(
+            navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(notificationButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statisticButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(foodRecButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(intakeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        navigationPanelLayout.setVerticalGroup(
+            navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intakeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(navigationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(notificationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(statisticButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(foodRecButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(intakeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(notificationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statisticButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(foodRecButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(navigationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(intakeButton)
-                .addGap(18, 18, 18)
-                .addComponent(profileButton)
-                .addGap(18, 18, 18)
-                .addComponent(notificationButton)
-                .addGap(18, 18, 18)
-                .addComponent(statisticButton)
-                .addGap(18, 18, 18)
-                .addComponent(foodRecButton)
+                .addComponent(navigationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -205,6 +250,7 @@ public class NavigationView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton foodRecButton;
     private javax.swing.JButton intakeButton;
+    private javax.swing.JPanel navigationPanel;
     private javax.swing.JButton notificationButton;
     private javax.swing.JButton profileButton;
     private javax.swing.JButton statisticButton;
