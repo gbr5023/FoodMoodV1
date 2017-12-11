@@ -43,7 +43,8 @@ public class CrudMoodController
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {
-        System.out.println("Made it to CrudIntakeController.");
+        System.out.println("Made it to CrudMoodController.");
+        this.theNavigationController.setCrudMoodController(this);
         this.theNavigationController = parentNavigationController;
     }
     

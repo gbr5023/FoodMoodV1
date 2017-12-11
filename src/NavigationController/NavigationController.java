@@ -43,6 +43,7 @@ public class NavigationController
         this.theFoodRecController = new FoodRecController(cur);
         this.theNotificationController = new NotificationController(cur);
         this.theStatisticController = new StatisticController(cur);
+        this.theStatisticController.setParentCrudMoodController(theCrudMoodController);
         this.theIntake = "";
         currentUser = cur;
         this.requestNavigationView();
@@ -83,6 +84,11 @@ public class NavigationController
         this.theCrudMoodController.requestCrudMoodView(theIntake);
     }
     
+    public void setCrudMoodController(CrudMoodController parentCrudMoodController)
+    {
+        this.theCrudMoodController = parentCrudMoodController;
+    }
+    
     public CrudMoodController requestCrudMoodController()
     {
         return this.theCrudMoodController;
@@ -115,6 +121,7 @@ public class NavigationController
         this.theStatisticController.setTableModels(this.requestCrudIntakeController().getFoodListTableModel(), 
                 this.requestCrudIntakeController().getDrinkListTableModel(), 
                 this.requestCrudMoodController().getMoodListTableModel());
+        this.theStatisticController.setParentCrudMoodController(this.theCrudMoodController);
         this.theStatisticController.setParentNavigationController(this);
     }
     

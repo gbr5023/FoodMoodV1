@@ -8,6 +8,7 @@ package StatisticView;
 
 import StatisticController.StatisticController;
 import NavigationController.NavigationController;
+import javafx.scene.chart.PieChart;
 
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
@@ -22,6 +23,7 @@ public class StatisticView extends javax.swing.JFrame
 {
     StatisticController theStatisticController;
     NavigationController theNavigationController;
+    MoodStatisticGraphView theMoodStatisticGraphView;
     TableRowSorter<TableModel> rowSorterFood;
     TableRowSorter<TableModel> rowSorterDrink;
     TableRowSorter<TableModel> rowSorterMood;
@@ -143,36 +145,29 @@ public class StatisticView extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(drinkScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(foodScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(backButton)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(drinkScrollPane, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(searchMoodTextField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchMoodButton)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(searchDrinkTextField)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchDrinkButton)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 103, Short.MAX_VALUE)
-                        .addComponent(crudIntakeFooter)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(foodRecFooter)
-                        .addGap(173, 173, 173))
+                    .addComponent(drinkScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                    .addComponent(foodScrollPane)
+                    .addComponent(drinkScrollPane)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(searchFoodTextField)
                         .addGap(11, 11, 11)
-                        .addComponent(searchFoodButton)
-                        .addContainerGap())))
+                        .addComponent(searchFoodButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(searchDrinkTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchDrinkButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(searchMoodTextField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchMoodButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(crudIntakeFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(foodRecFooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,23 +180,23 @@ public class StatisticView extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchFoodButton)
                     .addComponent(searchFoodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(30, 30, 30)
                 .addComponent(drinkScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchDrinkButton)
-                    .addComponent(searchDrinkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchDrinkTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchDrinkButton))
+                .addGap(34, 34, 34)
                 .addComponent(drinkScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchMoodButton)
-                    .addComponent(searchMoodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(foodRecFooter)
-                    .addComponent(crudIntakeFooter))
-                .addContainerGap())
+                    .addComponent(searchMoodTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchMoodButton))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crudIntakeFooter)
+                    .addComponent(foodRecFooter))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

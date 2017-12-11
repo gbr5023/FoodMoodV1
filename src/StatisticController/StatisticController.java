@@ -6,6 +6,7 @@
 
 package StatisticController;
 
+import CrudMoodController.CrudMoodController;
 import CrudUserProfileModel.User;
 import NavigationController.NavigationController;
 import StatisticView.StatisticView;
@@ -20,6 +21,7 @@ public class StatisticController
 {
     NavigationController theNavigationController;
     StatisticView theStatisticView;
+    CrudMoodController theCrudMoodController;
     TableModel foodTableModel;
     TableModel drinkTableModel;
     TableModel moodTableModel;
@@ -33,12 +35,28 @@ public class StatisticController
         System.out.println("StatisticController instantiated.");
     }
     
+    public User getCurrentUser()
+    {
+        return this.currentUser;
+    }
+    
     /**
      * Returns parent NavigationController class
      * @return theNavigationController
      */
-    public NavigationController getParentNavigationController() {
+    public NavigationController getParentNavigationController() 
+    {
         return this.theNavigationController;
+    }
+    
+    public CrudMoodController getParentCrudMoodController()
+    {
+        return this.theCrudMoodController;
+    }
+    
+    public void setParentCrudMoodController(CrudMoodController parentCrudMoodController)
+    {
+        this.theCrudMoodController = parentCrudMoodController;
     }
     
     public void setTableModels(TableModel foodTableModel, TableModel drinkTableModel, TableModel moodTableModel)
@@ -71,6 +89,7 @@ public class StatisticController
     {
         System.out.println("Made it to StatisticController.");
         this.theNavigationController = parentNavigationController;
+        this.theCrudMoodController = this.theNavigationController.requestCrudMoodController();
         this.requestStatisticView();
     }
     

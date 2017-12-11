@@ -49,13 +49,13 @@ public class MoodList
         this.parentMoodList = new ArrayList();
         
         Mood juice = new Mood("Sleepy", "Juice");
-        Mood hamburger = new Mood("HYper", "Hamburger");
-        Mood beer = new Mood("Exhausted", "Beer");
+        Mood hamburger = new Mood("Hyper", "Hamburger");
+        Mood beer = new Mood("Tired", "Beer");
         Mood spaghetti = new Mood("Tired", "Spaghetti");
         Mood tea = new Mood("Happy", "Tea");
-        Mood sandwich = new Mood("Angry", " Sandwich");
-        Mood water = new Mood("Excited", "Water");
-        Mood strawberries = new Mood("Depresssed", "Strawberries");
+        Mood sandwich = new Mood("Sleepy", " Sandwich");
+        Mood water = new Mood("Happy", "Water");
+        Mood strawberries = new Mood("Depressed", "Strawberries");
         
         
         this.parentMoodList.add(juice);
