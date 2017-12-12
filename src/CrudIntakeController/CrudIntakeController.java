@@ -31,8 +31,8 @@ public class CrudIntakeController{
     
     /**
      * Creates CrudIntakeController, FoodList, and DrinkList
-     */
-    
+     * @param currentUser (User)
+     */    
     public CrudIntakeController(User currentUser)
     {
         this.currentUser = currentUser;
@@ -52,7 +52,7 @@ public class CrudIntakeController{
     
     /**
      * Sets parent NavigationController, requests CrudIntakeView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {
@@ -99,7 +99,7 @@ public class CrudIntakeController{
     
     /**
      * Update ArrayList of Food
-     * @param updatedListOfFoods 
+     * @param updatedListOfFoods (ArrayList of Food objects)
      */
     public void setListOfFoods(ArrayList<Food> updatedListOfFoods)
     {
@@ -108,7 +108,7 @@ public class CrudIntakeController{
     
     /**
      * Update ArrayList of Drink
-     * @param updatedListOfDrinks 
+     * @param updatedListOfDrinks (ArrayList of Drink objects)
      */
     public void setListOfDrinks(ArrayList<Drink> updatedListOfDrinks)
     {

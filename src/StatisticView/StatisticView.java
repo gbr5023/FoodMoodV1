@@ -8,11 +8,9 @@ package StatisticView;
 
 import StatisticController.StatisticController;
 import NavigationController.NavigationController;
-import javafx.scene.chart.PieChart;
 
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -33,7 +31,8 @@ public class StatisticView extends javax.swing.JFrame
     
     /** 
      * Creates new form StatisticView 
-     * @param  parentStatisticController the original StatisticController object
+     * @param  parentStatisticController (StatisticController)
+     * @param parentNavigationController (NavigationController)
      */
     public StatisticView(StatisticController parentStatisticController, NavigationController parentNavigationController) 
     {

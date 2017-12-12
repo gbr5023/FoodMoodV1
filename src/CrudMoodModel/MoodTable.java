@@ -19,8 +19,8 @@ public class MoodTable extends AbstractTableModel
     private final ArrayList<Mood> theMoodListData;
     
     /**
-     *
-     * @param theMoodListClass
+     * Constructor for MoodTable
+     * @param theMoodListClass (MoodList)
      */
     public MoodTable(MoodList theMoodListClass) {
         theMoodListData = theMoodListClass.getParentMoodList();

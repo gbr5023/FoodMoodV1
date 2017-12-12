@@ -28,6 +28,7 @@ public class CrudMoodController
     User currentUser;
     /**
      * Creates CrudIntakeController and MoodList
+     * @param currentUser (User)
      */
     public CrudMoodController(User currentUser)
     {
@@ -39,7 +40,7 @@ public class CrudMoodController
     
     /**
      * Sets parent NavigationController, requests CrudIntakeView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {
@@ -59,6 +60,7 @@ public class CrudMoodController
     
     /**
      * Creates CrudMoodView
+     * @param theIntake Current Intake object connected to the Mood
      */
     public void requestCrudMoodView(String theIntake)
     {
@@ -81,7 +83,7 @@ public class CrudMoodController
     
     /**
      * Update ArrayList of Mood
-     * @param updatedListOfMoods 
+     * @param updatedListOfMoods (ArrayList of Mood objects)
      */
     public void setListOfMoods(ArrayList<Mood> updatedListOfMoods)
     {

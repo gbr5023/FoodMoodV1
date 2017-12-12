@@ -6,9 +6,6 @@
 package CrudMoodModel;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -26,6 +23,7 @@ public class Mood implements Serializable
      * It creates a new Mood object.
      * It instantiates the list of Mood objects.
      * @param mood This describes the user's Mood after eating a certain item.
+     * @param moodIntake Intake that the mood is assigned to
      */
     public Mood(String mood, String moodIntake) 
     {

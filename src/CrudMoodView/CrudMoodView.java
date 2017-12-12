@@ -27,6 +27,7 @@ public class CrudMoodView extends javax.swing.JFrame
     /** 
      * Creates new form CrudMoodView 
      * @param parentCrudMoodController the original CrudMoodController object
+     * @param theIntake Intake object connected to the Mood
      */
     public CrudMoodView(CrudMoodController parentCrudMoodController, String theIntake) 
     {

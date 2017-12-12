@@ -5,11 +5,8 @@
  */
 package CrudUserProfileController;
 
-import CrudIntakeView.CrudIntakeView;
-import CrudMoodView.CrudMoodView;
 import CrudUserProfileModel.*;
 import CrudUserProfileView.*;
-import NavigationController.NavigationController;
 import javax.swing.JFrame;
 
 /**
@@ -24,7 +21,7 @@ public class EditProfileController {
     
     /**
      * Creates UserProfileController
-     * @param currentUser
+     * @param theUserProfileController (UserProfileController)
      */
     public EditProfileController(UserProfileController theUserProfileController)
     {
@@ -44,8 +41,8 @@ public class EditProfileController {
     }
     
     /**
-     * Sets parent NavigationController, requests UserProfileView
-     * @param parentNavigationController 
+     * Sets parent NavigationController, requests UserProfileView 
+     * @param parentUserProfileController (UserProfileController)
      */
     public void setParentNavigationController(UserProfileController parentUserProfileController)
     {
@@ -75,10 +72,18 @@ public class EditProfileController {
         this.theUserProfileController.requestUserProfileView();
     } 
     
+    /**
+     * Returns current User
+     * @return User
+     */
     public User getCurrentUser() {
         return currentUser;
     }
     
+    /**
+     * Returns current UserList
+     * @return UserList
+     */
     public UserList getCurrentUserList() {
         return currentUserList;
     }

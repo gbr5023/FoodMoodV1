@@ -27,8 +27,10 @@ public class FoodRecController
     ArrayList<Integer> foodRecRowsFound;
     ArrayList<Integer> foodRecCategoryRowsFound;
     User currentUser;
+    
     /**
      * Creates FoodRecController and FoodRecList
+     * @param currentUser (User)
      */
     public FoodRecController(User currentUser)
     {
@@ -48,7 +50,7 @@ public class FoodRecController
     
     /**
      * Sets parent NavigationController, requests FoodRecView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {
@@ -80,7 +82,7 @@ public class FoodRecController
     
     /**
      * Updates ArrayList of FoodRec
-     * @param updatedListOfFoodRecs 
+     * @param updatedListOfFoodRecs (ArrayList of FoodRec objects)
      */
     public void setListOfFoodRecs(ArrayList<FoodRec> updatedListOfFoodRecs)
     {
@@ -106,8 +108,8 @@ public class FoodRecController
     
     /**
      * Search for FoodRec name in ArrayList of FoodRec
-     * @param foodRecToSearch
-     * @return boolean
+     * @param foodRecToSearch String of FoodRec object to search
+     * @return boolean 
      */
     public boolean requestSearchFoodRecList(String foodRecToSearch)
     {
@@ -117,7 +119,7 @@ public class FoodRecController
     
     /**
      * Search for FoodRec category in ArrayList of FoodRec
-     * @param foodRecToSearch
+     * @param foodRecToSearch String of FoodRec category to search
      * @return boolean
      */
     public boolean requestSearchFoodRecListCategory(String foodRecToSearch)

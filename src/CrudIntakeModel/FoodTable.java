@@ -19,8 +19,8 @@ public class FoodTable extends AbstractTableModel
     private final ArrayList<Food> theFoodListData;
     
     /**
-     *
-     * @param theFoodListClass
+     * Constructor for FoodTable
+     * @param theFoodListClass (FoodList)
      */
     public FoodTable(FoodList theFoodListClass) {
         theFoodListData = theFoodListClass.getParentFoodList();

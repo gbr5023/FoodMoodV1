@@ -22,7 +22,7 @@ public class NotificationController
     User currentUser;
     /**
      * Constructs a new NotificationController
-     * @param currentUser
+     * @param currentUser (User)
      */
     public NotificationController(User currentUser)
     {
@@ -40,7 +40,7 @@ public class NotificationController
     
     /**
      * Sets parent NavigationController, requests NotificationView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {

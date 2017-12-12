@@ -6,25 +6,9 @@
 package CrudUserProfileView;
 
 import CrudUserProfileController.*;
-import DatabaseController.DatabaseController;
-import static DatabaseController.DatabaseController.DB_PASSWORD;
-import static DatabaseController.DatabaseController.DB_USERNAME;
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -37,6 +21,7 @@ public class RegisterView extends javax.swing.JFrame{
 
     /**
      * Creates new form RegisterView
+     * @param parentLoginController (LoginController)
      */
     public RegisterView(LoginController parentLoginController) {
         theLoginController = parentLoginController;

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package CrudUserProfileController;
-import CrudIntakeView.CrudIntakeView;
-import CrudMoodView.CrudMoodView;
 import CrudUserProfileModel.*;
 import CrudUserProfileView.*;
 import NavigationController.NavigationController;
@@ -23,7 +21,8 @@ public class UserProfileController {
     
     /**
      * Creates UserProfileController
-     * @param currentUser
+     * @param currentUser (User)
+     * @param currentUserList (UserList)
      */
     public UserProfileController(User currentUser, UserList currentUserList)
     {
@@ -34,7 +33,7 @@ public class UserProfileController {
     
     /**
      * Returns parent NavigationController class
-     * @return theNavigationController
+     * @return theNavigationController (NavigationController)
      */
     public NavigationController getParentNavigationController() 
     {
@@ -43,7 +42,7 @@ public class UserProfileController {
     
     /**
      * Sets parent NavigationController, requests UserProfileView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {
@@ -73,10 +72,18 @@ public class UserProfileController {
         this.theNavigationController.requestNavigationView();
     } 
     
+    /**
+     * Returns current User
+     * @return User
+     */
     public User getCurrentUser() {
         return currentUser;
     }
     
+    /**
+     * Returns current UserList
+     * @return UserList
+     */
     public UserList getCurrentUserList() {
         return currentUserList;
     }

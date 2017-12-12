@@ -26,8 +26,10 @@ public class StatisticController
     TableModel drinkTableModel;
     TableModel moodTableModel;
     User currentUser;
+    
     /**
      * Creates StatisticController
+     * @param currentUser (User)
      */
     public StatisticController(User currentUser)
     {
@@ -35,6 +37,10 @@ public class StatisticController
         System.out.println("StatisticController instantiated.");
     }
     
+    /**
+     * Returns the current user
+     * @return User
+     */
     public User getCurrentUser()
     {
         return this.currentUser;
@@ -49,16 +55,30 @@ public class StatisticController
         return this.theNavigationController;
     }
     
+    /**
+     * Return parent CrudMoodController
+     * @return CrudMoodController
+     */
     public CrudMoodController getParentCrudMoodController()
     {
         return this.theCrudMoodController;
     }
     
+    /**
+     * Set parent CrudMoodController to local CrudMoodController
+     * @param parentCrudMoodController (CrudMoodController)
+     */
     public void setParentCrudMoodController(CrudMoodController parentCrudMoodController)
     {
         this.theCrudMoodController = parentCrudMoodController;
     }
     
+    /**
+     * Set TableModels for Food, Drink, and Mood
+     * @param foodTableModel (TableModel)
+     * @param drinkTableModel (TableModel)
+     * @param moodTableModel (TableModel)
+     */
     public void setTableModels(TableModel foodTableModel, TableModel drinkTableModel, TableModel moodTableModel)
     {
         this.foodTableModel = foodTableModel;
@@ -66,16 +86,28 @@ public class StatisticController
         this.moodTableModel = moodTableModel;
     }
     
+    /**
+     * Returns Food TableModel
+     * @return TableModel
+     */
     public TableModel getFoodTableModel()
     {
         return this.foodTableModel;
     }
     
+    /**
+     * Returns Drink TableModel
+     * @return TableModel
+     */
     public TableModel getDrinkTableModel()
     {
         return this.drinkTableModel;
     }
     
+    /**
+     * Returns Mood TableModel
+     * @return TableModel
+     */
     public TableModel getMoodTableModel()
     {
         return this.moodTableModel;
@@ -83,7 +115,7 @@ public class StatisticController
     
     /**
      * Sets parent NavigationController, requests StatisticView
-     * @param parentNavigationController 
+     * @param parentNavigationController (NavigationController)
      */
     public void setParentNavigationController(NavigationController parentNavigationController)
     {

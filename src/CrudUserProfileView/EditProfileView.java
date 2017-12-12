@@ -5,13 +5,8 @@
  */
 package CrudUserProfileView;
 
-import CrudUserProfileView.*;
 import CrudUserProfileController.*;
-import CrudUserProfileController.LoginController;
 import CrudUserProfileModel.User;
-import DatabaseController.DatabaseController;
-import static DatabaseController.DatabaseController.DB_PASSWORD;
-import static DatabaseController.DatabaseController.DB_USERNAME;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -20,22 +15,12 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -48,8 +33,10 @@ public class EditProfileView extends javax.swing.JFrame{
     private User currentUser;
     private String imagePath;
     private ImageIcon profilePicIcon;
+    
     /**
      * Creates new form EditProfileView
+     * @param theEditProfileController (EditProfileController)
      */
     public EditProfileView(EditProfileController theEditProfileController) {
         this.theEditProfileController = theEditProfileController;

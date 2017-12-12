@@ -18,9 +18,10 @@ public class LoginView extends javax.swing.JFrame
 {
     LoginController theLoginController;
     User model;
+    
     /** 
      * Creates new form CrudMoodView 
-     * @param parentCrudMoodController the original CrudMoodController object
+     * @param parentLoginController (LoginController)
      */
     public LoginView(LoginController parentLoginController) 
     {

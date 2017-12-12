@@ -19,8 +19,8 @@ public class DrinkTable extends AbstractTableModel
     private final ArrayList<Drink> theDrinkListData;
     
     /**
-     *
-     * @param theDrinkListClass
+     * Constructor for DrinkTable
+     * @param theDrinkListClass (DrinkList)
      */
     public DrinkTable(DrinkList theDrinkListClass) {
         theDrinkListData = theDrinkListClass.getParentDrinkList();

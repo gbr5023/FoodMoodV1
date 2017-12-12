@@ -31,9 +31,12 @@ public class NavigationController
     String theIntake;
     User currentUser;
     UserList userList;
+    
     /**
      * Constructs a new NavigationController
      * Creates all controller classes
+     * @param cur (User)
+     * @param userList (UserList)
      */
     public NavigationController(User cur, UserList userList)
     {
